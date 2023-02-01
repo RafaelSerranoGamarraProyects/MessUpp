@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
+import 'package:tfg_app/providers/providers.dart';
 
+import '../models/models.dart';
 import '../theme/custom_styles.dart';
 
 class PopUpFormAddExpenditure extends StatefulWidget {
@@ -22,6 +25,11 @@ class _PopUpFormAddExpenditureState extends State<PopUpFormAddExpenditure> {
 	@override
 	Widget build(BuildContext context) {
 		final size = MediaQuery.of(context).size;
+    final expensesProvider = Provider.of<ExpensesProvider>(context);
+    //final usersProvider = Provider.of<UsersProvider>(context);
+    final addExpenditureForm = Provider.of<AddExpenditureFormProvider>(context);
+
+
 		return ElevatedButton(
 					style: ElevatedButton.styleFrom(shape: const CircleBorder(), backgroundColor: Colors.grey, minimumSize: const Size(50,50)),
 					child: const Icon(Icons.add, size: 25,color: Colors.black),
@@ -38,21 +46,26 @@ class _PopUpFormAddExpenditureState extends State<PopUpFormAddExpenditure> {
 											width: size.width * 0.7,
                       padding: const EdgeInsets.all(8.0),
                       child: Form(
+                        key: addExpenditureForm.formKey,
                         child: Column(
                           children: <Widget>[
                             TextFormField(
                                decoration: InputDecorations.formInputDecoration(
               									  hintText: 'Compra Mensual',
               									  labelText: 'Asunto',
-              									  prefixIcon: Icons.title_outlined
+              									  prefixIcon: Icons.title_outlined,  
               								),
+                              onChanged: ( value ) => addExpenditureForm.description = value,
                             ),
                             TextFormField(
-                               decoration: InputDecorations.formInputDecoration(
+                              keyboardType: TextInputType.number,
+                              decoration: InputDecorations.formInputDecoration(
               									  hintText: '14.00',
               									  labelText: 'Cuantía',
               									  prefixIcon: Icons.monetization_on_outlined
               								),
+                              onChanged: ( value ) => addExpenditureForm.amount = value,
+
                             ),
                             TextFormField(
 															controller: dateinput,
@@ -71,15 +84,19 @@ class _PopUpFormAddExpenditureState extends State<PopUpFormAddExpenditure> {
                 							      String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate); 
                 							      setState(() {
                 							         dateinput.text = formattedDate;
+                                       addExpenditureForm.date = formattedDate;
                 							      });
                 							  }
 															},
+
                             ),
                             TextFormField(
                               decoration: const InputDecoration(
                                 labelText: 'Categoria',
                                 icon: Icon(Icons.category , color: AppTheme.primaryColor,),
                               ),
+                              onChanged: ( value ) => addExpenditureForm.category = value,
+
                             ),
                           ],
                         ),
@@ -91,10 +108,29 @@ class _PopUpFormAddExpenditureState extends State<PopUpFormAddExpenditure> {
 														shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
 													 	backgroundColor: AppTheme.primaryColor,
 													),
-                          child: const Text("Añadir", style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold),),
-                          onPressed: () {
-                            // your code
-                          })
+                          onPressed: addExpenditureForm.isLoading ? null : () async {
+                            FocusScope.of(context).unfocus();
+                            if( !addExpenditureForm.isValidForm() ) return;
+
+                            var stringArray = addExpenditureForm.date.split('-');
+                           
+                            var year = int.parse(stringArray[0]);
+                            var month = int.parse(stringArray[1]);
+                            var day = int.parse(stringArray[2]);
+                            var amount = double.parse(addExpenditureForm.amount); 
+
+                            addExpenditureForm.isLoading = true;
+                            var finalDate = DateTime(year,month,day);
+
+                            final newExpenditure = Expenditure(date: finalDate, amount: amount,
+                              category: addExpenditureForm.category, description: addExpenditureForm.description, image: '');
+                            
+                            expensesProvider.addExpenditure(newExpenditure,addExpenditureForm.date);
+
+                            Navigator.pop(context);
+                          },
+                          child: const Text("Añadir", style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold),)
+                      )
                     ],
                   );
                 });

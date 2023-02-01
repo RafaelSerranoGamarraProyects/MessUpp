@@ -10,7 +10,24 @@ class ExpensesProvider extends ChangeNotifier {
 
   List<Expenditure> monthlyExpenses = [];
   
+  
 
+  void addExpenditure(Expenditure expenditure, String date) async {
+    monthlyExpenses.add(expenditure);
+
+    final Map<String,dynamic> body = {
+      "description" : expenditure.description,
+      "date": date,
+      "amount": expenditure.amount,
+      "category": expenditure.category,
+      "image": expenditure.image    
+    };
+
+    final url = Uri.http(_baseUrl,'/expenses/createExpenditure');
+    await http.post(url, body: body);
+
+    notifyListeners();
+  }
 
   final debouncer = Debouncer(
     duration: const Duration(milliseconds: 500),
