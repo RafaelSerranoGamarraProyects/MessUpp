@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tfg_app/theme/custom_validators.dart';
 
 import '../providers/providers.dart';
 import '../theme/custom_styles.dart';

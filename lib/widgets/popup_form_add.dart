@@ -64,7 +64,7 @@ class _PopUpFormAddExpenditureState extends State<PopUpFormAddExpenditure> {
               									  labelText: 'Cuantía',
               									  prefixIcon: Icons.monetization_on_outlined
               								),
-                              onChanged: ( value ) => addExpenditureForm.amount = value,
+                              onChanged: ( value ) => addExpenditureForm.amount = double.parse(value),
 
                             ),
                             TextFormField(
@@ -117,13 +117,12 @@ class _PopUpFormAddExpenditureState extends State<PopUpFormAddExpenditure> {
                             var year = int.parse(stringArray[0]);
                             var month = int.parse(stringArray[1]);
                             var day = int.parse(stringArray[2]);
-                            var amount = double.parse(addExpenditureForm.amount); 
 
                             addExpenditureForm.isLoading = true;
                             var finalDate = DateTime(year,month,day);
 
-                            final newExpenditure = Expenditure(date: finalDate, amount: amount,
-                              category: addExpenditureForm.category, description: addExpenditureForm.description, image: '');
+                            final newExpenditure = Expenditure(date: finalDate, amount: addExpenditureForm.amount,
+                              category: addExpenditureForm.category, description: addExpenditureForm.description, image: 'no-image');
                             
                             expensesProvider.addExpenditure(newExpenditure,addExpenditureForm.date);
 

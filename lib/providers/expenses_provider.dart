@@ -1,5 +1,8 @@
 import 'dart:async';
+import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/widgets.dart';
+import 'package:intl/intl.dart';
 import '../helpers/debouncer.dart';
 import '../models/models.dart';
 import 'package:http/http.dart' as http;
@@ -7,6 +10,11 @@ import 'package:http/http.dart' as http;
 class ExpensesProvider extends ChangeNotifier {
 
   final String _baseUrl = '192.168.1.228:5000';
+  final String _baseCloudinaryUrl = "https://api.cloudinary.com/v1_1/dtdvvx265/image/upload";
+
+  File? newPictureFile;
+  Expenditure? selectedExpenditure;
+  bool isSaving = false;
 
   List<Expenditure> monthlyExpenses = [];
   
@@ -15,13 +23,8 @@ class ExpensesProvider extends ChangeNotifier {
   void addExpenditure(Expenditure expenditure, String date) async {
     monthlyExpenses.add(expenditure);
 
-    final Map<String,dynamic> body = {
-      "description" : expenditure.description,
-      "date": date,
-      "amount": expenditure.amount,
-      "category": expenditure.category,
-      "image": expenditure.image    
-    };
+    final Map<String,dynamic> body = expenditure.toJson();
+    body["amount"] =  '${body["amount"]}';
 
     final url = Uri.http(_baseUrl,'/expenses/createExpenditure');
     await http.post(url, body: body);
@@ -49,11 +52,30 @@ class ExpensesProvider extends ChangeNotifier {
   }
   
   void getMonthlyExpenses() async{
-    final jsonData = await _getJsonData('/expenses/getMonthlyExpenses/2023-01-17');
+    var now = DateTime.now();
+    var formatter = DateFormat('yyyy-MM-dd');
+    String formattedDate = formatter.format(now);
+
+    final jsonData = await _getJsonData('/expenses/getMonthlyExpenses/$formattedDate');
     final List<Expenditure> expensesList = MonthlyExpensesResponse().expenditureListFromJson(jsonData);
     monthlyExpenses = [...monthlyExpenses, ...expensesList];
     notifyListeners();
   }
+
+  void updateExpenditure() async {
+    isSaving = true;
+    notifyListeners();
+ 
+    final Map<String,dynamic> body = selectedExpenditure!.toJson();
+    body["amount"] =  '${body["amount"]}';
+
+    final url = Uri.http(_baseUrl,'/expenses/updateExpenditure');
+    await http.put(url, body: body);
+    isSaving = false;
+    notifyListeners();
+ 
+  }
+
   double getTotalSpend(){
     double total = 0;
     for (var expenditure in monthlyExpenses) {
@@ -62,30 +84,40 @@ class ExpensesProvider extends ChangeNotifier {
     return total;
   }
 
+  void updateSelectedImage(String path){
+    selectedExpenditure!.image = path;
+    newPictureFile = File.fromUri( Uri(path: path));
+    notifyListeners();
+  }
 
 
+   Future<String?> uploadImage() async {
+    
+    if (  newPictureFile == null ) return null;
 
-/*   Future<List<Expenditure>> searchExpenses(String query) async {
-    final url = Uri.https(_baseUrl, '3/search/movie');
+    notifyListeners();
 
-    final response = await http.get(url);
-    final searchResponse = SearchResponse.fromJson(response.body);
+    final url = Uri.parse('https://api.cloudinary.com/v1_1/dtdvvx265/image/upload?upload_preset=ml_default');
 
-    return searchResponse.results;
-  } */
+    final imageUploadRequest = http.MultipartRequest('POST', url );
 
- /*  void getSuggestionsByQuery(String searchTerm) {
-    debouncer.value = '';
-    debouncer.onValue = (value) async {
-      // print('Tenemos valor a buscar: $value');
-      final results = await searchMovies(value);
-      _suggestionStreamContoller.add(results);
-    }; 
+    final file = await http.MultipartFile.fromPath('file', newPictureFile!.path );
 
-    final timer = Timer.periodic(const Duration(milliseconds: 300), (_) {
-      debouncer.value = searchTerm;
-    });
+    imageUploadRequest.files.add(file);
 
-    Future.delayed(const Duration(milliseconds: 301)).then((_) => timer.cancel());
-  }*/
+    final streamResponse = await imageUploadRequest.send();
+    final resp = await http.Response.fromStream(streamResponse);
+
+    if ( resp.statusCode != 200 && resp.statusCode != 201 ) {
+      //ALGO SALIO MAL
+      return null;
+    }
+
+    newPictureFile = null;
+
+    final decodedData = json.decode( resp.body );
+    return decodedData['secure_url'];
+
+  }
+
 }

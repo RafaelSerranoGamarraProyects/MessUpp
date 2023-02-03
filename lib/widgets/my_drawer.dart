@@ -46,8 +46,8 @@ class MyDrawerHeader extends StatelessWidget {
 							)
 						),
 					),
-					Text(usersProvider.user.name,style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),),
-					Text(usersProvider.user.email,style: TextStyle(color: Colors.white, fontSize: 16),)
+					Text(usersProvider.user.name,style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),),
+					Text(usersProvider.user.email,style: const TextStyle(color: Colors.white, fontSize: 16),)
 				],
 
 			),

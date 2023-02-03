@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'package:tfg_app/models/expenditure.dart';
 
+import '../providers/providers.dart';
+import '../theme/custom_styles.dart';
 import '../widgets/widgets.dart';
 
 
@@ -10,21 +15,243 @@ class ExpenditureScreen extends StatelessWidget {
 	@override
 	Widget build(BuildContext context) {
 		final Expenditure expenditure = ModalRoute.of(context)!.settings.arguments as Expenditure;
-
 		return Scaffold(
-			appBar: AppBar(elevation: 0,title: Text("Detalles: \"${expenditure.description}\""),),
-			drawer: const  Drawer(child:  MyDrawer()),
-			body: SizedBox(
-				height: double.infinity,
-				width: double.infinity,
-				child: Column(
-					children: [
-						//TODO:Imagen del gasto, ver como subir imagenes a internet
-						Text("Fecha: ${expenditure.date.day}-${expenditure.date.month}-${expenditure.date.year}"),
-						Text("Gasto: ${expenditure.amount}"),
-						Text("Categoria: ${expenditure.category}"),
-				]),
+
+			body: ChangeNotifierProvider(
+			   create: (_) => ExpensesProvider(), lazy: false,
+			   child: Stack(
+			     children:[
+			       const Background(),
+			       SafeArea(child: _ModifyBody(expenditure: expenditure)),
+			       const ReturnButton(),
+			       PickImageButton(expenditure: expenditure,),
+             const SubmitModifyButton()
+			     ]
+			   ),
 			),
 		);
 	}
 }
+
+class SubmitModifyButton extends StatelessWidget {
+  const SubmitModifyButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final expensesProvider = Provider.of<ExpensesProvider>(context);
+    final modifyExpenditureFormProvider = Provider.of<ModifyExpenditureFormProvider>(context);
+    return Container(
+     width: double.infinity,
+     height: double.infinity,
+     padding: const EdgeInsets.only(bottom: 100),
+     alignment: Alignment.bottomCenter,
+     child: ElevatedButton(
+       style: ElevatedButton.styleFrom(minimumSize: const Size(300, 80), backgroundColor: AppTheme.primaryColor),
+       onPressed: () async {
+          
+          if ( !modifyExpenditureFormProvider.isValidForm() ) return;
+
+          final String? imageUrl = await expensesProvider.uploadImage();
+
+          if ( imageUrl != null ) expensesProvider.selectedExpenditure!.image = imageUrl;
+
+          expensesProvider.updateExpenditure();
+
+        },
+       child: const Text("Modificar"),)
+            );
+  }
+}
+
+class ReturnButton extends StatelessWidget {
+  const ReturnButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      top: 60,
+      left: 20,
+      child: IconButton(
+        onPressed: () => Navigator.of(context).pop(), 
+        icon: const Icon( Icons.arrow_back_ios_new, size: 40, color: Colors.white ),
+      )
+    );
+  }
+}
+
+class PickImageButton extends StatelessWidget {
+  const PickImageButton({
+    super.key,
+    required this.expenditure,
+  });
+
+
+  final Expenditure expenditure;
+
+  @override
+  Widget build(BuildContext context) {
+		final expensesProvider = Provider.of<ExpensesProvider>(context);
+    return Positioned(
+      top: 60,
+      right: 20,
+      child: IconButton(
+      onPressed: () async {
+          final picker = ImagePicker();
+          final XFile? pickedFile = await picker.pickImage(
+            source: ImageSource.gallery,
+            imageQuality: 100
+          );
+          if( pickedFile == null ) {
+            return;
+          }
+          
+          expensesProvider.updateSelectedImage(pickedFile.path);
+    
+        }, 
+        style: ElevatedButton.styleFrom(shape: const CircleBorder(), backgroundColor: Colors.grey, minimumSize: const Size(50,50)),
+        icon: const Icon( Icons.camera_alt_outlined, size: 40, color: Colors.black ),
+      )
+    );
+  }
+}
+
+class _ModifyBody extends StatelessWidget {
+  const _ModifyBody({
+    required this.expenditure,
+  });
+  final Expenditure expenditure;
+
+  @override
+  Widget build(BuildContext context) {
+    final expensesProvider = Provider.of<ExpensesProvider>(context);
+    expensesProvider.selectedExpenditure = expenditure;
+
+    return SizedBox(
+    height: double.infinity,
+    width: double.infinity,
+    child: Column(
+			
+    	children: [
+    		//TODO:Imagen del gasto, ver como subir imagenes a internet
+				ExpenditureImage( url: expensesProvider.selectedExpenditure!.image ),
+				_ExpenditureForm()
+
+      ]),
+	  );
+  }
+}
+class _ExpenditureForm extends StatefulWidget {
+  @override
+  State<_ExpenditureForm> createState() => _ExpenditureFormState();
+}
+
+class _ExpenditureFormState extends State<_ExpenditureForm> {
+  TextEditingController dateinput = TextEditingController(); 
+
+	@override
+  void initState() {
+    dateinput.text = ""; //set the initial value of text field
+    super.initState();
+  }
+  
+  
+  @override
+  Widget build(BuildContext context) {
+
+    final expenditureForm = Provider.of<ModifyExpenditureFormProvider>(context);
+    final expenditure = expenditureForm.expenditure;
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        width: double.infinity,
+        height: 300,
+        decoration: _buildBoxDecoration(),
+        child: Form(
+          key: expenditureForm.formKey,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          child: Column(
+            children: [
+
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: TextFormField(
+                  initialValue: expenditure.description,
+                  onChanged: ( value ) => expenditure.description = value,
+                  decoration: InputDecorations.formInputDecoration(
+                    hintText: 'Titulo del Gasto', 
+                    labelText: 'Titulo:'
+                  ),
+                ),
+              ),
+
+
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: TextFormField(
+                  initialValue: '${expenditure.amount}',
+                  onChanged: ( value ) {
+                    if ( double.tryParse(value) == null ) {
+                      expenditure.amount = 0;
+                    } else {
+                      expenditure.amount = double.parse(value);
+                    }
+                  },
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecorations.formInputDecoration(
+                    hintText: '\$150', 
+                    labelText: 'Cuantía:'
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: TextFormField(
+                  controller: dateinput,
+                  decoration: InputDecorations.dateInputDecoration(labelText: "Introduce la fecha"),
+                              readOnly: true,  //set it true, so that user will not able to edit text
+                  onTap: () async {
+                                setState(() {dateinput.text = "";});
+                    DateTime? pickedDate = await showDatePicker(
+                        context: context,
+                                    initialDate: DateTime.now(),
+                        firstDate: DateTime(2000), //DateTime.now() - not to allow to choose before today.
+                        lastDate: DateTime(2101)
+                    );
+              
+                    if(pickedDate != null ){
+                        String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate); 
+                        setState(() {
+                           dateinput.text = formattedDate;
+                           expenditureForm.date = formattedDate;
+                        });
+                    }
+                  },
+              
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+  BoxDecoration _buildBoxDecoration() => BoxDecoration(
+    color: Colors.white,
+    
+    borderRadius: const BorderRadius.all(Radius.circular(20)),
+    boxShadow: [
+      BoxShadow(
+        color: Colors.black.withOpacity(0.05),
+        offset: const Offset(0,5),
+        blurRadius: 5
+      )
+    ]
+  );

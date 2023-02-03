@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:tfg_app/models/expenditure.dart';
 
 
-class AddExpenditureFormProvider extends ChangeNotifier {
+class ModifyExpenditureFormProvider extends ChangeNotifier {
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  String description = '';
-  String category = '';
-  double amount = 0;
-  String date = '';
-  String image = '';
+  String date = "";
+  Expenditure expenditure = Expenditure(date: DateTime.now(), amount: 0,
+                              category: "", description: "", image: 'no-image');
+
 
   bool _isLoading = false;
+  
+
   bool get isLoading => _isLoading;
   
   set isLoading( bool value ) {
@@ -23,5 +25,8 @@ class AddExpenditureFormProvider extends ChangeNotifier {
   bool isValidForm() {
     return formKey.currentState?.validate() ?? false;
   }
+
+
+ 
 
 }

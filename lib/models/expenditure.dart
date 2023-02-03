@@ -25,7 +25,7 @@ class Expenditure {
 
     factory Expenditure.fromJson(Map<String, dynamic> json) => Expenditure(
         date: DateTime.parse(json["date"]),
-        amount: json["amount"],
+        amount: double.parse('${json["amount"]}'),
         category: json["category"],
         description: json["description"],
         image: json["image"],
@@ -38,4 +38,6 @@ class Expenditure {
         "description": description,
         "image": image,
     };
+
+  
 }

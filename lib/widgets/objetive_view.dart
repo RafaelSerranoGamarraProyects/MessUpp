@@ -49,12 +49,12 @@ class ObjetiveScreenBody extends StatelessWidget {
 }
 
 class TopDaysChart extends StatelessWidget {
-	 static List<_ChartData> data = [
-    _ChartData('VIER', 40),
-    _ChartData('JUEV', 32),
-    _ChartData('MIER', 34),
-    _ChartData('MAR', 28),
-    _ChartData('LUN', 35),
+	 static List<ChartData> data = [
+    ChartData('VIER', 40),
+    ChartData('JUEV', 32),
+    ChartData('MIER', 34),
+    ChartData('MAR', 28),
+    ChartData('LUN', 35),
   ];
   const TopDaysChart({
     Key? key,
@@ -66,14 +66,14 @@ class TopDaysChart extends StatelessWidget {
               primaryXAxis: CategoryAxis(isVisible: true,labelStyle: const TextStyle(color: Colors.white,fontSize: 16, fontWeight: FontWeight.bold)),
 							primaryYAxis: CategoryAxis(isVisible: false),
 							 
-              series: <ChartSeries<_ChartData, String>>[
-                BarSeries<_ChartData, String>(
+              series: <ChartSeries<ChartData, String>>[
+                BarSeries<ChartData, String>(
 								
 									gradient: const LinearGradient(colors:
 									 [Color.fromARGB(255, 158, 253, 188),Color.fromRGBO(137,220,205, 1)],),
                     dataSource: data,
-                    xValueMapper: (_ChartData expenses, _) => expenses.day,
-                    yValueMapper: (_ChartData expenses, _) => expenses.amount,
+                    xValueMapper: (ChartData expenses, _) => expenses.day,
+                    yValueMapper: (ChartData expenses, _) => expenses.amount,
                     
 			                    // Enable data label
 								)
@@ -89,7 +89,7 @@ class DescriptionAndProgress extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-		final double percentaje; 
+		//final double percentaje; 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       child: Row(children: [
@@ -115,8 +115,8 @@ class DescriptionAndProgress extends StatelessWidget {
 }
 
 
-   class _ChartData {
+   class ChartData {
     	final String day;
     	final double amount;
-			_ChartData(this.day, this.amount);
+			ChartData(this.day, this.amount);
 		}

@@ -36,13 +36,6 @@ class _ExpensesListState extends State<ExpensesList> {
 							height: size.height - 220,
 							width: size.width,
 							child: const PopUpFormAddExpenditure()
-							/* ElevatedButton(
-								style: ElevatedButton.styleFrom(shape: const CircleBorder(), backgroundColor: Colors.grey, minimumSize: const Size(50,50)),
-								onPressed: () {	
-									setState(() {});
-								},
-								child: const Icon(Icons.add, size: 25,color: Colors.black),
-							), */
 						),				
 					],
 			),
