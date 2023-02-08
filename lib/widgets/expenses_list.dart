@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfg_app/models/expenditure.dart';
 import 'package:tfg_app/theme/app_theme.dart';
+import 'package:tfg_app/utils/categories_options.dart';
 
 import '../providers/providers.dart';
 import 'widgets.dart';
@@ -17,10 +18,13 @@ class ExpensesList extends StatefulWidget {
 class _ExpensesListState extends State<ExpensesList> {
 	@override
 	Widget build(BuildContext context) {
-		/* final expensesProvider = Provider.of<ExpensesProvider>(context); */
+		final userProvider = Provider.of<UsersProvider>(context);
 		final size = MediaQuery.of(context).size;
+
+		if(userProvider.user.email =="") return const CircularProgressIndicator(color: Colors.white,backgroundColor: AppTheme.primaryColor,);
+
 		return ChangeNotifierProvider(
-			create: (_) => ExpensesProvider(), lazy: false,
+			create: (_) => ExpensesProvider(userProvider.user), lazy: false,
 			child: Stack(
 				children: [
 					const Background(),
@@ -97,11 +101,7 @@ class _ListOfItems extends StatelessWidget {
 }
 
 class _CustomItem extends StatelessWidget {
-	final Map<String, IconData> categoryMap ={
-		"Alimentacion" : Icons.fastfood_rounded,
-		"Ocio" : Icons.sports_esports_rounded,
-		"Viaje" : Icons.travel_explore_outlined
-	};
+	final Map<String, IconData> categoryMap = CategoriesOptions.categoryIconMap;
 	final Expenditure expenditure;
 	
    _CustomItem({

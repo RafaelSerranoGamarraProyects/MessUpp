@@ -7,6 +7,7 @@ import 'dart:convert';
 User userFromJson(String str) => User.fromJson(json.decode(str));
 
 String userToJson(User data) => json.encode(data.toJson());
+//String encoded = sha256.convert(utf8.encode(input)).toString();
 
 class User {
     User({

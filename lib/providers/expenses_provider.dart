@@ -16,6 +16,7 @@ class ExpensesProvider extends ChangeNotifier {
   Expenditure? selectedExpenditure;
   bool isSaving = false;
 
+
   List<Expenditure> monthlyExpenses = [];
   
   
@@ -39,8 +40,8 @@ class ExpensesProvider extends ChangeNotifier {
   final StreamController<List<Expenditure>> _suggestionStreamContoller = StreamController.broadcast();
   Stream<List<Expenditure>> get suggestionStream => _suggestionStreamContoller.stream;
 
-  ExpensesProvider() {
-    getMonthlyExpenses();
+  ExpensesProvider(User user){
+    getMonthlyExpenses(user.id);
   }
 
   Future<String> _getJsonData(String endpoint) async {
@@ -51,12 +52,11 @@ class ExpensesProvider extends ChangeNotifier {
     return response.body;
   }
   
-  void getMonthlyExpenses() async{
+  void getMonthlyExpenses(String userId) async{
     var now = DateTime.now();
     var formatter = DateFormat('yyyy-MM-dd');
     String formattedDate = formatter.format(now);
-
-    final jsonData = await _getJsonData('/expenses/getMonthlyExpenses/$formattedDate');
+    final jsonData = await _getJsonData('/expenses/getMonthlyExpenses/$formattedDate/$userId');
     final List<Expenditure> expensesList = MonthlyExpensesResponse().expenditureListFromJson(jsonData);
     monthlyExpenses = [...monthlyExpenses, ...expensesList];
     notifyListeners();

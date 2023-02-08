@@ -13,7 +13,7 @@ class UsersProvider extends ChangeNotifier {
 
   User get user => _user;
 
-  set user(value){
+  set user( User value){
     _user = value;
     notifyListeners();
   }
@@ -52,7 +52,7 @@ class UsersProvider extends ChangeNotifier {
 		};
     final jsonData = await _postJsonData('/users/login',requestBody);
     final User userLogged = userFromJson(jsonData);
-    user  = userLogged;
-    notifyListeners();
+    user = userLogged;
+  
   }
 }

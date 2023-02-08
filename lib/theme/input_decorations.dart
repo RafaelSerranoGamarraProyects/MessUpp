@@ -54,5 +54,28 @@ class InputDecorations {
       );
   }
 
+  static InputDecoration dropDownMenuInputDecoration({
+    required String labelText,
+    }) {
+    return InputDecoration(
+        enabledBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: AppTheme.primaryColor
+          ),
+        ),
+        focusedBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: AppTheme.primaryColor,
+            width: 2
+          )
+        ),
+        labelText: labelText,
+        labelStyle: const TextStyle(
+          color: Colors.grey
+        ),
+        icon: const Icon(Icons.menu_book_rounded, color: AppTheme.primaryColor)
+      );
+  }
+
 
 }

@@ -15,17 +15,17 @@ class ExpenditureScreen extends StatelessWidget {
 	@override
 	Widget build(BuildContext context) {
 		final Expenditure expenditure = ModalRoute.of(context)!.settings.arguments as Expenditure;
+    final userProvider = Provider.of<UsersProvider>(context);
 		return Scaffold(
 
 			body: ChangeNotifierProvider(
-			   create: (_) => ExpensesProvider(), lazy: false,
+			   create: (_) => ExpensesProvider(userProvider.user), lazy: false,
 			   child: Stack(
 			     children:[
 			       const Background(),
 			       SafeArea(child: _ModifyBody(expenditure: expenditure)),
 			       const ReturnButton(),
 			       PickImageButton(expenditure: expenditure,),
-             const SubmitModifyButton()
 			     ]
 			   ),
 			),
@@ -43,9 +43,8 @@ class SubmitModifyButton extends StatelessWidget {
     final expensesProvider = Provider.of<ExpensesProvider>(context);
     final modifyExpenditureFormProvider = Provider.of<ModifyExpenditureFormProvider>(context);
     return Container(
-     width: double.infinity,
-     height: double.infinity,
-     padding: const EdgeInsets.only(bottom: 100),
+     width: 300,
+     height: 100,
      alignment: Alignment.bottomCenter,
      child: ElevatedButton(
        style: ElevatedButton.styleFrom(minimumSize: const Size(300, 80), backgroundColor: AppTheme.primaryColor),
@@ -72,12 +71,20 @@ class ReturnButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final expenseProvider = Provider.of<ExpensesProvider>(context);
     return Positioned(
       top: 60,
       left: 20,
       child: IconButton(
-        onPressed: () => Navigator.of(context).pop(), 
-        icon: const Icon( Icons.arrow_back_ios_new, size: 40, color: Colors.white ),
+        onPressed: () {
+          if(expenseProvider.selectedExpenditure != null){
+            expenseProvider.selectedExpenditure = null;
+            expenseProvider.newPictureFile = null;
+          }
+          Navigator.of(context).pop();
+
+        }, 
+        icon: const Icon( Icons.arrow_back_ios_new, size: 40, color: Colors.black ),
       )
     );
   }
@@ -133,14 +140,16 @@ class _ModifyBody extends StatelessWidget {
     return SizedBox(
     height: double.infinity,
     width: double.infinity,
-    child: Column(
-			
-    	children: [
-    		//TODO:Imagen del gasto, ver como subir imagenes a internet
-				ExpenditureImage( url: expensesProvider.selectedExpenditure!.image ),
-				_ExpenditureForm()
-
-      ]),
+    child: SingleChildScrollView(
+      child: Column(
+        children: [
+          //TODO:Imagen del gasto, ver como subir imagenes a internet
+            ExpenditureImage( url: expensesProvider.selectedExpenditure!.image ),
+            _ExpenditureForm(),
+            const SubmitModifyButton(),
+    
+        ]),
+    ),
 	  );
   }
 }

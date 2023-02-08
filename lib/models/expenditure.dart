@@ -15,6 +15,7 @@ class Expenditure {
         required this.category,
         required this.description,
         required this.image,
+        required this.userId
     });
 
     DateTime date;
@@ -22,6 +23,7 @@ class Expenditure {
     String category;
     String description;
     String image;
+    String userId;
 
     factory Expenditure.fromJson(Map<String, dynamic> json) => Expenditure(
         date: DateTime.parse(json["date"]),
@@ -29,6 +31,7 @@ class Expenditure {
         category: json["category"],
         description: json["description"],
         image: json["image"],
+        userId: json["user"]
     );
 
     Map<String, dynamic> toJson() => {
@@ -37,6 +40,7 @@ class Expenditure {
         "category": category,
         "description": description,
         "image": image,
+        "user": userId,
     };
 
   

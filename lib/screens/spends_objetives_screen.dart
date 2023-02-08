@@ -8,8 +8,6 @@ class SpendObjetivesScreen extends StatefulWidget {
 
   @override
   State<SpendObjetivesScreen> createState() => _SpendObjetivesScreenState();
-	//TODO: Re-paint the expensesList once i add a new one
-	//TODO: See how can we coordinate the expensesList with the DB and backend 
 }
 
 class _SpendObjetivesScreenState extends State<SpendObjetivesScreen> {

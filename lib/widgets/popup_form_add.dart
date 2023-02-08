@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:tfg_app/providers/providers.dart';
+import 'package:tfg_app/utils/categories_options.dart';
 
 import '../models/models.dart';
 import '../theme/custom_styles.dart';
@@ -26,9 +27,8 @@ class _PopUpFormAddExpenditureState extends State<PopUpFormAddExpenditure> {
 	Widget build(BuildContext context) {
 		final size = MediaQuery.of(context).size;
     final expensesProvider = Provider.of<ExpensesProvider>(context);
-    //final usersProvider = Provider.of<UsersProvider>(context);
+    final usersProvider = Provider.of<UsersProvider>(context);
     final addExpenditureForm = Provider.of<AddExpenditureFormProvider>(context);
-
 
 		return ElevatedButton(
 					style: ElevatedButton.styleFrom(shape: const CircleBorder(), backgroundColor: Colors.grey, minimumSize: const Size(50,50)),
@@ -37,6 +37,7 @@ class _PopUpFormAddExpenditureState extends State<PopUpFormAddExpenditure> {
             showDialog(
                 context: context,
                 builder: (BuildContext context) {
+                  final _categories = CategoriesOptions.categories;
                   return AlertDialog(
 										shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                     scrollable: true,
@@ -90,14 +91,44 @@ class _PopUpFormAddExpenditureState extends State<PopUpFormAddExpenditure> {
 															},
 
                             ),
-                            TextFormField(
+/*                             TextFormField(
                               decoration: const InputDecoration(
                                 labelText: 'Categoria',
                                 icon: Icon(Icons.category , color: AppTheme.primaryColor,),
                               ),
                               onChanged: ( value ) => addExpenditureForm.category = value,
-
-                            ),
+                            ), */
+                            DropdownButtonFormField(
+                              decoration: InputDecorations.dropDownMenuInputDecoration(labelText: "Elija la Categoria"),
+                              items: [
+		                                  DropdownMenuItem(
+                                        value: "Alimentacion",
+                                        child: Row(
+                                          children: const <Widget>[
+                                            Icon(Icons.fastfood_rounded,color: AppTheme.primaryColor),Text("Alimentacion"),],
+                                         )),
+		                                  	DropdownMenuItem(
+                                        value: "Ocio",
+                                        child: Row(
+                                          children: const <Widget>[Icon(Icons.sports_esports_rounded,color: AppTheme.primaryColor),Text("Ocio"),],
+		                                  	)),
+		                                  	DropdownMenuItem(
+                                        value: "Viaje",
+                                        child: Row(
+                                          children: const <Widget>[Icon(Icons.travel_explore_outlined,color: AppTheme.primaryColor),Text("Viaje"),],
+		                                  	)),
+		                                  DropdownMenuItem(
+                                        value: "Compras",
+                                        child: Row(
+                                          children: const <Widget>[Icon(Icons.shopping_cart_checkout_outlined,color: AppTheme.primaryColor,),Text("Compras"),],
+		                                  	)),
+	                            ],
+                              onChanged: (value) {
+                                if(value != null) addExpenditureForm.category = value;
+                                setState(() {});
+                              },
+                              value: addExpenditureForm.category.isNotEmpty ? addExpenditureForm.category : null,
+                            )
                           ],
                         ),
                       ),
@@ -121,8 +152,8 @@ class _PopUpFormAddExpenditureState extends State<PopUpFormAddExpenditure> {
                             addExpenditureForm.isLoading = true;
                             var finalDate = DateTime(year,month,day);
 
-                            final newExpenditure = Expenditure(date: finalDate, amount: addExpenditureForm.amount,
-                              category: addExpenditureForm.category, description: addExpenditureForm.description, image: 'no-image');
+                            final newExpenditure = Expenditure(date: finalDate, amount: addExpenditureForm.amount,category: addExpenditureForm.category,
+                              description: addExpenditureForm.description, image: 'no-image', userId: usersProvider.user.id);
                             
                             expensesProvider.addExpenditure(newExpenditure,addExpenditureForm.date);
 
