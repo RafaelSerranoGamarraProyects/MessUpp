@@ -10,7 +10,6 @@ class ModifyExpenditureFormProvider extends ChangeNotifier {
   Expenditure expenditure = Expenditure(date: DateTime.now(), amount: 0,
                               category: "", description: "", image: 'no-image', userId: "");
 
-
   bool _isLoading = false;
   
 

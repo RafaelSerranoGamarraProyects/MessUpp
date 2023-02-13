@@ -53,10 +53,14 @@ class SubmitModifyButton extends StatelessWidget {
           if ( !modifyExpenditureFormProvider.isValidForm() ) return;
 
           final String? imageUrl = await expensesProvider.uploadImage();
-
+//
           if ( imageUrl != null ) expensesProvider.selectedExpenditure!.image = imageUrl;
+          expensesProvider.selectedExpenditure!.amount = modifyExpenditureFormProvider.expenditure.amount;
+          expensesProvider.selectedExpenditure!.date = DateTime.parse(modifyExpenditureFormProvider.date).add(const Duration(days: 1));
+          expensesProvider.selectedExpenditure!.description = modifyExpenditureFormProvider.expenditure.description;
 
           expensesProvider.updateExpenditure();
+          Navigator.popAndPushNamed(context, 'home');
 
         },
        child: const Text("Modificar"),)
@@ -81,7 +85,7 @@ class ReturnButton extends StatelessWidget {
             expenseProvider.selectedExpenditure = null;
             expenseProvider.newPictureFile = null;
           }
-          Navigator.of(context).pop();
+          Navigator.popAndPushNamed(context, 'home');
 
         }, 
         icon: const Icon( Icons.arrow_back_ios_new, size: 40, color: Colors.black ),
@@ -136,6 +140,7 @@ class _ModifyBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final expensesProvider = Provider.of<ExpensesProvider>(context);
     expensesProvider.selectedExpenditure = expenditure;
+    
 
     return SizedBox(
     height: double.infinity,
@@ -143,7 +148,6 @@ class _ModifyBody extends StatelessWidget {
     child: SingleChildScrollView(
       child: Column(
         children: [
-          //TODO:Imagen del gasto, ver como subir imagenes a internet
             ExpenditureImage( url: expensesProvider.selectedExpenditure!.image ),
             _ExpenditureForm(),
             const SubmitModifyButton(),
@@ -172,7 +176,7 @@ class _ExpenditureFormState extends State<_ExpenditureForm> {
   Widget build(BuildContext context) {
 
     final expenditureForm = Provider.of<ModifyExpenditureFormProvider>(context);
-    final expenditure = expenditureForm.expenditure;
+    final expensesProvider = Provider.of<ExpensesProvider>(context);
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
@@ -190,8 +194,8 @@ class _ExpenditureFormState extends State<_ExpenditureForm> {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 child: TextFormField(
-                  initialValue: expenditure.description,
-                  onChanged: ( value ) => expenditure.description = value,
+                  initialValue: expensesProvider.selectedExpenditure!.description,
+                  onChanged: ( value ) => expenditureForm.expenditure.description = value,
                   decoration: InputDecorations.formInputDecoration(
                     hintText: 'Titulo del Gasto', 
                     labelText: 'Titulo:'
@@ -203,12 +207,12 @@ class _ExpenditureFormState extends State<_ExpenditureForm> {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 child: TextFormField(
-                  initialValue: '${expenditure.amount}',
+                  initialValue: '${expensesProvider.selectedExpenditure!.amount}',
                   onChanged: ( value ) {
                     if ( double.tryParse(value) == null ) {
-                      expenditure.amount = 0;
+                      expenditureForm.expenditure.amount = 0;
                     } else {
-                      expenditure.amount = double.parse(value);
+                      expenditureForm.expenditure.amount = double.parse(value);
                     }
                   },
                   keyboardType: TextInputType.number,
@@ -225,7 +229,7 @@ class _ExpenditureFormState extends State<_ExpenditureForm> {
                   decoration: InputDecorations.dateInputDecoration(labelText: "Introduce la fecha"),
                               readOnly: true,  //set it true, so that user will not able to edit text
                   onTap: () async {
-                                setState(() {dateinput.text = "";});
+                    setState(() {dateinput.text = "";});
                     DateTime? pickedDate = await showDatePicker(
                         context: context,
                                     initialDate: DateTime.now(),

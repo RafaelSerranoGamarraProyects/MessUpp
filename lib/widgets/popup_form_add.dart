@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:tfg_app/providers/providers.dart';
-import 'package:tfg_app/utils/categories_options.dart';
 
 import '../models/models.dart';
 import '../theme/custom_styles.dart';
@@ -37,7 +36,6 @@ class _PopUpFormAddExpenditureState extends State<PopUpFormAddExpenditure> {
             showDialog(
                 context: context,
                 builder: (BuildContext context) {
-                  final _categories = CategoriesOptions.categories;
                   return AlertDialog(
 										shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                     scrollable: true,
@@ -91,13 +89,6 @@ class _PopUpFormAddExpenditureState extends State<PopUpFormAddExpenditure> {
 															},
 
                             ),
-/*                             TextFormField(
-                              decoration: const InputDecoration(
-                                labelText: 'Categoria',
-                                icon: Icon(Icons.category , color: AppTheme.primaryColor,),
-                              ),
-                              onChanged: ( value ) => addExpenditureForm.category = value,
-                            ), */
                             DropdownButtonFormField(
                               decoration: InputDecorations.dropDownMenuInputDecoration(labelText: "Elija la Categoria"),
                               items: [
@@ -143,21 +134,16 @@ class _PopUpFormAddExpenditureState extends State<PopUpFormAddExpenditure> {
                             FocusScope.of(context).unfocus();
                             if( !addExpenditureForm.isValidForm() ) return;
 
-                            var stringArray = addExpenditureForm.date.split('-');
-                           
-                            var year = int.parse(stringArray[0]);
-                            var month = int.parse(stringArray[1]);
-                            var day = int.parse(stringArray[2]);
-
+                    
                             addExpenditureForm.isLoading = true;
-                            var finalDate = DateTime(year,month,day);
+                            var finalDate = DateTime.parse(addExpenditureForm.date).add(const Duration(days: 1));
 
                             final newExpenditure = Expenditure(date: finalDate, amount: addExpenditureForm.amount,category: addExpenditureForm.category,
                               description: addExpenditureForm.description, image: 'no-image', userId: usersProvider.user.id);
                             
                             expensesProvider.addExpenditure(newExpenditure,addExpenditureForm.date);
 
-                            Navigator.pop(context);
+                            Navigator.pushReplacementNamed(context, 'home');
                           },
                           child: const Text("Añadir", style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold),)
                       )

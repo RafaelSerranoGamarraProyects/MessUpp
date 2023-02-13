@@ -11,10 +11,10 @@ class CategoriesOptions{
 	};
 
 		static Map<String, Color> categoryColorMap ={
-		"Alimentacion" : Colors.greenAccent,
-		"Ocio" : Colors.pinkAccent,
-		"Viaje" : Colors.lightBlueAccent,
-		"Compras" : Colors.amberAccent
+		"Alimentacion" : const Color.fromARGB(255, 178, 243, 211),
+		"Ocio" : const Color.fromARGB(255, 248, 152, 184),
+		"Viaje" : const Color.fromARGB(255, 169, 225, 251),
+		"Compras" : const Color.fromARGB(255, 252, 233, 163)
 	};
 
 	static List<DropdownMenuItem<String>> ddMenuItemCategories = [

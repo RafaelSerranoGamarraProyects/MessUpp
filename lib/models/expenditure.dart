@@ -10,6 +10,7 @@ String expenditureToJson(Expenditure data) => json.encode(data.toJson());
 
 class Expenditure {
     Expenditure({
+        this.id,
         required this.date,
         required this.amount,
         required this.category,
@@ -18,6 +19,7 @@ class Expenditure {
         required this.userId
     });
 
+    String? id;
     DateTime date;
     double amount;
     String category;
@@ -26,6 +28,7 @@ class Expenditure {
     String userId;
 
     factory Expenditure.fromJson(Map<String, dynamic> json) => Expenditure(
+        id: json["_id"],
         date: DateTime.parse(json["date"]),
         amount: double.parse('${json["amount"]}'),
         category: json["category"],

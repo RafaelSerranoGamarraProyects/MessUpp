@@ -54,7 +54,7 @@ class ExpenditureImage extends StatelessWidget {
     if ( picture.startsWith('http') ) {
       return FadeInImage(
           image: NetworkImage( url),
-          placeholder: const AssetImage('assets/images/loaging-gif.gif'),
+          placeholder: const AssetImage('assets/images/loading-gif.gif'),
           fit: BoxFit.cover,
         );
     }
