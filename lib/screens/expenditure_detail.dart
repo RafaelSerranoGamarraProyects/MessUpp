@@ -15,19 +15,15 @@ class ExpenditureScreen extends StatelessWidget {
 	@override
 	Widget build(BuildContext context) {
 		final Expenditure expenditure = ModalRoute.of(context)!.settings.arguments as Expenditure;
-    final userProvider = Provider.of<UsersProvider>(context);
 		return Scaffold(
 
-			body: ChangeNotifierProvider(
-			   create: (_) => ExpensesProvider(userProvider.user), lazy: false,
-			   child: Stack(
-			     children:[
-			       const Background(),
-			       SafeArea(child: _ModifyBody(expenditure: expenditure)),
-			       const ReturnButton(),
-			       PickImageButton(expenditure: expenditure,),
-			     ]
-			   ),
+			body: Stack(
+			  children:[
+			    const Background(),
+			    SafeArea(child: _ModifyBody(expenditure: expenditure)),
+			    const ReturnButton(),
+			    PickImageButton(expenditure: expenditure,),
+			  ]
 			),
 		);
 	}
@@ -56,7 +52,9 @@ class SubmitModifyButton extends StatelessWidget {
 //
           if ( imageUrl != null ) expensesProvider.selectedExpenditure!.image = imageUrl;
           expensesProvider.selectedExpenditure!.amount = modifyExpenditureFormProvider.expenditure.amount;
-          expensesProvider.selectedExpenditure!.date = DateTime.parse(modifyExpenditureFormProvider.date).add(const Duration(days: 1));
+          if(modifyExpenditureFormProvider.date != "") {
+            expensesProvider.selectedExpenditure!.date = DateTime.parse(modifyExpenditureFormProvider.date).add(const Duration(days: 1));
+          }
           expensesProvider.selectedExpenditure!.description = modifyExpenditureFormProvider.expenditure.description;
 
           expensesProvider.updateExpenditure();

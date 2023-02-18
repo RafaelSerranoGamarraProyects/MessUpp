@@ -5,8 +5,8 @@ import '../providers/providers.dart';
 import '../theme/custom_styles.dart';
 import '../widgets/widgets.dart';
 
-class LoginScreen extends StatelessWidget {
-	const LoginScreen({super.key});
+class RegisterScreen extends StatelessWidget {
+	const RegisterScreen({super.key});
 
 	@override
 	Widget build(BuildContext context) {
@@ -14,51 +14,49 @@ class LoginScreen extends StatelessWidget {
 			body: Stack(
 				children:const  [
 					Background(),
-					
         	HeaderLoginIcon(),
-					
-					Center(
-            child: LoginBoxSV()
-          )
+					RegisterBoxSV()
 				],
 			),
 		);
 	}
 }
 
-class LoginBoxSV extends StatelessWidget {
-  const LoginBoxSV({
+class RegisterBoxSV extends StatelessWidget {
+  const RegisterBoxSV({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          CardContainer(
-            child: Column(
-              children: [
-                Text('Login', style: Theme.of(context).textTheme.headlineMedium ),
-                ChangeNotifierProvider(
-                  create: ( _ ) => LoginFormProvider(),
-                  child: _LoginForm()
-                ),
-    
-              ],)),
-         Padding(
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CardContainer(
+              child: Column(
+                children: [
+                  Text('Registro', style: Theme.of(context).textTheme.headlineMedium ),
+                  ChangeNotifierProvider(
+                    create: ( _ ) => LoginFormProvider(),
+                    child: _RegisterForm()
+                  ),
+      
+                ],)),
+            Padding(
               padding: const EdgeInsets.symmetric(vertical: 20),
               child: TextButton(
-                onPressed: () => Navigator.pushReplacementNamed(context, 'register'),
-                child: const Text('¿Aun no tiene una cuenta? Registro', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20) )
+                onPressed: () => Navigator.pushReplacementNamed(context, 'login'),
+                child: const Text('¿Usted Ya tiene Cuenta? Inicie Sesion', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20) )
               ),
             ),
-        ],
+          ],
+      ),
     );
   }
 }
 
-class _LoginForm extends StatelessWidget {
+class _RegisterForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +65,7 @@ class _LoginForm extends StatelessWidget {
 
     return Form(
       key: loginForm.formKey,
-      autovalidateMode: AutovalidateMode.onUserInteraction,
+      autovalidateMode: AutovalidateMode.disabled,
 
       child: Column(
         children: [
@@ -108,27 +106,24 @@ class _LoginForm extends StatelessWidget {
             disabledColor: Colors.grey,
             elevation: 0,
             color: AppTheme.primaryColor,
-            onPressed: loginForm.isLoading ? null : () async {
+            onPressed: loginForm.isLoading ? null : () async{
               
               FocusScope.of(context).unfocus();              
               if( !loginForm.isValidForm() ) return;
 
               loginForm.isLoading = true;
               
-              final response = await userProvider.login(loginForm.email, loginForm.password);
-
+              final response =  await userProvider.register(loginForm.email, loginForm.password);
+              
               if(response["error"] == null){
-                userProvider.user = loginForm.email;
-                Navigator.pushReplacementNamed(context, 'home');
-                loginForm.isLoading = false;
+                Navigator.pushReplacementNamed(context, 'login');
               }else{
-                print(response["error"]["message"]);
-                loginForm.isLoading = false;
-
+                print(response["error"]);
                 return ;
               
               }              
-           
+              
+              loginForm.isLoading = false;
 
             },
             child: Container(

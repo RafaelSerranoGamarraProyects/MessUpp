@@ -8,7 +8,7 @@ class ModifyExpenditureFormProvider extends ChangeNotifier {
 
   String date = "";
   Expenditure expenditure = Expenditure(date: DateTime.now(), amount: 0,
-                              category: "", description: "", image: 'no-image', userId: "");
+                              category: "", description: "", image: 'no-image', user: "");
 
   bool _isLoading = false;
   

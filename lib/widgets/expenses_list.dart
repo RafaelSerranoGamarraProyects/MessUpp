@@ -54,7 +54,8 @@ class _TotalSpentBarState extends State<TotalSpentBar> {
   @override
   Widget build(BuildContext context) {
 		final expensesProvider = Provider.of<ExpensesProvider>(context);
-    return Container(
+
+    return  Container(
 				height: 60,
 				color: AppTheme.primaryColor,
      child: Row(
@@ -94,6 +95,7 @@ class _ListOfItemsState extends State<_ListOfItems> {
   @override
   Widget build(BuildContext context) {
 		final expensesProvider = Provider.of<ExpensesProvider>(context);
+		
     return SizedBox(
 			height: 600,
       child: ListView.builder(

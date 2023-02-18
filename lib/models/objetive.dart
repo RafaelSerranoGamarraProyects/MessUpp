@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 Objetive objetiveFromJson(String str) => Objetive.fromJson(json.decode(str));
 
 String objetiveToJson(Objetive data) => json.encode(data.toJson());
@@ -10,7 +12,7 @@ class Objetive {
         required this.amount,
         required this.description,
         required this.isAchived,
-        required this.userId
+        required this.user
     });
 
     
@@ -18,7 +20,7 @@ class Objetive {
     double amount;
     String description;
     bool isAchived;
-    String userId;
+    String user;
 
     factory Objetive.fromJson(Map<String, dynamic> json) => Objetive(
         
@@ -26,7 +28,7 @@ class Objetive {
         amount: json["amount"]?.toDouble(),
         description: json["description"],
         isAchived: json["isAchived"],
-        userId: json["user"]
+        user: json["user"]
     );
 
     Map<String, dynamic> toJson() => {
@@ -35,7 +37,32 @@ class Objetive {
         "amount": amount,
         "description": description,
         "isAchived": isAchived,
-        "user" : userId
+        "user" : user
     };
+
+
+    factory Objetive.fromFirestore(
+        DocumentSnapshot<Map<String, dynamic>> snapshot,
+        SnapshotOptions? options,
+    ) {
+    final data = snapshot.data();
+    return Objetive(
+        date: DateTime.parse(data?['date']),
+        amount: double.parse('${data?["amount"]}'),
+        description: data?['description'],
+        user: data?['user'],
+        isAchived: data?['isAchived'],
+    );
+    }
+
+  Map<String, dynamic> toFirestore() {
+    return {
+        "date": date,
+        "amount": amount,
+        "description": description,
+        "isAchived": isAchived,
+        "user": user,
+    };
+  }
 		
 }

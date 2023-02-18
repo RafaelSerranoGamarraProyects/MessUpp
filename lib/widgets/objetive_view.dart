@@ -37,16 +37,10 @@ class ObjetiveScreenBody extends StatelessWidget {
 }
 
 class _ObjetiveDescription extends StatelessWidget {
-  const _ObjetiveDescription({
-    required this.objetivesProvider,
-  });
-
-  final ObjetivesProvider objetivesProvider;
-
   @override
   Widget build(BuildContext context) {
+    final objetivesProvider = Provider.of<ObjetivesProvider>(context);
     return Container(
-      
       height: 100,
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
       child: Text(objetivesProvider.monthlyObjetive.description,
@@ -56,13 +50,11 @@ class _ObjetiveDescription extends StatelessWidget {
 }
 
 class _ObjetiveTitle extends StatelessWidget {
-  const _ObjetiveTitle({
-    required this.objetivesProvider,
-  });
 
-  final ObjetivesProvider objetivesProvider;
+
   @override
   Widget build(BuildContext context) {
+    final objetivesProvider = Provider.of<ObjetivesProvider>(context);
     var formatedMonth = DateRefactoring.months[ DateFormat('MMM').format(DateTime(0, objetivesProvider.monthlyObjetive.date.month)).toString() ];
     
     return Container(
@@ -105,13 +97,13 @@ class OverViewGraph extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-		final objetivesProvider = Provider.of<ObjetivesProvider>(context);
+    
     return SizedBox(
       height: 270,
 			child: Column(
         children: [
-				  _ObjetiveTitle(objetivesProvider: objetivesProvider),
-				  _ObjetiveDescription(objetivesProvider: objetivesProvider),
+				  _ObjetiveTitle(),
+				  _ObjetiveDescription(),
           const _ActualProgress(),
 				  const HorizontalBarChart()
 			  ]
@@ -127,8 +119,7 @@ class _ActualProgress extends StatelessWidget {
   Widget build(BuildContext context) {
     final expensesProvider = Provider.of<ExpensesProvider>(context);
     final objetivesProvider = Provider.of<ObjetivesProvider>(context);
-    //TODO : SABER HACER EL PUTO PORCENTAJE
-    var percentage = (expensesProvider.getTotalSpend() / expensesProvider.totalPreviousMonth) * 100;
+    var percentage = (expensesProvider.getTotalSpend() / objetivesProvider.monthlyObjetive.amount) * 100;
     
     return  Padding(
       padding: const EdgeInsets.only(top: 10, bottom: 20),
@@ -139,15 +130,15 @@ class _ActualProgress extends StatelessWidget {
           ? Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Icon(Icons.arrow_upward_rounded, color: Colors.redAccent,),
-                Text("${percentage.toStringAsFixed(2)} % / Anterior Mes", style: const TextStyle(color: Colors.redAccent, fontSize: 16, fontWeight: FontWeight.normal),),
+                const Icon(Icons.cancel_sharp, color: Colors.redAccent,),
+                Text("${percentage.toStringAsFixed(2)}%  Superado", style: const TextStyle(color: Colors.redAccent, fontSize: 16, fontWeight: FontWeight.normal),),
               ],
           )
           : Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Icon(Icons.arrow_downward_rounded, color: Colors.greenAccent,),
-                Text("${percentage.toStringAsFixed(2)} % / Anterior Mes", style: const TextStyle(color: Colors.greenAccent, fontSize: 16, fontWeight: FontWeight.normal),),
+                const Icon(Icons.check, color: Colors.greenAccent,),
+                Text("${percentage.toStringAsFixed(2)}%  Cumpliendo", style: const TextStyle(color: Colors.greenAccent, fontSize: 16, fontWeight: FontWeight.normal),),
               ],
           ),
         

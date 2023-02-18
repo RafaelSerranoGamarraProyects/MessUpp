@@ -26,7 +26,6 @@ class _PopUpFormAddExpenditureState extends State<PopUpFormAddExpenditure> {
 	Widget build(BuildContext context) {
 		final size = MediaQuery.of(context).size;
     final expensesProvider = Provider.of<ExpensesProvider>(context);
-    final usersProvider = Provider.of<UsersProvider>(context);
     final addExpenditureForm = Provider.of<AddExpenditureFormProvider>(context);
 
 		return ElevatedButton(
@@ -139,9 +138,9 @@ class _PopUpFormAddExpenditureState extends State<PopUpFormAddExpenditure> {
                             var finalDate = DateTime.parse(addExpenditureForm.date).add(const Duration(days: 1));
 
                             final newExpenditure = Expenditure(date: finalDate, amount: addExpenditureForm.amount,category: addExpenditureForm.category,
-                              description: addExpenditureForm.description, image: 'no-image', userId: usersProvider.user.id);
+                              description: addExpenditureForm.description, image: 'no-image', user: expensesProvider.user);
                             
-                            expensesProvider.addExpenditure(newExpenditure,addExpenditureForm.date);
+                            expensesProvider.addExpenditure(newExpenditure);
 
                             Navigator.pushReplacementNamed(context, 'home');
                           },

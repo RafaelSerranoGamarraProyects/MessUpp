@@ -17,10 +17,13 @@ class AppRoutes {
         screen: const ExpenditureScreen()),
 		RouteOption(
         route: 'groups',
-        screen: const GroupsScreen()),
+        screen: const GroupScreen()),
     RouteOption(
         route: 'login',
         screen: const LoginScreen()),
+    RouteOption(
+        route: 'register',
+        screen: const RegisterScreen()),
   ];
 
   static Map<String, Widget Function(BuildContext)> getAppRoutes() {

@@ -1,48 +1,47 @@
-import 'dart:async';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
-import 'package:intl/intl.dart';
 import '../models/models.dart';
-import 'package:http/http.dart' as http;
 
 class ObjetivesProvider extends ChangeNotifier {
 
-  final String _baseUrl = '192.168.1.228:5000';
+  final CollectionReference objetivesCollection = FirebaseFirestore.instance.collection('objetives');
+
 
   Objetive monthlyObjetive  = Objetive(
-    date: DateTime.now(), amount: 0, description: "no-description", isAchived: false, userId: "");
+    date: DateTime.now(), amount: 0, description: "no-description", isAchived: false, user: "");
 
-  late User _userLogged;
+  String _user = "";
 
-  User get userLogged => _userLogged;
+  String get user => _user;
 
-  set userLogged (User value){
-    _userLogged = value;
+  set user (String value){
+    _user = value;
     notifyListeners();
   }
   
-  ObjetivesProvider(User user) {
-    userLogged = user;
-    getMonthlyObjetive(user.id);
-  }
-
-
-
-  Future<String> _getJsonData(String endpoint) async {
-    final url = Uri.http(_baseUrl,endpoint);
-
-    // Await the http get response, then decode the json-formatted response.
-    final response = await http.get(url);
-    return response.body;
+  ObjetivesProvider(String userEmail) {
+    user = userEmail;
+    getMonthlyObjetive(userEmail);
   }
   
-  void getMonthlyObjetive(String userId) async{
-    var now = DateTime.now();
-    var formatter = DateFormat('yyyy-MM-dd');
-    String formattedDate = formatter.format(now);
+  void getMonthlyObjetive(String userEmail) async{
+    DateTime firstDayNextMonth = DateTime.utc(DateTime.now().year, DateTime.now().month + 1);
+    DateTime lastDayPreviousMonth = DateTime.utc(DateTime.now().year, DateTime.now().month, 0);
+    
+    final ref = objetivesCollection.withConverter(
+      fromFirestore: Objetive.fromFirestore,
+      toFirestore: (Objetive objetive, _) => objetive.toFirestore(),
+    );
 
-    final jsonData = await _getJsonData('/objetives/getMonthlyObjetive/$formattedDate/$userId');
-    final Objetive objetive = objetiveFromJson(jsonData);
-    monthlyObjetive  = objetive;
+    var snapshot = await ref.where("user", isEqualTo: userEmail).get();  
+    var userObjetives = snapshot.docs.map((doc) => doc.data());
+    for (var objetive in userObjetives) {
+      
+      if(objetive.date.isBefore(firstDayNextMonth) && objetive.date.isAfter(lastDayPreviousMonth)){
+        monthlyObjetive = objetive;
+      }     
+    }   
     notifyListeners();
   }
 

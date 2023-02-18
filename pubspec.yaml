@@ -35,9 +35,12 @@ dependencies:
   http: ^0.13.5
   provider: ^5.0.0
   image_picker: ^0.8.6+1
-  percent_indicator: ^4.0.1
-  syncfusion_flutter_charts: ^20.4.44
   intl: ^0.17.0
+  crypto: ^3.0.2
+  cloud_firestore: ^4.4.2
+  firebase_auth: ^4.2.8
+  firebase_app_installations: ^0.2.1+11
+  firebase_core: ^2.6.1
 
 
 dev_dependencies:

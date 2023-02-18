@@ -38,7 +38,7 @@ class CategoryCard extends StatelessWidget {
 						onTap: () {},
 						leading: Icon(CategoriesOptions.categoryIconMap[category], color: Colors.black),
 						title: Text(category, style: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20),),
-						trailing: Text("${expensesProvider.getAmountByCategory(category)}€",style: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20),),
+						trailing: Text("${expensesProvider.getTotalByCategoryAmount(category)}€",style: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20),),
 					),
 			),
 		);
