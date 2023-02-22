@@ -74,7 +74,7 @@ class Details extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
 			padding: const EdgeInsets.all(8),
-    	height: 380,
+    	height: 400,
     	width: double.infinity,
 			child: Column(
 				children: [
@@ -100,6 +100,7 @@ class OverViewGraph extends StatelessWidget {
     
     return SizedBox(
       height: 270,
+      width: double.infinity,
 			child: Column(
         children: [
 				  _ObjetiveTitle(),

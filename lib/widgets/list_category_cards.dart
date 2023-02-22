@@ -30,12 +30,11 @@ class CategoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
 		final expensesProvider = Provider.of<ExpensesProvider>(context);
     return Container(
-			height: 70,
+			height: 90,
 			padding: const EdgeInsets.symmetric(vertical: 3.0),
 			child: Card(
 				color: CategoriesOptions.categoryColorMap[category],
 					child: ListTile(
-						onTap: () {},
 						leading: Icon(CategoriesOptions.categoryIconMap[category], color: Colors.black),
 						title: Text(category, style: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20),),
 						trailing: Text("${expensesProvider.getTotalByCategoryAmount(category)}€",style: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20),),

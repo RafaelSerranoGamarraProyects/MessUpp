@@ -9,6 +9,7 @@ class Group {
 
     Group({
         this.id,
+        required this.name,
         required this.creationDate,
         required this.image,
         required this.participants,
@@ -16,13 +17,15 @@ class Group {
     });
 
     String? id;
+    String name;
     DateTime creationDate;
-    List<Map<String,dynamic>> participants;
-    List<Map<String,dynamic>> transactions;
+    List<dynamic> participants;
+    List<dynamic> transactions;
     String image;
 
     factory Group.fromJson(Map<String, dynamic> json) => Group(
         id: json["id"],
+        name: json["name"],
         creationDate: DateTime.parse(json["creationDate"]),
         participants: json["participants"],
         transactions: json["transactions"],
@@ -30,6 +33,7 @@ class Group {
     );
 
     Map<String, dynamic> toJson() => {
+        "name" : name,
         "creationDate": creationDate.toIso8601String(),
         "participants": participants,
         "transactions": transactions,
@@ -44,6 +48,7 @@ class Group {
     final data = snapshot.data();
     return Group(
       id: snapshot.id,
+      name: data?["name"],
       creationDate: DateTime.parse(data?['creationDate']),
       participants: data?['participants'],
       transactions: data?['transactions'],
@@ -54,6 +59,7 @@ class Group {
 
   Map<String, dynamic> toFirestore() {
     return {
+        "name" : name,
         "creationDate": creationDate,
         "participants": participants,
         "transactions": transactions,

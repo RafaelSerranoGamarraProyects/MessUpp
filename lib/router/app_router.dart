@@ -4,11 +4,14 @@ import 'routers_export.dart';
 
 
 class AppRoutes {
-  static const initialRoute = 'login';
+  static String initialRoute = 'login';
   static final menuOptions = <RouteOption>[
     RouteOption(
         route: 'spendsAndObjetives',
         screen: const SpendObjetivesScreen()),
+    RouteOption(
+        route: 'debts',
+        screen: const DebtsScreen()),
 		RouteOption(
         route: 'home',
         screen: const SpendObjetivesScreen()),
@@ -24,6 +27,7 @@ class AppRoutes {
     RouteOption(
         route: 'register',
         screen: const RegisterScreen()),
+
   ];
 
   static Map<String, Widget Function(BuildContext)> getAppRoutes() {

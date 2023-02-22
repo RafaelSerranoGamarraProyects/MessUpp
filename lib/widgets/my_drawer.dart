@@ -69,9 +69,35 @@ class MyDrawerOptions extends StatelessWidget {
 				  	itemCount: menuOptions.length,
 				  	itemBuilder: (_, index) =>  _CustomMenuItem(option: menuOptions[index]),
 				  ),
-				)
+				),
+				const LogOutOption(),
 			]);
 	}
+}
+
+class LogOutOption extends StatelessWidget {
+  const LogOutOption({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+		final usersProvider = Provider.of<UsersProvider>(context);
+    return Card(
+    	elevation: 3,
+    	color: Colors.white.withOpacity(1),
+			
+    	shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+    	child: ListTile(
+    		onTap: () {
+					usersProvider.logOut();
+					Navigator.pushReplacementNamed(context, 'login');
+				} ,
+    		trailing: const Icon(Icons.logout_outlined, color: Colors.red,),
+    		title: const Text("Cerrar Sesión",style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold, fontSize: 20),),
+    	),
+		);
+  }
 }
 
 class _CustomMenuItem extends StatelessWidget {

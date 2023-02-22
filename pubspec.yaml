@@ -38,10 +38,11 @@ dependencies:
   intl: ^0.17.0
   crypto: ^3.0.2
   cloud_firestore: ^4.4.2
-  firebase_auth: ^4.2.8
   firebase_app_installations: ^0.2.1+11
   firebase_core: ^2.6.1
-
+  flutter_secure_storage: ^8.0.0
+  uuid: ^3.0.7
+  firebase_messaging: ^14.2.5
 
 dev_dependencies:
   flutter_test:

@@ -31,10 +31,6 @@ class ExpensesProvider extends ChangeNotifier {
   ExpensesProvider(String userEmail){
     user = user;
     getMonthlyExpenses(userEmail);
-
-    for (var category in CategoriesOptions.categories) {
-      getTotalByCategory(category);
-    }
   }
   
   //INITIALIZING METHODS
@@ -58,6 +54,9 @@ class ExpensesProvider extends ChangeNotifier {
     }  
 
     notifyListeners();
+    for (var category in CategoriesOptions.categories) {
+      getTotalByCategory(category);
+    }
   }
   
   void getTotalByCategory(String category){

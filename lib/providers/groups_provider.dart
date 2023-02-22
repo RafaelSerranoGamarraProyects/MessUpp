@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
+import 'package:uuid/uuid.dart';
 import '../models/models.dart';
 
 class GroupsProvider extends ChangeNotifier {
@@ -30,10 +31,36 @@ class GroupsProvider extends ChangeNotifier {
       toFirestore: (Group group, _) => group.toFirestore(),
     );
 
-    var snapshot = await ref.where("participans", arrayContains: userEmail).get();  
+    var snapshot = await ref.where('participants', arrayContains: userEmail).get();  
     userGroups =[...userGroups, ...snapshot.docs.map((doc) => doc.data())];
    
     notifyListeners();
   }
+
+  void createGroup(Group newGroup) async{
+    Uuid uuid = const Uuid();
+    String groupId = uuid.v1();
+    
+    newGroup.id = groupId;
+    userGroups.add(newGroup);
+
+    final Map<String,dynamic> body = newGroup.toJson();
+    body["amount"] =  '${body["amount"]}';
+
+    await groupsCollection.doc(groupId).set(body);   
+    notifyListeners();
+  }
+
+  void leaveGroup(Group group)async {
+    userGroups.remove(group);
+    group.participants.remove(user);
+    
+    final Map<String,dynamic> body = group.toJson();
+    body["amount"] =  '${body["amount"]}';
+
+    await groupsCollection.doc(group.id).set(body);   
+
+  }
+
 
 }

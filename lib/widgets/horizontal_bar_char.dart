@@ -25,31 +25,28 @@ class _HorizontalBarChartState extends State<HorizontalBarChart> {
     for (int i = 0; i < expensesProvider.spentByCategoryList.length; i++) {
       totalUnitNum = totalUnitNum + expensesProvider.spentByCategoryList[i].amount;
     }
-
-    return Expanded(
-      child: Container(
-        height: 20,
-        width: double.infinity,
-        alignment: Alignment.center,
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(90),),
-        padding: const EdgeInsets.symmetric(horizontal: 10),
-        
-        child: Row(
-          mainAxisAlignment:MainAxisAlignment.center,
-          children: [
-            for (int i = 0; i < expensesProvider.spentByCategoryList.length; i++)    
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: 3),
-                width: expensesProvider.spentByCategoryList[i].amount / totalUnitNum * maxWidth,
-                height: 20,
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)),
-                child: ColoredBox(
-                  color: CategoriesOptions.categoryColorMap[expensesProvider.spentByCategoryList[i].category]!,
-                ),  
-              )
-          ],
-        ), 
-      ),
+    return Container(
+      height: 20,
+      width: double.infinity,
+      alignment: Alignment.center,
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(90),),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      
+      child: Row(
+        mainAxisAlignment:MainAxisAlignment.center,
+        children: [
+          for (int i = 0; i < expensesProvider.spentByCategoryList.length; i++)    
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 3),
+              width: expensesProvider.spentByCategoryList[i].amount / totalUnitNum * maxWidth,
+              height: 20,
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(90)),
+              child: ColoredBox(
+                color: CategoriesOptions.categoryColorMap[expensesProvider.spentByCategoryList[i].category]!,
+              ),  
+            )
+        ],
+      ), 
     );
     
   }

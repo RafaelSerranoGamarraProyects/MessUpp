@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:tfg_app/providers/providers.dart';
 import '../widgets/widgets.dart';
 
 class SpendObjetivesScreen extends StatefulWidget {
 	 
 	const SpendObjetivesScreen({Key? key}) : super(key: key);
-
   @override
   State<SpendObjetivesScreen> createState() => _SpendObjetivesScreenState();
 }
@@ -12,7 +13,10 @@ class SpendObjetivesScreen extends StatefulWidget {
 class _SpendObjetivesScreenState extends State<SpendObjetivesScreen> {
 	@override
 	Widget build(BuildContext context) {
-		return  DefaultTabController(
+		
+		final userProvider = Provider.of<UsersProvider>(context);
+		return  userProvider.user == "" ? const CircularProgressIndicator()
+			: DefaultTabController(
 					length: 2,
 					child: Scaffold(
 						appBar: AppBar(

@@ -119,6 +119,8 @@ class _LoginForm extends StatelessWidget {
 
               if(response["error"] == null){
                 userProvider.user = loginForm.email;
+                await userProvider.storage.write(key: 'idToken', value: response["idToken"]);
+                await userProvider.storage.write(key: 'email', value: response["email"]);
                 Navigator.pushReplacementNamed(context, 'home');
                 loginForm.isLoading = false;
               }else{
