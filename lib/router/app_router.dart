@@ -6,6 +6,9 @@ import 'routers_export.dart';
 class AppRoutes {
   static String initialRoute = 'login';
   static final menuOptions = <RouteOption>[
+		RouteOption(
+        route: 'home',
+        screen: const SpendObjetivesScreen()),
     RouteOption(
         route: 'spendsAndObjetives',
         screen: const SpendObjetivesScreen()),
@@ -13,14 +16,14 @@ class AppRoutes {
         route: 'debts',
         screen: const DebtsScreen()),
 		RouteOption(
-        route: 'home',
-        screen: const SpendObjetivesScreen()),
+        route: 'groups',
+        screen: const GroupScreen()),
 		RouteOption(
         route: 'expenditureDetail',
         screen: const ExpenditureScreen()),
-		RouteOption(
-        route: 'groups',
-        screen: const GroupScreen()),
+    RouteOption(
+        route: 'debtDetail',
+        screen: const DebtDetailScreen()),
     RouteOption(
         route: 'login',
         screen: const LoginScreen()),

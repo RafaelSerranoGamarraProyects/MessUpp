@@ -1,4 +1,4 @@
-package com.example.tfg_app
+package com.rafasg13.messupp
 
 import io.flutter.embedding.android.FlutterActivity
 

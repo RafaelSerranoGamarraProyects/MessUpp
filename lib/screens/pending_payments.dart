@@ -63,7 +63,6 @@ class CustomCardDebt extends StatelessWidget {
 			otherUser = debt.originUser;
 			icon = Icons.arrow_back_sharp;
 			color = Colors.greenAccent;
-
 		}
 
     return Container(
@@ -75,8 +74,8 @@ class CustomCardDebt extends StatelessWidget {
 							alignment: Alignment.center,
 							height: 70,
 							width: double.infinity,
-							child: GestureDetector(				
-								onLongPress: () {/* showdialog to pay the debt if the origin is the user */},
+							child: GestureDetector(	
+								onTap: () => Navigator.pushReplacementNamed(context, 'debtDetail', arguments: debt),			
 								child: Row(
 									children: [
 										Text(userLogged,style: const TextStyle(color: Colors.white, fontSize: 20),),

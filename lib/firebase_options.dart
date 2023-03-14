@@ -17,15 +17,24 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      return web;
+      throw UnsupportedError(
+        'DefaultFirebaseOptions have not been configured for web - '
+        'you can reconfigure this by running the FlutterFire CLI again.',
+      );
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        return ios;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for ios - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.macOS:
-        return macos;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -43,44 +52,12 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyAhMbulLyAp5Wgwu9KK4zzW0Q62DJ55lQk',
-    appId: '1:1089074875485:web:9e07d7ee88baa5c0be91b4',
-    messagingSenderId: '1089074875485',
-    projectId: 'flutter-app-back',
-    authDomain: 'flutter-app-back.firebaseapp.com',
-    databaseURL: 'https://flutter-app-back-default-rtdb.europe-west1.firebasedatabase.app',
-    storageBucket: 'flutter-app-back.appspot.com',
-  );
-
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyAX12MzN4ClKgiQ6QyD-HHQ62YDA4R9juE',
-    appId: '1:1089074875485:android:f22360c5bba1e981be91b4',
+    appId: '1:1089074875485:android:1ae0518af8cb0bf1be91b4',
     messagingSenderId: '1089074875485',
     projectId: 'flutter-app-back',
     databaseURL: 'https://flutter-app-back-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'flutter-app-back.appspot.com',
-  );
-
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDdEA7wzHz8R0lUFfn0VvmF5PaH1vL9jUY',
-    appId: '1:1089074875485:ios:bbe590a3478444f5be91b4',
-    messagingSenderId: '1089074875485',
-    projectId: 'flutter-app-back',
-    databaseURL: 'https://flutter-app-back-default-rtdb.europe-west1.firebasedatabase.app',
-    storageBucket: 'flutter-app-back.appspot.com',
-    iosClientId: '1089074875485-b9tkke712bicgod6iqcrlmu48mqljkfd.apps.googleusercontent.com',
-    iosBundleId: 'com.example.tfgApp',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyDdEA7wzHz8R0lUFfn0VvmF5PaH1vL9jUY',
-    appId: '1:1089074875485:ios:bbe590a3478444f5be91b4',
-    messagingSenderId: '1089074875485',
-    projectId: 'flutter-app-back',
-    databaseURL: 'https://flutter-app-back-default-rtdb.europe-west1.firebasedatabase.app',
-    storageBucket: 'flutter-app-back.appspot.com',
-    iosClientId: '1089074875485-b9tkke712bicgod6iqcrlmu48mqljkfd.apps.googleusercontent.com',
-    iosBundleId: 'com.example.tfgApp',
   );
 }

@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.tfg_app">
+    package="com.rafasg13.messupp">
    <application
         android:label="tfg_app"
         android:name="${applicationName}"
