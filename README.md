@@ -1,10 +1,10 @@
 # tfg_app
 
-A new Flutter project.
+My first flutter project. I tried to do a financial management app, similar to tricount or other ones.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project is a TFG proposal for a Flutter development.
 
 A few resources to get you started if this is your first Flutter project:
 
