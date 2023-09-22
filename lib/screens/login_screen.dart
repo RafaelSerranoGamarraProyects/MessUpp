@@ -10,9 +10,9 @@ class LoginScreen extends StatelessWidget {
 
 	@override
 	Widget build(BuildContext context) {
-		return Scaffold(
+		return const Scaffold(
 			body: Stack(
-				children:const  [
+				children:[
 					Background(),
 					
         	HeaderLoginIcon(),
@@ -118,15 +118,18 @@ class _LoginForm extends StatelessWidget {
               final response = await userProvider.login(loginForm.email, loginForm.password);
 
               if(response["error"] == null){
+                //get User
                 userProvider.user = loginForm.email;
+                userProvider.getLoggedUser();
+                
                 await userProvider.storage.write(key: 'idToken', value: response["idToken"]);
                 await userProvider.storage.write(key: 'email', value: response["email"]);
+                // ignore: use_build_context_synchronously
                 Navigator.pushReplacementNamed(context, 'home');
                 loginForm.isLoading = false;
               }else{
-                print(response["error"]["message"]);
+                // print(response["error"]["message"]);
                 loginForm.isLoading = false;
-
                 return ;
               
               }              

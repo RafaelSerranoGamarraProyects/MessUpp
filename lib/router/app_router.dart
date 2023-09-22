@@ -15,10 +15,13 @@ class AppRoutes {
     RouteOption(
         route: 'debts',
         screen: const DebtsScreen()),
-		RouteOption(
+	RouteOption(
         route: 'groups',
         screen: const GroupScreen()),
-		RouteOption(
+    RouteOption(
+        route: 'group_details',
+        screen: const GroupDetailsScreen()),
+	RouteOption(
         route: 'expenditureDetail',
         screen: const ExpenditureScreen()),
     RouteOption(

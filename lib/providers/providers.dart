@@ -1,4 +1,5 @@
 export 'package:tfg_app/providers/add_expenditure_form.dart';
+export 'package:tfg_app/providers/add_objetive_form.dart';
 export 'package:tfg_app/providers/debts_provider.dart';
 export 'package:tfg_app/providers/expenditure_modify_form.dart';
 export 'package:tfg_app/providers/expenses_provider.dart';

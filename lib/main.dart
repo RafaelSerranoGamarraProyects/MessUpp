@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:tfg_app/providers/providers.dart';
 import 'package:tfg_app/router/app_router.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:tfg_app/theme/custom_styles.dart';
 import 'firebase_options.dart';
 
 
@@ -24,6 +25,7 @@ class AppState extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => UsersProvider(), lazy: false),
         ChangeNotifierProvider(create: (_) => AddExpenditureFormProvider(), lazy: false),
+        ChangeNotifierProvider(create: (_) => AddObjetiveFormProvider(), lazy: false),
         ChangeNotifierProvider(create: (_) => ModifyExpenditureFormProvider(), lazy: false),
       ],
       child: const MyApp(),
@@ -76,7 +78,7 @@ class Providers extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         initialRoute: initialRoute,
         routes: AppRoutes.getAppRoutes(),
-        theme: ThemeData.light().copyWith(appBarTheme: const AppBarTheme(color: Colors.deepPurple)),
+        theme: ThemeData.light().copyWith(appBarTheme: const AppBarTheme(color: AppTheme.primaryColor,)),
     
       ),
     );

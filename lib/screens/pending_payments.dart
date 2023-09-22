@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:tfg_app/theme/custom_styles.dart';
 
 import '../models/models.dart';
 import '../providers/providers.dart';
@@ -13,7 +14,7 @@ class DebtsScreen extends StatelessWidget {
 	Widget build(BuildContext context) {
 		final debtsprovider = Provider.of<DebtsProvider>(context);
 		return  Scaffold(
-			appBar: AppBar(title: const Text("Tricount App"),),
+			appBar: AppBar(title: const Text("Tricount App", style: TextStyle(color: Colors.white)),),
 			drawer: const Drawer(child: MyDrawer()),
 			body: Center(
 				 child: Stack(
@@ -39,6 +40,10 @@ class DebtsScreen extends StatelessWidget {
 }
 
 class CustomCardDebt extends StatelessWidget {
+	setupCard(){
+		
+	}
+
   const CustomCardDebt({
     super.key, required this.debt,
   });
@@ -47,19 +52,17 @@ class CustomCardDebt extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 		final usersProvider = Provider.of<UsersProvider>(context);
-		String userLogged = "";
+		const String userLogged = "Yo";
 		String otherUser = "";
 		IconData icon;
 		Color color;
 		
 		if(debt.originUser == usersProvider.user) {
-		  userLogged = debt.originUser;
 			otherUser = debt.destinationUser;
 			icon = Icons.arrow_right_alt;
-			color = Colors.red;
+			color = AppTheme.errorColor;
 
 		} else{
-			userLogged = debt.destinationUser;
 			otherUser = debt.originUser;
 			icon = Icons.arrow_back_sharp;
 			color = Colors.greenAccent;
@@ -68,7 +71,7 @@ class CustomCardDebt extends StatelessWidget {
     return Container(
 			padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 8),
 			child: Card(
-					color: Colors.white.withOpacity(0.4),
+					color: Colors.white,
 					child: Container(
 							padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 8),
 							alignment: Alignment.center,
@@ -78,9 +81,9 @@ class CustomCardDebt extends StatelessWidget {
 								onTap: () => Navigator.pushReplacementNamed(context, 'debtDetail', arguments: debt),			
 								child: Row(
 									children: [
-										Text(userLogged,style: const TextStyle(color: Colors.white, fontSize: 20),),
+										const Text(userLogged,style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),),
 										Icon(icon, color: color,),
-										Text(otherUser,style: const TextStyle(color: Colors.white, fontSize: 20),),
+										Text(otherUser,style: const TextStyle(color: Colors.black, fontSize: 20),),
 									]
 								),
 							),

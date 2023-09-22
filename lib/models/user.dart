@@ -6,6 +6,8 @@
 
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 User userFromJson(String str) => User.fromJson(json.decode(str));
 
 String userToJson(User data) => json.encode(data.toJson());
@@ -13,30 +15,57 @@ String userToJson(User data) => json.encode(data.toJson());
 
 class User {
     User({
+        this.id,
         required this.email,
         required this.password,
-        this.name,
-        this.profileImage,
+        this.userName,
+        this.image,
     });
 
+    String? id;
     String email;
-    String? name;
+    String? userName;
     String password;
-    String? profileImage;
+    String? image;
 
 
     factory User.fromJson(Map<String, dynamic> json) => User(
+        id: json["id"],
         email: json["email"],
-        name: json["name"],
+        userName: json["userName"],
         password: json["password"],
-        profileImage: json["profile_image"],
+        image: json["image"],
 
     );
 
     Map<String, dynamic> toJson() => {
         "email": email,
-        "name": name,
+        "userName": userName,
         "password": password,
-        "profile_image": profileImage,
+        "image": image,
     };
+
+    factory User.fromFirestore(
+        DocumentSnapshot<Map<String, dynamic>> snapshot,
+        SnapshotOptions? options,
+     ) {
+        final data = snapshot.data();
+    return User(
+        id: snapshot.id,
+        email: data?['email'],
+        userName: data?["userName"],
+        password: data?['password'],
+        image: data?['image'],
+    );
+  }
+
+  Map<String, dynamic> toFirestore() {
+    return {
+        "email": email,
+        "userName": userName,
+        "password": password,
+        "image": image,
+
+    };
+  }
 }

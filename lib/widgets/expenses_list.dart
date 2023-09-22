@@ -22,8 +22,8 @@ class _ExpensesListState extends State<ExpensesList> {
 		return Stack(
 			children: [
 				const Background(),
-					 Column(
-						 children: const [
+					 const Column(
+						 children: [
 							 Expanded(child: _ListOfItems()),
 							 TotalSpentBar()
 						 ],
@@ -31,7 +31,7 @@ class _ExpensesListState extends State<ExpensesList> {
 					Container(
 						padding: const EdgeInsets.only(right: 15),
 						alignment: Alignment.bottomCenter,
-						height: size.height - 220,
+						height: size.height - 230,
 						width: size.width,
 						child: const PopUpFormAddExpenditure()
 					),				
@@ -94,7 +94,6 @@ class _ListOfItemsState extends State<_ListOfItems> {
   @override
   Widget build(BuildContext context) {
 		final expensesProvider = Provider.of<ExpensesProvider>(context);
-		
     return SizedBox(
 			height: 600,
       child: ListView.builder(

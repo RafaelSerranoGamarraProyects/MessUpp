@@ -28,8 +28,8 @@ class PurpleBoxLogin extends StatelessWidget {
       width: double.infinity,
       height: size.height * 0.4,
       decoration: _purpleBackground(),
-      child: Stack(
-        children: const [
+      child: const Stack(
+        children: [
           Positioned(top: 90, left: 30, child: Bubble() ),
           Positioned(top: -40, left: -30, child: Bubble() ),
           Positioned(top: -50, right: -20, child: Bubble() ),

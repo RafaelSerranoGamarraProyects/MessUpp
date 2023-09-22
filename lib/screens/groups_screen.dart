@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfg_app/providers/providers.dart';
@@ -15,7 +13,7 @@ class GroupScreen extends StatelessWidget {
 		final groupProvider = Provider.of<GroupsProvider>(context);
 		final size = MediaQuery.of(context).size;
 		return Scaffold(
-			appBar: AppBar(title: const Text('Tricount App'),),
+			appBar: AppBar(title: const Text('Tricount App', style: TextStyle(color: Colors.white))),
 			drawer: const Drawer(child: MyDrawer()),
 			body: Stack(
 			children: [
@@ -38,12 +36,17 @@ class GroupScreen extends StatelessWidget {
 	}
 }
 
-class GroupItem extends StatelessWidget {
+class GroupItem extends StatefulWidget {
 	final Group userGroup;
   const GroupItem({
     super.key, required this.userGroup,
   });
 
+  @override
+  State<GroupItem> createState() => _GroupItemState();
+}
+
+class _GroupItemState extends State<GroupItem> {
   @override
   Widget build(BuildContext context) {
     return  Column(
@@ -52,33 +55,12 @@ class GroupItem extends StatelessWidget {
 					color: Colors.white.withOpacity(0.4),
 					child: ListTile(
 						trailing: const Icon(Icons.keyboard_arrow_right_outlined,color: Colors.white, size: 30,),
-						title: Text(userGroup.name,style: const TextStyle(color: Colors.white, fontSize: 20),),
+						title: Text(widget.userGroup.name,style: const TextStyle(color: Colors.white, fontSize: 20),),
+						onTap: () => Navigator.pushReplacementNamed(context, 'group_details', arguments: widget.userGroup),
 						//leading: Container(height: 50,width: 50,decoration: const BoxDecoration(color: Colors.amber,shape: BoxShape.circle),child: Container(),)
 					),
 				)
       ],
     );
   }
-
-/*   Widget groupImage(String url) {
-		if(url == "no-image") {
-		  return  const Image(
-          image: AssetImage('assets/images/no-image.jpg'),
-          fit: BoxFit.fill,
-        );
-		}
-		if(url.startsWith('http')) {
-		  return  FadeInImage(
-          image: NetworkImage( url ),
-          placeholder: const AssetImage('assets/images/loading-gif.gif'),
-          fit: BoxFit.fill,
-        );
-		} 
-		else{
-			return Image.file(
-      File( url ),
-      fit: BoxFit.fill,
-    );
-		}
-	} */
 }

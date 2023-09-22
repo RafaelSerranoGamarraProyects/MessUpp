@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfg_app/providers/providers.dart';
+import 'package:tfg_app/theme/app_theme.dart';
 import '../widgets/widgets.dart';
 
 class SpendObjetivesScreen extends StatefulWidget {
@@ -15,14 +16,19 @@ class _SpendObjetivesScreenState extends State<SpendObjetivesScreen> {
 	Widget build(BuildContext context) {
 		
 		final userProvider = Provider.of<UsersProvider>(context);
+		if (userProvider.getUserFirstTime == false) userProvider.getLoggedUser();
+		
 		return  userProvider.user == "" ? const CircularProgressIndicator()
 			: DefaultTabController(
 					length: 2,
 					child: Scaffold(
 						appBar: AppBar(
-							title: const Text('Tricount App'),
+							title: const Text('Tricount App', style: TextStyle(color: Colors.white),),
 							bottom: 
 								const TabBar(
+									labelColor: Colors.white,
+									dividerColor: AppTheme.primaryColor,
+									unselectedLabelColor: Colors.white,
 									indicatorWeight: 3,
 									indicatorColor: Colors.white,
 									tabs: [

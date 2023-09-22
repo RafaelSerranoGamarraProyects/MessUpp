@@ -29,7 +29,7 @@ class _PopUpFormAddExpenditureState extends State<PopUpFormAddExpenditure> {
     final addExpenditureForm = Provider.of<AddExpenditureFormProvider>(context);
 
 		return ElevatedButton(
-					style: ElevatedButton.styleFrom(shape: const CircleBorder(), backgroundColor: Colors.grey, minimumSize: const Size(50,50)),
+					style: ElevatedButton.styleFrom(shape: const CircleBorder(), backgroundColor: Colors.white, minimumSize: const Size(50,50)),
 					child: const Icon(Icons.add, size: 25,color: Colors.black),
           onPressed: () {
             showDialog(
@@ -38,9 +38,9 @@ class _PopUpFormAddExpenditureState extends State<PopUpFormAddExpenditure> {
                   return AlertDialog(
 										shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                     scrollable: true,
-                    title: const Text('Añadir un gasto'),
+                    title: const Text('Añadir un gasto', style: TextStyle(color: AppTheme.primaryColor),),
                     content: Container(
-											height: size.height * 0.3,
+											height: size.height * 0.35,
 											width: size.width * 0.7,
                       padding: const EdgeInsets.all(8.0),
                       child: Form(
@@ -90,27 +90,27 @@ class _PopUpFormAddExpenditureState extends State<PopUpFormAddExpenditure> {
                             ),
                             DropdownButtonFormField(
                               decoration: InputDecorations.dropDownMenuInputDecoration(labelText: "Elija la Categoria"),
-                              items: [
+                              items: const [
 		                                  DropdownMenuItem(
                                         value: "Alimentacion",
                                         child: Row(
-                                          children: const <Widget>[
+                                          children: <Widget>[
                                             Icon(Icons.fastfood_rounded,color: AppTheme.primaryColor),Text("Alimentacion"),],
                                          )),
 		                                  	DropdownMenuItem(
                                         value: "Ocio",
                                         child: Row(
-                                          children: const <Widget>[Icon(Icons.sports_esports_rounded,color: AppTheme.primaryColor),Text("Ocio"),],
+                                          children: <Widget>[Icon(Icons.sports_esports_rounded,color: AppTheme.primaryColor),Text("Ocio"),],
 		                                  	)),
 		                                  	DropdownMenuItem(
                                         value: "Viaje",
                                         child: Row(
-                                          children: const <Widget>[Icon(Icons.travel_explore_outlined,color: AppTheme.primaryColor),Text("Viaje"),],
+                                          children: <Widget>[Icon(Icons.travel_explore_outlined,color: AppTheme.primaryColor),Text("Viaje"),],
 		                                  	)),
 		                                  DropdownMenuItem(
                                         value: "Compras",
                                         child: Row(
-                                          children: const <Widget>[Icon(Icons.shopping_cart_checkout_outlined,color: AppTheme.primaryColor,),Text("Compras"),],
+                                          children: <Widget>[Icon(Icons.shopping_cart_checkout_outlined,color: AppTheme.primaryColor,),Text("Compras"),],
 		                                  	)),
 	                            ],
                               onChanged: (value) {
@@ -139,7 +139,7 @@ class _PopUpFormAddExpenditureState extends State<PopUpFormAddExpenditure> {
 
                             final newExpenditure = Expenditure(date: finalDate, amount: addExpenditureForm.amount,category: addExpenditureForm.category,
                               description: addExpenditureForm.description, image: 'no-image', user: expensesProvider.user);
-                            
+                
                             expensesProvider.addExpenditure(newExpenditure);
 
                             Navigator.pushReplacementNamed(context, 'home');

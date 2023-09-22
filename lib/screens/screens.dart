@@ -1,4 +1,4 @@
-export  'package:tfg_app/screens/expenditure_detail.dart';
+export 'package:tfg_app/screens/expenditure_detail.dart';
 export 'package:tfg_app/screens/debt_details.dart';
 export 'package:tfg_app/screens/group_details.dart';
 export 'package:tfg_app/screens/groups_screen.dart';

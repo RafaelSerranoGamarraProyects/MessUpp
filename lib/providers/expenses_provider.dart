@@ -29,8 +29,9 @@ class ExpensesProvider extends ChangeNotifier {
   }
 
   ExpensesProvider(String userEmail){
-    user = user;
+    user = userEmail;
     getMonthlyExpenses(userEmail);
+  
   }
   
   //INITIALIZING METHODS

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:tfg_app/providers/providers.dart';
+import 'package:tfg_app/theme/app_theme.dart';
 import 'package:tfg_app/utils/dates_utils.dart';
 import 'widgets.dart';
 
@@ -11,8 +12,8 @@ class ObjetiveView extends StatelessWidget {
 
 	@override
 	Widget build(BuildContext context) {
-		return Stack(
-			children: const  [
+		return const Stack(
+			children: [
 				Background(),
 				ObjetiveScreenBody()
 			]);	
@@ -26,12 +27,60 @@ class ObjetiveScreenBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-			children: const [
+    final objetivesProvider = Provider.of<ObjetivesProvider>(context);
+    if(objetivesProvider.monthlyObjetive.user == "") return const AddObjetive();
+
+    return const Column(
+			children: [
 				OverViewGraph(),
-				//Divider(color: Colors.white, thickness: 2,),
 			  Details()
 			],
+    );
+  }
+}
+
+class AddObjetive extends StatelessWidget {
+  const AddObjetive({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      alignment: Alignment.center,
+      height: double.infinity,
+      width: double.infinity,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            height: 400,
+            width: double.infinity,
+            child: const NoObjetiveCard()),
+        ],
+      )
+    );
+  }
+}
+
+class NoObjetiveCard extends StatelessWidget {
+  const NoObjetiveCard({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return const Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Icon(Icons.track_changes_rounded, color: Colors.white, size: 120, weight: 20,),
+        Padding(
+          padding: EdgeInsets.symmetric(vertical: 10),
+          child: Text("¿No ha establecido aún su objetivo?", style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),),
+        ),
+        PopUpFormAddObjetive()
+      ],
     );
   }
 }
@@ -42,7 +91,7 @@ class _ObjetiveDescription extends StatelessWidget {
     final objetivesProvider = Provider.of<ObjetivesProvider>(context);
     return Container(
       height: 100,
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+      padding: const EdgeInsets.only(top: 15, bottom: 10, right: 15, left: 15),
       child: Text(objetivesProvider.monthlyObjetive.description,
        style: const TextStyle(color: Colors.white, fontSize: 18, overflow: TextOverflow.clip),),
     );
@@ -58,9 +107,9 @@ class _ObjetiveTitle extends StatelessWidget {
     var formatedMonth = DateRefactoring.months[ DateFormat('MMM').format(DateTime(0, objetivesProvider.monthlyObjetive.date.month)).toString() ];
     
     return Container(
-      padding: const EdgeInsets.symmetric(vertical : 10, horizontal: 8),
+      padding: const EdgeInsets.only(top : 20, bottom: 10, left: 8, right: 8),
       child: Text('Objetivo del Mes de $formatedMonth',
-       style: const TextStyle(color: Colors.white, fontSize: 24,fontWeight: FontWeight.bold),),
+       style: const TextStyle(color: Colors.white, fontSize: 25,fontWeight: FontWeight.bold),),
     );
   }
 }
@@ -99,7 +148,7 @@ class OverViewGraph extends StatelessWidget {
   Widget build(BuildContext context) {
     
     return SizedBox(
-      height: 270,
+      height: 300,
       width: double.infinity,
 			child: Column(
         children: [
@@ -131,15 +180,15 @@ class _ActualProgress extends StatelessWidget {
           ? Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Icon(Icons.cancel_sharp, color: Colors.redAccent,),
-                Text("${percentage.toStringAsFixed(2)}%  Superado", style: const TextStyle(color: Colors.redAccent, fontSize: 16, fontWeight: FontWeight.normal),),
+                const Icon(Icons.cancel_sharp, color: AppTheme.errorColor,),
+                Text("${percentage.toStringAsFixed(2)}%  Superado", style: const TextStyle(color: AppTheme.errorColor, fontSize: 18, fontWeight: FontWeight.normal),),
               ],
           )
           : Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Icon(Icons.check, color: Colors.greenAccent,),
-                Text("${percentage.toStringAsFixed(2)}%  Cumpliendo", style: const TextStyle(color: Colors.greenAccent, fontSize: 16, fontWeight: FontWeight.normal),),
+                Icon(Icons.check, color: Colors.greenAccent.shade400,),
+                Text("${percentage.toStringAsFixed(2)}%  Cumpliendo", style:  TextStyle(color: Colors.greenAccent.shade400, fontSize: 18, fontWeight: FontWeight.normal),),
               ],
           ),
         

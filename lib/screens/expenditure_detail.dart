@@ -53,16 +53,17 @@ class SubmitModifyButton extends StatelessWidget {
           if ( imageUrl != null ) expensesProvider.selectedExpenditure!.image = imageUrl;
           expensesProvider.selectedExpenditure!.amount = modifyExpenditureFormProvider.expenditure.amount;
           if(modifyExpenditureFormProvider.date != "") {
-            expensesProvider.selectedExpenditure!.date = DateTime.parse(modifyExpenditureFormProvider.date).add(const Duration(days: 1));
+            expensesProvider.selectedExpenditure!.date = DateTime.parse(modifyExpenditureFormProvider.date);
           }
           expensesProvider.selectedExpenditure!.description = modifyExpenditureFormProvider.expenditure.description;
 
           expensesProvider.updateExpenditure();
+          // ignore: use_build_context_synchronously
           Navigator.popAndPushNamed(context, 'home');
 
-        },
-       child: const Text("Modificar"),)
-            );
+      },
+      child: const Text("Modificar", style: TextStyle(fontSize: 20,color: Colors.white),),)
+    );
   }
 }
 
@@ -147,7 +148,7 @@ class _ModifyBody extends StatelessWidget {
       child: Column(
         children: [
             ExpenditureImage( url: expensesProvider.selectedExpenditure!.image ),
-            _ExpenditureForm(),
+            _ExpenditureForm(date: DateFormat('yyyy-MM-dd').format(expensesProvider.selectedExpenditure!.date)),
             const SubmitModifyButton(),
     
         ]),
@@ -156,16 +157,22 @@ class _ModifyBody extends StatelessWidget {
   }
 }
 class _ExpenditureForm extends StatefulWidget {
+  
+  const _ExpenditureForm({Key? key, required this.date}) : super(key: key);
+  final String date;
+  
   @override
   State<_ExpenditureForm> createState() => _ExpenditureFormState();
 }
 
 class _ExpenditureFormState extends State<_ExpenditureForm> {
-  TextEditingController dateinput = TextEditingController(); 
+  
+  TextEditingController dateinput = TextEditingController();
+  
 
 	@override
   void initState() {
-    dateinput.text = ""; //set the initial value of text field
+    dateinput.text = widget.date;//set the initial value of text field
     super.initState();
   }
   
@@ -175,6 +182,8 @@ class _ExpenditureFormState extends State<_ExpenditureForm> {
 
     final expenditureForm = Provider.of<ModifyExpenditureFormProvider>(context);
     final expensesProvider = Provider.of<ExpensesProvider>(context);
+    expenditureForm.expenditure = expensesProvider.selectedExpenditure!;
+
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
@@ -193,7 +202,13 @@ class _ExpenditureFormState extends State<_ExpenditureForm> {
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 child: TextFormField(
                   initialValue: expensesProvider.selectedExpenditure!.description,
-                  onChanged: ( value ) => expenditureForm.expenditure.description = value,
+                  onChanged: ( value ) {
+                    if(value == "") {
+                      expenditureForm.expenditure.description = "Sin descripcion";
+                    } else {
+                      expenditureForm.expenditure.description = value;
+                    }
+                  } ,
                   decoration: InputDecorations.formInputDecoration(
                     hintText: 'Titulo del Gasto', 
                     labelText: 'Titulo:'
@@ -206,13 +221,15 @@ class _ExpenditureFormState extends State<_ExpenditureForm> {
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 child: TextFormField(
                   initialValue: '${expensesProvider.selectedExpenditure!.amount}',
+
                   onChanged: ( value ) {
-                    if ( double.tryParse(value) == null ) {
-                      expenditureForm.expenditure.amount = 0;
-                    } else {
+                    if ( double.tryParse(value) != null ) {
                       expenditureForm.expenditure.amount = double.parse(value);
+                    } else {
+                      expenditureForm.expenditure.amount = 0;
                     }
                   },
+
                   keyboardType: TextInputType.number,
                   decoration: InputDecorations.formInputDecoration(
                     hintText: '\$150', 

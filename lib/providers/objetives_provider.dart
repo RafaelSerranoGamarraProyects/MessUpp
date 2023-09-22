@@ -41,7 +41,7 @@ class ObjetivesProvider extends ChangeNotifier {
       if(objetive.date.isBefore(firstDayNextMonth) && objetive.date.isAfter(lastDayPreviousMonth)){
         monthlyObjetive = objetive;
       }     
-    }   
+    }
     notifyListeners();
   }
 
@@ -50,6 +50,14 @@ class ObjetivesProvider extends ChangeNotifier {
       ? monthlyObjetive.isAchived = true
       : monthlyObjetive.isAchived = false;
     
+    notifyListeners();
+  }
+
+  void addObjetive(Objetive objetive) async {
+    final Map<String,dynamic> body = objetive.toJson();
+    body["amount"] =  '${body["amount"]}';
+    await objetivesCollection.doc().set(body);
+    monthlyObjetive = objetive;
     notifyListeners();
   }
 

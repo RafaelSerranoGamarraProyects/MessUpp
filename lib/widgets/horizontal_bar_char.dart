@@ -25,6 +25,7 @@ class _HorizontalBarChartState extends State<HorizontalBarChart> {
     for (int i = 0; i < expensesProvider.spentByCategoryList.length; i++) {
       totalUnitNum = totalUnitNum + expensesProvider.spentByCategoryList[i].amount;
     }
+    if (totalUnitNum == 0) return Container();
     return Container(
       height: 20,
       width: double.infinity,

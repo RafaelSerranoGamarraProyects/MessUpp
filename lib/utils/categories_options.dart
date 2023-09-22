@@ -18,26 +18,26 @@ class CategoriesOptions{
 	};
 
 	static List<DropdownMenuItem<String>> ddMenuItemCategories = [
-		DropdownMenuItem(
+		const DropdownMenuItem(
       value: "Alimentacion",
       child: Row(
-        children: const <Widget>[
+        children: <Widget>[
           Icon(Icons.fastfood_rounded),Text("Alimentacion"),],
        )),
-			DropdownMenuItem(
+			const DropdownMenuItem(
       value: "Ocio",
       child: Row(
-        children: const <Widget>[Icon(Icons.sports_esports_rounded),Text("Ocio"),],
+        children: <Widget>[Icon(Icons.sports_esports_rounded),Text("Ocio"),],
 			)),
-			DropdownMenuItem(
+			const DropdownMenuItem(
       value: "Viaje",
       child: Row(
-        children: const <Widget>[Icon(Icons.travel_explore_outlined),Text("Viaje"),],
+        children: <Widget>[Icon(Icons.travel_explore_outlined),Text("Viaje"),],
 			)),
-		DropdownMenuItem(
+		const DropdownMenuItem(
       value: "Compras",
       child: Row(
-        children: const <Widget>[Icon(Icons.shopping_cart_checkout_outlined),Text("Compras"),],
+        children: <Widget>[Icon(Icons.shopping_cart_checkout_outlined),Text("Compras"),],
 			)),
 	];
 }

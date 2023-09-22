@@ -1,28 +1,49 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
+import 'package:tfg_app/models/models.dart';
 
 class UsersProvider extends ChangeNotifier {
 
   final String _baseAuthUrl = "identitytoolkit.googleapis.com";
   final String _firebaseToken = "AIzaSyAhMbulLyAp5Wgwu9KK4zzW0Q62DJ55lQk";
+  final CollectionReference usersCollection = FirebaseFirestore.instance.collection('user');
+
 
   final storage = const FlutterSecureStorage();
   
+  bool getUserFirstTime = false;
+  String _userEmail = "";
+  User? userLogged;
 
-  String _user = "";
-
-  String get user => _user;
+  String get user => _userEmail;
+  
 
   set user( String value){
-    _user = value;
+    _userEmail = value;
     notifyListeners();
   }
 
 
   UsersProvider();
+
+  void getLoggedUser() async{    
+    final ref = usersCollection.withConverter(
+      fromFirestore: User.fromFirestore,
+      toFirestore: (User requestedUser, _) => requestedUser.toFirestore(),
+    );
+    
+    var snapshot = await ref.where('email', isEqualTo: _userEmail).get();  
+    var users = snapshot.docs.map((doc) => doc.data());
+
+    userLogged = users.first;
+    getUserFirstTime = true;
+    notifyListeners();
+
+  }
 
   Future<Map<String, dynamic>> login(String email, String password) async{
 		final requestBody = {
@@ -55,7 +76,8 @@ class UsersProvider extends ChangeNotifier {
 
 
   void logOut() async{
-    await storage.delete(key: 'idToken');
+    await storage.delete(key: 'email');
+
   }
 
   Future<String> readToken()async {

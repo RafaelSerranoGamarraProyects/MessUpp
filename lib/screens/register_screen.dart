@@ -10,9 +10,9 @@ class RegisterScreen extends StatelessWidget {
 
 	@override
 	Widget build(BuildContext context) {
-		return Scaffold(
+		return const Scaffold(
 			body: Stack(
-				children:const  [
+				children:[
 					Background(),
         	HeaderLoginIcon(),
 					RegisterBoxSV()
@@ -116,9 +116,10 @@ class _RegisterForm extends StatelessWidget {
               final response =  await userProvider.register(loginForm.email, loginForm.password);
               
               if(response["error"] == null){
+                // ignore: use_build_context_synchronously
                 Navigator.pushReplacementNamed(context, 'login');
               }else{
-                print(response["error"]);
+                // print(response["error"]);
                 return ;
               
               }              

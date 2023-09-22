@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:intl/intl.dart';
-import 'package:tfg_app/widgets/my_drawer.dart';
-import 'package:uuid/uuid.dart';
-
+import 'package:provider/provider.dart';
+import 'package:tfg_app/theme/app_theme.dart';
 import '../models/models.dart';
-import '../widgets/background.dart';
+import '../providers/providers.dart';
+import '../widgets/widgets.dart';
 
 class DebtDetailScreen extends StatelessWidget {
 	 
@@ -13,10 +14,10 @@ class DebtDetailScreen extends StatelessWidget {
 	@override
 	Widget build(BuildContext context) {
 		return  Scaffold(
-			appBar: AppBar(title: const Text("TricountApp"),),
+			appBar: AppBar(title: const Text("TricountApp", style: TextStyle(color: Colors.white),),),
 			drawer: const Drawer(child: MyDrawer(),),
-			body:  Stack(
-			  children: const [
+			body:  const Stack(
+			  children: [
 			    Background(),
 			    _ScreenBody(),
 			  ]
@@ -26,13 +27,18 @@ class DebtDetailScreen extends StatelessWidget {
 }
 
 class _ScreenBody extends StatelessWidget {
-  const _ScreenBody();
-	
 
+	_launchUrl(String url) async {
+		final Uri uri = Uri(scheme: "https", host: url); 
+		if(!await launchUrl(uri, mode: LaunchMode.externalApplication)){
+			throw "Can not launch url";
+		}
+
+	}
+
+  const _ScreenBody();
   @override
   Widget build(BuildContext context) {
-		const uuid = Uuid();
-		final upiId = uuid.v1();
 		final Debt debt = ModalRoute.of(context)!.settings.arguments as Debt;
 		String formattedDate = DateFormat('dd-MM-yyyy').format(debt.date); 
 
@@ -44,21 +50,26 @@ class _ScreenBody extends StatelessWidget {
   			child: Column(
   			  children:  [
 
-						_CustomText(text: formattedDate),
+						_CustomText(text: formattedDate, size: 25,),
 
-						Container(
-							color: Colors.white.withOpacity(0.9),
-							child: Container(height: 300, width: 300, color: Colors.white,), //TODO: do the payment via qr
+						SizedBox(
+							height: 250,
+							width: 250,
+							child:  IconButton(
+							icon:  const Image(image: AssetImage('assets/images/paypalIcon.png'), fit: BoxFit.fill),
+							style: ButtonStyle(
+								shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+									const RoundedRectangleBorder(
+										borderRadius: BorderRadius.all(Radius.circular(10)),
+								))
+							),
+							onPressed: () {
+							  _launchUrl("www.paypal.com/signin");
+							},)
 						),
-						const _CustomText(text: 'Escanea el QR para efectuar el pago',size: 12),
-						_CustomText(text: '${debt.amount.toStringAsFixed(2)}€'),
-						Container(
-							alignment: Alignment.bottomCenter,
-							height: 300,
-							padding: const EdgeInsets.symmetric(horizontal: 30),
-							child: const _CustomText(text: '1. Presione "Escanea tu QR de Messupp"\n\n2. Apunte con la camara al codigo QR\n\n3. Ha efectuado su pago con exito',size: 18,),
-						),
-
+						const _CustomText(text: 'Escanea el QR para efectuar el pago',size: 20,),
+						_CustomText(text: 'El importe es de: ${debt.amount.toStringAsFixed(2)}€',size: 22,),
+						MarkAsPaidButton(debt: debt)
   				]
 				)
 			)
@@ -66,9 +77,34 @@ class _ScreenBody extends StatelessWidget {
   }
 }
 
+class MarkAsPaidButton extends StatelessWidget {
+  const MarkAsPaidButton({
+    super.key,
+     required this.debt,
+  });
+
+  final Debt debt;
+
+  @override
+  Widget build(BuildContext context) {
+		final debtProvider = Provider.of<DebtsProvider>(context);
+    return SizedBox(
+    	height: 75,
+    	width: 300,
+    	child: FilledButton(
+    			style: const ButtonStyle(backgroundColor: MaterialStatePropertyAll(AppTheme.primaryColor)),
+    			onPressed: () {
+    				debtProvider.payDebt(debt);
+    				Navigator.popAndPushNamed(context, "debts");
+    			},
+    			child: const Text("Marcar como pagado", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),)),
+    );
+  }
+}
+
 class _CustomText extends StatelessWidget {
   const _CustomText({
-    required this.text,  this.size,
+    required this.text, this.size
   });
 
   final String text;
@@ -76,9 +112,6 @@ class _CustomText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-    	padding: const EdgeInsets.symmetric(vertical: 10),
-    	child: Text(text,style:  TextStyle(color: Colors.white, fontSize: size ?? 20, fontWeight: FontWeight.bold),),
-    );
+    return Text(text,style:  TextStyle(color: Colors.white, fontSize: size ?? 20, fontWeight: FontWeight.bold));
   }
 }
