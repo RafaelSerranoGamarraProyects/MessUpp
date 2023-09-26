@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
 import 'package:tfg_app/providers/providers.dart';
 import 'package:tfg_app/router/app_router.dart';
@@ -9,7 +10,8 @@ import 'firebase_options.dart';
 
 Future<void> main() async {
   
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsBinding widgetsBinding =  WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await Firebase.initializeApp(options:  DefaultFirebaseOptions.currentPlatform);
   PushNotifications.initialize();
   runApp(const AppState());
@@ -45,12 +47,13 @@ class MyApp extends StatelessWidget {
       future: userProvider.readToken().then((value) => userProvider.user = value),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if(!snapshot.hasData) return const CircularProgressIndicator.adaptive();
-
         if(snapshot.data ==""){
           return const Providers(initialRoute: "login");
         }
-
-        else{ return const Providers(initialRoute: "home"); }
+        else{
+          userProvider.getLoggedUser();
+          return const Providers(initialRoute: "home");
+        }
       },
     );      
   }
@@ -66,6 +69,7 @@ class Providers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    FlutterNativeSplash.remove();
     final userProvider = Provider.of<UsersProvider>(context);
     return MultiProvider(
       providers: [

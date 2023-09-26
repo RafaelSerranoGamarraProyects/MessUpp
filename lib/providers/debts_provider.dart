@@ -7,8 +7,6 @@ import '../models/models.dart';
 class DebtsProvider extends ChangeNotifier {
 
   final CollectionReference debtsCollection = FirebaseFirestore.instance.collection('debts');
-
-
   List<Debt> userDebts  = [];
 
   String _user = "";
@@ -19,6 +17,7 @@ class DebtsProvider extends ChangeNotifier {
     _user = value;
     notifyListeners();
   }
+
   
   DebtsProvider(String userEmail) {
     user = userEmail;
@@ -60,15 +59,11 @@ class DebtsProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void payDebt(Debt debt)async {
-    userDebts.remove(debt);
-
+  void updateDebt(Debt debt) async {
     final Map<String,dynamic> body = debt.toJson();
     body["amount"] =  '${body["amount"]}';
-    await debtsCollection.doc(debt.id).delete();
+    await debtsCollection.doc(debt.id).update(body);
 
     notifyListeners();   
   }
-
-
 }

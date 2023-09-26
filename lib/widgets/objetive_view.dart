@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:tfg_app/providers/providers.dart';
 import 'package:tfg_app/theme/app_theme.dart';
-import 'package:tfg_app/utils/dates_utils.dart';
+import '../utils/utils.dart';
 import 'widgets.dart';
 
 

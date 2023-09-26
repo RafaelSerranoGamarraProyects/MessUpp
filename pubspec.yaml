@@ -47,8 +47,10 @@ dependencies:
   firebase_analytics: ^10.1.4
   http_auth: ^1.0.1
   url_launcher: ^6.1.14
+  cached_network_image: ^3.3.0
   webview_flutter: ^4.0.7
   shared_preferences: ^2.0.20
+  flutter_native_splash: ^2.3.2
 
 dev_dependencies:
   flutter_test:
@@ -64,6 +66,13 @@ dev_dependencies:
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
+flutter_native_splash:
+  color: "#0d47a1"
+  android: true
+  ios: true
+  image: assets/images/logo.png
+  android_12:
+    image: assets/launch_image.png
 # The following section is specific to Flutter packages.
 flutter:
 

@@ -94,7 +94,7 @@ class MarkAsPaidButton extends StatelessWidget {
     	child: FilledButton(
     			style: const ButtonStyle(backgroundColor: MaterialStatePropertyAll(AppTheme.primaryColor)),
     			onPressed: () {
-    				debtProvider.payDebt(debt);
+    				debtProvider.updateDebt(debt);
     				Navigator.popAndPushNamed(context, "debts");
     			},
     			child: const Text("Marcar como pagado", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),)),

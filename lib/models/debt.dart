@@ -12,7 +12,8 @@ class Debt {
         required this.date,
         required this.amount,
         required this.destinationUser,
-        required this.originUser
+        required this.originUser,
+        required this.isPaid
     });
 
     String? id;
@@ -20,6 +21,7 @@ class Debt {
     String destinationUser;
     String originUser;
     double amount;
+    bool isPaid;
 
     factory Debt.fromJson(Map<String, dynamic> json) => Debt(
         id: json["id"],
@@ -27,13 +29,15 @@ class Debt {
         destinationUser: json["destinationUser"],
         originUser: json["originUser"],
         amount: json["amount"],
+        isPaid: json["isPaid"]
     );
 
     Map<String, dynamic> toJson() => {
-        "creationDate": date.toIso8601String(),
+        "date": date.toIso8601String(),
         "destinationUser": destinationUser,
         "originUser": originUser,
         "amount": amount,
+        "isPaid": isPaid
     };
 
 
@@ -48,6 +52,7 @@ class Debt {
       destinationUser: data?['destinationUser'],
       originUser: data?['originUser'],
       amount: data?['amount'],
+      isPaid: data?['isPaid']
 
     );
   }
@@ -58,6 +63,7 @@ class Debt {
         "destinationUser": destinationUser,
         "originUser": originUser,
         "amount": amount,
+        "isPaid": isPaid
     };
   }
   

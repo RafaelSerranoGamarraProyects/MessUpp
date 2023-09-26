@@ -80,7 +80,7 @@ class UsersProvider extends ChangeNotifier {
 
   }
 
-  Future<String> readToken()async {
+  Future<String> readToken() async {
     return await storage.read(key: 'email') ?? '' ;
   }
 

@@ -14,12 +14,7 @@ class SpendObjetivesScreen extends StatefulWidget {
 class _SpendObjetivesScreenState extends State<SpendObjetivesScreen> {
 	@override
 	Widget build(BuildContext context) {
-		
-		final userProvider = Provider.of<UsersProvider>(context);
-		if (userProvider.getUserFirstTime == false) userProvider.getLoggedUser();
-		
-		return  userProvider.user == "" ? const CircularProgressIndicator()
-			: DefaultTabController(
+		return DefaultTabController(
 					length: 2,
 					child: Scaffold(
 						appBar: AppBar(

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfg_app/models/models.dart';
@@ -34,18 +35,24 @@ class MyDrawerHeader extends StatelessWidget {
 			child: Column(
 				mainAxisAlignment: MainAxisAlignment.center,
 				children: [
-					Container(
-						margin: const EdgeInsets.only(bottom: 10),
-						height: 120,
-						decoration: BoxDecoration(
-							shape: BoxShape.circle,
-							image: DecorationImage(
-								fit: BoxFit.contain,
-								image: 
-								NetworkImage(usersProvider.userLogged!.image!),
-							)
+					CachedNetworkImage(
+							imageUrl: usersProvider.userLogged!.image!,
+							imageBuilder: (context, imageProvider) => 
+						    Container(
+									margin: const EdgeInsets.only(bottom: 10),
+									height: 120,
+						    	decoration: BoxDecoration(
+										shape: BoxShape.circle,
+										color: Colors.white,
+						      	image: DecorationImage(
+						          image: imageProvider,
+						          fit: BoxFit.contain,
+						    		),
+									),   
+						    ),   
+						 placeholder: (context, url) => const DrawerUserImagePlaceholder(),
+						 
 						),
-					),
 					Text(usersProvider.userLogged!.userName!,style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),),
 					//Text(usersProvider.user.email,style: const TextStyle(color: Colors.white, fontSize: 16),)
 				],
@@ -53,6 +60,28 @@ class MyDrawerHeader extends StatelessWidget {
 			),
 		);
 	}
+}
+
+class DrawerUserImagePlaceholder extends StatelessWidget {
+  const DrawerUserImagePlaceholder({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+			margin: const EdgeInsets.only(bottom: 10),
+			height: 120,
+     	decoration: const BoxDecoration(
+				shape: BoxShape.circle,
+				color: Colors.white,
+       	image: DecorationImage(
+           image:AssetImage("assets/images/userPlaceholder.png"),
+           fit: BoxFit.scaleDown,
+     		),
+			),   
+    );
+  }
 }
 
 class MyDrawerOptions extends StatelessWidget {

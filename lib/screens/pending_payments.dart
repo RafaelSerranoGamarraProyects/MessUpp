@@ -6,6 +6,34 @@ import '../models/models.dart';
 import '../providers/providers.dart';
 import '../widgets/widgets.dart';
 
+
+class TypeOfPayment {
+
+    TypeOfPayment({required this.type});
+		String type;
+		
+		Color color() {
+			if (type == "earn"){
+				return Colors.green;
+			}
+			else if(type == "pay"){
+				return Colors.red;
+			}
+			else { return Colors.white.withOpacity(0);}
+		}
+
+		String message() {
+			if (type == "earn"){
+				return "Cobro Pendiente";
+			}
+			else if(type == "pay"){
+				return "Pago Pendiente";
+			}
+			else { return "";}
+		}
+
+}
+
 class DebtsScreen extends StatelessWidget {
 	 
 	const DebtsScreen({Key? key}) : super(key: key);
@@ -52,43 +80,113 @@ class CustomCardDebt extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 		final usersProvider = Provider.of<UsersProvider>(context);
-		const String userLogged = "Yo";
+		TypeOfPayment typeOfPayment;
 		String otherUser = "";
-		IconData icon;
-		Color color;
+
 		
 		if(debt.originUser == usersProvider.user) {
+			typeOfPayment = TypeOfPayment(type: "pay");
 			otherUser = debt.destinationUser;
-			icon = Icons.arrow_right_alt;
-			color = AppTheme.errorColor;
-
 		} else{
+			typeOfPayment = TypeOfPayment(type: "earn");
 			otherUser = debt.originUser;
-			icon = Icons.arrow_back_sharp;
-			color = Colors.greenAccent;
 		}
 
     return Container(
 			padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 8),
 			child: Card(
-					color: Colors.white,
+					color: Colors.white.withOpacity(0.9),
 					child: Container(
 							padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 8),
 							alignment: Alignment.center,
-							height: 70,
+							height: 135,
 							width: double.infinity,
 							child: GestureDetector(	
 								onTap: () => Navigator.pushReplacementNamed(context, 'debtDetail', arguments: debt),			
-								child: Row(
+								child: Column(
+									crossAxisAlignment: CrossAxisAlignment.start,
 									children: [
-										const Text(userLogged,style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),),
-										Icon(icon, color: color,),
-										Text(otherUser,style: const TextStyle(color: Colors.black, fontSize: 20),),
+										DebtInfoRow(typeOfPayment: typeOfPayment, otherUser: otherUser, debt: debt),
+										const Divider(color: AppTheme.primaryColor,thickness: 1,),
+									 	MarkAsPaidRow(debt: debt)
+	
 									]
 								),
 							),
 					),
 				),
 		);
+  }
+}
+
+class MarkAsPaidRow extends StatelessWidget {
+  const MarkAsPaidRow({
+    super.key,
+		required this.debt,
+  });
+
+	final Debt debt;
+
+  @override
+  Widget build(BuildContext context) {
+		final debtsprovider = Provider.of<DebtsProvider>(context);
+    return Row(
+      children: [
+        const Text("Marcar como pagado ", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: AppTheme.primaryColor),),
+      	const Spacer(),
+    		Checkbox(
+					value: debt.isPaid,
+				 	checkColor: AppTheme.primaryColor,
+					fillColor: MaterialStateColor.resolveWith((states){
+						if(debt.isPaid == true){
+							return AppTheme.secondaryBlue.withOpacity(0.7);
+						}
+						return Colors.white;
+					}),
+					onChanged: (value){
+						debt.isPaid = value!;
+						debtsprovider.updateDebt(debt);
+					}
+				)
+    	],
+    );
+  }
+}
+
+class DebtInfoRow extends StatelessWidget {
+  const DebtInfoRow({
+    super.key,
+    required this.typeOfPayment,
+    required this.otherUser,
+    required this.debt,
+  });
+
+  final TypeOfPayment typeOfPayment;
+  final String otherUser;
+  final Debt debt;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+    		Column(
+					crossAxisAlignment: CrossAxisAlignment.start,
+    		  children: [
+    		    Text(typeOfPayment.message(),style: const TextStyle(color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold),),
+    		    Row(
+    		      children: [
+    		        const Padding(
+									padding: EdgeInsets.symmetric(horizontal: 5.0),
+									child: Icon(Icons.person, color: AppTheme.secondaryBlue,),
+								),
+								Text(otherUser,style: const TextStyle(color: Colors.black, fontSize: 18),),
+    		      ],
+    		    ),
+    		  ],
+    		),
+    		const Spacer(),
+    		Text("${debt.amount} €", style: const TextStyle(color: Colors.black, fontSize: 24, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),)
+      ],
+    );
   }
 }
