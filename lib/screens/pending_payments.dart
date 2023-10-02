@@ -32,6 +32,16 @@ class TypeOfPayment {
 			else { return "";}
 		}
 
+		String checkBoxMessage(){
+			if (type == "earn"){
+				return "Cobrado";
+			}
+			else if(type == "pay"){
+				return "Pagado";
+			}
+			else { return "";}
+		}
+
 }
 
 class DebtsScreen extends StatelessWidget {
@@ -83,7 +93,6 @@ class CustomCardDebt extends StatelessWidget {
 		TypeOfPayment typeOfPayment;
 		String otherUser = "";
 
-		
 		if(debt.originUser == usersProvider.user) {
 			typeOfPayment = TypeOfPayment(type: "pay");
 			otherUser = debt.destinationUser;
@@ -108,7 +117,7 @@ class CustomCardDebt extends StatelessWidget {
 									children: [
 										DebtInfoRow(typeOfPayment: typeOfPayment, otherUser: otherUser, debt: debt),
 										const Divider(color: AppTheme.primaryColor,thickness: 1,),
-									 	MarkAsPaidRow(debt: debt)
+									 	MarkAsPaidRow(debt: debt, typeOfPayment: typeOfPayment)
 	
 									]
 								),
@@ -123,16 +132,18 @@ class MarkAsPaidRow extends StatelessWidget {
   const MarkAsPaidRow({
     super.key,
 		required this.debt,
+		required this.typeOfPayment
   });
 
 	final Debt debt;
+	final TypeOfPayment typeOfPayment;
 
   @override
   Widget build(BuildContext context) {
 		final debtsprovider = Provider.of<DebtsProvider>(context);
     return Row(
       children: [
-        const Text("Marcar como pagado ", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: AppTheme.primaryColor),),
+        Text(typeOfPayment.checkBoxMessage(), style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: AppTheme.primaryColor),),
       	const Spacer(),
     		Checkbox(
 					value: debt.isPaid,
@@ -172,7 +183,7 @@ class DebtInfoRow extends StatelessWidget {
     		Column(
 					crossAxisAlignment: CrossAxisAlignment.start,
     		  children: [
-    		    Text(typeOfPayment.message(),style: const TextStyle(color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold),),
+    		    Text(typeOfPayment.message(),style: TextStyle(color: typeOfPayment.color(), fontSize: 20, fontWeight: FontWeight.bold),),
     		    Row(
     		      children: [
     		        const Padding(

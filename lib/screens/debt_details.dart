@@ -97,7 +97,7 @@ class MarkAsPaidButton extends StatelessWidget {
     				debtProvider.updateDebt(debt);
     				Navigator.popAndPushNamed(context, "debts");
     			},
-    			child: const Text("Marcar como pagado", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),)),
+    			child: const Text("Pagado", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),)),
     );
   }
 }
