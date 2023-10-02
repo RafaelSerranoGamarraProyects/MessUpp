@@ -28,6 +28,8 @@ class MyDrawerHeader extends StatelessWidget {
 	@override
 	Widget build(BuildContext context) {
 		final usersProvider = Provider.of<UsersProvider>(context);
+		
+		final userName = usersProvider.userLogged!.userName != null ? usersProvider.userLogged!.userName! : usersProvider.userLogged!.email;
 		return Container(
 			color: AppTheme.primaryColor,
 			width: double.infinity,
@@ -35,31 +37,44 @@ class MyDrawerHeader extends StatelessWidget {
 			child: Column(
 				mainAxisAlignment: MainAxisAlignment.center,
 				children: [
-					CachedNetworkImage(
-							imageUrl: usersProvider.userLogged!.image!,
-							imageBuilder: (context, imageProvider) => 
-						    Container(
-									margin: const EdgeInsets.only(bottom: 10),
-									height: 120,
-						    	decoration: BoxDecoration(
-										shape: BoxShape.circle,
-										color: Colors.white,
-						      	image: DecorationImage(
-						          image: imageProvider,
-						          fit: BoxFit.contain,
-						    		),
-									),   
-						    ),   
-						 placeholder: (context, url) => const DrawerUserImagePlaceholder(),
-						 
-						),
-					Text(usersProvider.userLogged!.userName!,style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),),
+					usersProvider.userLogged!.image != null ? const CacheImage() : const DrawerUserImagePlaceholder(),
+					Text(userName, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),),
 					//Text(usersProvider.user.email,style: const TextStyle(color: Colors.white, fontSize: 16),)
 				],
 
 			),
 		);
 	}
+}
+
+class CacheImage extends StatelessWidget {
+  const CacheImage({
+    super.key,
+  
+  });
+
+  @override
+  Widget build(BuildContext context) {
+		final usersProvider = Provider.of<UsersProvider>(context);
+    return CachedNetworkImage(
+    		imageUrl: usersProvider.userLogged!.image!,
+    		imageBuilder: (context, imageProvider) => 
+    	    Container(
+    				margin: const EdgeInsets.only(bottom: 10),
+    				height: 120,
+    	    	decoration: BoxDecoration(
+    					shape: BoxShape.circle,
+    					color: Colors.white,
+    	      	image: DecorationImage(
+    	          image: imageProvider,
+    	          fit: BoxFit.contain,
+    	    		),
+    				),   
+    	    ),   
+    	 placeholder: (context, url) => const DrawerUserImagePlaceholder(),
+    	 
+    	);
+  }
 }
 
 class DrawerUserImagePlaceholder extends StatelessWidget {

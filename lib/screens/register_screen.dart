@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:tfg_app/models/user.dart';
 
 import '../providers/providers.dart';
 import '../theme/custom_styles.dart';
@@ -114,8 +115,9 @@ class _RegisterForm extends StatelessWidget {
               loginForm.isLoading = true;
               
               final response =  await userProvider.register(loginForm.email, loginForm.password);
-              
+
               if(response["error"] == null){
+                userProvider.createUser(User(email: loginForm.email, password: loginForm.password));
                 // ignore: use_build_context_synchronously
                 Navigator.pushReplacementNamed(context, 'login');
               }else{
