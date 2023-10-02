@@ -84,4 +84,15 @@ class UsersProvider extends ChangeNotifier {
     return await storage.read(key: 'email') ?? '' ;
   }
 
+  void createUser(User user) async {
+    final Map<String,dynamic> body = user.toJson();
+    await usersCollection.doc().set(body);
+  }
+
+    void addExpenditure(Expenditure expenditure) async {
+
+    
+    notifyListeners();
+  } 
+
 }
