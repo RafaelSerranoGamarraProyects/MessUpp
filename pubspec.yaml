@@ -51,6 +51,7 @@ dependencies:
   webview_flutter: ^4.0.7
   shared_preferences: ^2.0.20
   flutter_native_splash: ^2.3.2
+  flutter_launcher_icons: ^0.13.1
 
 
 dev_dependencies:
@@ -77,6 +78,13 @@ flutter_native_splash:
     color: "#050a30"
     image: "assets/images/logo.png"
 
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/logo.png"
+  adaptive_icon_foreground: "assets/images/iconLogo.png"
+  adaptive_icon_background: "#050a30"
 
 # The following section is specific to Flutter packages.
 flutter:
