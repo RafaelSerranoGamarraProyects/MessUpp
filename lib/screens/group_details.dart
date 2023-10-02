@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tfg_app/theme/app_theme.dart';
 import 'package:tfg_app/widgets/background.dart';
-
 import '../models/models.dart';
-// import '../providers/providers.dart';
 
 class GroupDetailsScreen extends StatelessWidget {
 	const GroupDetailsScreen({Key? key}) : super(key: key);
@@ -122,7 +120,6 @@ class CustomTransactionItem extends StatelessWidget {
 						subtitle: Text(" Pagado por: ${transaction["paidBy"]}", style: const TextStyle(fontSize: 16, fontWeight: FontWeight.normal, color: Colors.black),),
 						trailing: Text("${transaction["amount"]} €", style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black)),
 					),
-					
 				),
 		);
   }
@@ -145,7 +142,6 @@ class ReturnToGroups extends StatelessWidget {
   }
 }
 
-
 class SalaryScreen extends StatelessWidget {
 	
 	void calcularDeudas(){
@@ -153,7 +149,6 @@ class SalaryScreen extends StatelessWidget {
 		for (var transaction in group.transactions) {
 		  totalAmount += transaction["amount"]!;
 		}
-		
 	}
 
   const SalaryScreen({

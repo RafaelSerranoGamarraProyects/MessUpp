@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:tfg_app/providers/providers.dart';
 import 'package:tfg_app/theme/app_theme.dart';
 import '../widgets/widgets.dart';
 

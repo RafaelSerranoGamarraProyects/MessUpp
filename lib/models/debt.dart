@@ -51,7 +51,7 @@ class Debt {
       date: DateTime.parse(data?['date']),
       destinationUser: data?['destinationUser'],
       originUser: data?['originUser'],
-      amount: data?['amount'],
+      amount: double.parse('${data?["amount"]}'),
       isPaid: data?['isPaid']
 
     );
