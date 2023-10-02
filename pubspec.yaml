@@ -72,7 +72,7 @@ flutter_native_splash:
   ios: true
   image: assets/images/logo.png
   android_12:
-    image: assets/launch_image.png
+    image: assets/images/logo.png
 # The following section is specific to Flutter packages.
 flutter:
 
