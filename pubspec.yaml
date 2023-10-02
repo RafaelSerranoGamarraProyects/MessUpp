@@ -52,6 +52,7 @@ dependencies:
   shared_preferences: ^2.0.20
   flutter_native_splash: ^2.3.2
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -67,12 +68,16 @@ dev_dependencies:
 # following page: https://dart.dev/tools/pub/pubspec
 
 flutter_native_splash:
-  color: "#0d47a1"
   android: true
   ios: true
-  image: assets/images/logo.png
+  web: false
+  color: "#050a30"
+  image: "assets/images/logo.png"
   android_12:
-    image: assets/images/logo.png
+    color: "#050a30"
+    image: "assets/images/logo.png"
+
+
 # The following section is specific to Flutter packages.
 flutter:
 
