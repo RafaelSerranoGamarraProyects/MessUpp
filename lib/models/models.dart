@@ -1,3 +1,5 @@
+export 'package:tfg_app/models/salary_algorithm.dart';
+export 'package:tfg_app/models/group_expense.dart';
 export 'package:tfg_app/models/debt.dart';
 export 'package:tfg_app/models/group.dart';
 export 'package:tfg_app/models/get_spent_by_category_response.dart';

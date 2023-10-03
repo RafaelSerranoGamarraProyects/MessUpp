@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tfg_app/theme/app_theme.dart';
-import 'package:tfg_app/widgets/background.dart';
 import '../models/models.dart';
+import 'screens.dart';
+
 
 class GroupDetailsScreen extends StatelessWidget {
 	const GroupDetailsScreen({Key? key}) : super(key: key);
@@ -24,23 +25,7 @@ class GroupDetailsScreen extends StatelessWidget {
 								Tab(text: 'Saldos',icon: Icon(Icons.wallet),),
 							]
 						),
-							title: Row(
-								children: [
-									const ReturnToGroups(),
-									Expanded(
-										child: TextButton(
-											onPressed: () {  },
-											child: Column(
-											  children: [
-											    Text(group.name, style: const TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)),
-													const Text("Toca para mas informacion", style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.normal, fontStyle: FontStyle.italic)),
-											  ],
-											),
-										),
-									),
-									IconButton(onPressed: (){}, icon: const Icon(Icons.more_vert_rounded))
-								],
-							)
+							title: GroupsScreenHeader(group: group)
 						),
 						 body :  TabBarView(
 							children: [
@@ -52,79 +37,34 @@ class GroupDetailsScreen extends StatelessWidget {
 	}
 }
 
-
-class GroupExpenditures extends StatelessWidget {
-  const GroupExpenditures({
+class GroupsScreenHeader extends StatelessWidget {
+  const GroupsScreenHeader({
     super.key,
     required this.group,
   });
-
   final Group group;
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-				children:  [
-					const Background(),
-					SafeArea(
-						child: Column(
-							children:  [
-								 ExpendituresList(group: group)	
-							],
-						 ),
-					),
-				],
+    return Row(
+    	children: [
+    		const ReturnToGroups(),
+    		Expanded(
+    			child: TextButton(
+    				onPressed: () {  },
+    				child: Column(
+    				  children: [
+    				    Text(group.name, style: const TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)),
+    						const Text("Toca para mas informacion", style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.normal, fontStyle: FontStyle.italic)),
+    				  ],
+    				),
+    			),
+    		),
+    		IconButton(onPressed: (){}, icon: const Icon(Icons.more_vert_rounded))
+    	],
     );
   }
 }
-
-class ExpendituresList extends StatelessWidget {
-  const ExpendituresList({
-    super.key,
-    required this.group,
-  });
-
-  final Group group;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-									padding: const EdgeInsets.only(top: 5),
-									alignment: Alignment.center,
-									height: 300,
-									child: ListView.builder(
-										itemCount: group.transactions.length,
-										itemBuilder: (_, index) => CustomTransactionItem(transaction: group.transactions[index])
-									),
-    );
-  }
-}
-
-class CustomTransactionItem extends StatelessWidget {
-  const CustomTransactionItem({
-    super.key,
-    required this.transaction,
-  });
-
-  final Map<String,dynamic> transaction;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-			padding: const EdgeInsets.symmetric(horizontal: 10.0),
-			child: Card(
-					color: Colors.white.withOpacity(0.7),
-					margin: const EdgeInsets.symmetric(vertical: 10),
-					child: ListTile(
-						title: Text(transaction["name"], style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black),),
-						subtitle: Text(" Pagado por: ${transaction["paidBy"]}", style: const TextStyle(fontSize: 16, fontWeight: FontWeight.normal, color: Colors.black),),
-						trailing: Text("${transaction["amount"]} €", style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black)),
-					),
-				),
-		);
-  }
-}
-
 
 class ReturnToGroups extends StatelessWidget {
   const ReturnToGroups({
@@ -142,24 +82,3 @@ class ReturnToGroups extends StatelessWidget {
   }
 }
 
-class SalaryScreen extends StatelessWidget {
-	
-	void calcularDeudas(){
-		var totalAmount;
-		for (var transaction in group.transactions) {
-		  totalAmount += transaction["amount"]!;
-		}
-	}
-
-  const SalaryScreen({
-    super.key, required this.group, 
-  });
-
-	final Group group;
-  @override
-  Widget build(BuildContext context) {
-    return  const Stack(children: [
-			  Background()
-		 ]);
-  }
-}
