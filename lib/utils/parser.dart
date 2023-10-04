@@ -14,7 +14,12 @@ class Parser {
 		List<MonetaryTransaction> listToReturn = [];
 
 		for (var item in list ){
-			final transaction = MonetaryTransaction(name: item.name, payer: item.payer, beneficiaries: item.beneficiaries, amount: item.amount);
+			final transaction = MonetaryTransaction(
+				name: item["name"],
+			 	payer: item["payer"],
+				beneficiaries: Parser.parseFromListDynamicToListString(item["beneficiaries"]) ,
+				amount: double.parse("${item["amount"]}")
+			);
 			listToReturn.add(transaction);
 		}
 		return listToReturn;

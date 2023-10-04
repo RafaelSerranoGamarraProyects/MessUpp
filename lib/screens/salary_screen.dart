@@ -13,14 +13,15 @@ class SalaryScreen extends StatelessWidget {
 	final Group group;
   @override
   Widget build(BuildContext context) {
-		DebtCalculator calculator = DebtCalculator(group.participants);
+		DebtCalculator calculator = DebtCalculator(group.participants, group.transactions);
+		var debtsList = calculator.calculateDebts();
     return   Stack(children: [
 			  const Background(),
 				Column(children: [
 						Expanded(
 							child: ListView.builder(
-								itemCount: 5,
-								itemBuilder: (context, index) => Text("Deuda ${index + 1}"),
+								itemCount: debtsList.length,
+								itemBuilder: (context, index) => Text(debtsList[index].toString(), style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
 							),
 						),
 					],),

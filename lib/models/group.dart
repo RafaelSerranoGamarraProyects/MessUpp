@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:tfg_app/models/monetary_transaction.dart';
 
 import '../utils/utils.dart';
 
@@ -22,7 +23,7 @@ class Group {
     String name;
     DateTime creationDate;
     List<String> participants;
-    List<dynamic> transactions;
+    List<MonetaryTransaction> transactions;
     String image;
 
     factory Group.fromJson(Map<String, dynamic> json) => Group(
@@ -53,7 +54,7 @@ class Group {
       name: data?["name"],
       creationDate: DateTime.parse(data?['creationDate']),
       participants: Parser.parseFromListDynamicToListString(data?['participants']) ,
-      transactions: data?['transactions'],
+      transactions: Parser.parseToMonetaryTransactionsList(data?['transactions']) ,
       image: data?['image'],
 
     );
