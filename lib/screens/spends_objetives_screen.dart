@@ -34,7 +34,6 @@ class _SpendObjetivesScreenState extends State<SpendObjetivesScreen> {
 								children: [
 									ExpensesList(),
 									ObjetiveView()
-								
 								],
 						),
 					),
