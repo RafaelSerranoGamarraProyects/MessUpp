@@ -16,7 +16,8 @@ class Background extends StatelessWidget {
     	height: size.height,
     	decoration: const BoxDecoration(
     		gradient: LinearGradient(
-    			colors:[ AppTheme.secondaryBlue,Color.fromRGBO(179, 229, 252, 1)],
+          //Color.fromRGBO(179, 229, 252, 1) --> Posible color
+    			colors:[AppTheme.primaryColor, AppTheme.secondaryBlue],
     			begin: Alignment.topCenter,
     			end: Alignment.bottomCenter)
     	),

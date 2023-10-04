@@ -21,6 +21,10 @@ class User {
     String password;
     String? image;
 
+    String get getUserName {
+        if(userName != null) { return userName!;}
+        else{ return email.substring(0, email.indexOf("@") + 1); }
+    }
 
     factory User.fromJson(Map<String, dynamic> json) => User(
         id: json["id"],
