@@ -6,13 +6,6 @@ import '../widgets/widgets.dart';
 
 class SalaryScreen extends StatelessWidget {
 	
-	void calcularDeudas(){
-		var totalAmount;
-		for (var transaction in group.transactions) {
-		  totalAmount += transaction["amount"]!;
-		}
-	}
-
   const SalaryScreen({
     super.key, required this.group, 
   });
@@ -20,8 +13,18 @@ class SalaryScreen extends StatelessWidget {
 	final Group group;
   @override
   Widget build(BuildContext context) {
-    return  const Stack(children: [
-			  Background()
+		DebtCalculator calculator = DebtCalculator(group.participants);
+    return   Stack(children: [
+			  const Background(),
+				Column(children: [
+						Expanded(
+							child: ListView.builder(
+								itemCount: 5,
+								itemBuilder: (context, index) => Text("Deuda ${index + 1}"),
+							),
+						),
+					],),
+				
 		 ]);
   }
 }

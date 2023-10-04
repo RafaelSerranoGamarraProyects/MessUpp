@@ -57,7 +57,7 @@ class Expenditure {
     return Expenditure(
       id: snapshot.id,
       date: DateTime.parse(data?['date']),
-       amount: double.parse('${data?["amount"]}'),
+      amount: double.parse('${data?["amount"]}'),
       category: data?['category'],
       description: data?['description'],
       image: data?['image'],

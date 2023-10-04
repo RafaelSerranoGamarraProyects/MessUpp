@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import '../utils/utils.dart';
+
 Group groupFromJson(String str) => Group.fromJson(json.decode(str));
 
 String groupToJson(Group data) => json.encode(data.toJson());
@@ -19,7 +21,7 @@ class Group {
     String? id;
     String name;
     DateTime creationDate;
-    List<dynamic> participants;
+    List<String> participants;
     List<dynamic> transactions;
     String image;
 
@@ -50,7 +52,7 @@ class Group {
       id: snapshot.id,
       name: data?["name"],
       creationDate: DateTime.parse(data?['creationDate']),
-      participants: data?['participants'],
+      participants: Parser.parseFromListDynamicToListString(data?['participants']) ,
       transactions: data?['transactions'],
       image: data?['image'],
 

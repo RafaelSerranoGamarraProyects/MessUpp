@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../models/models.dart';
+import '../utils/utils.dart';
 import '../widgets/widgets.dart';
 
 class GroupExpenditures extends StatelessWidget {
@@ -44,7 +45,14 @@ class ExpendituresList extends StatelessWidget {
 									height: 300,
 									child: ListView.builder(
 										itemCount: group.transactions.length,
-										itemBuilder: (_, index) => CustomTransactionItem(transaction: group.transactions[index])
+										itemBuilder: (_, index) {
+                      final monetaryTransaction = MonetaryTransaction(name: group.transactions[index]["name"],
+                        payer: group.transactions[index]["payer"],
+                        beneficiaries: Parser.parseFromListDynamicToListString(group.transactions[index]["beneficiaries"]),
+                        amount: group.transactions[index]["amount"]
+                      );
+                      return CustomTransactionItem(transaction: monetaryTransaction);
+                    }
 									),
     );
   }
@@ -56,7 +64,7 @@ class CustomTransactionItem extends StatelessWidget {
     required this.transaction,
   });
 
-  final Map<String,dynamic> transaction;
+  final MonetaryTransaction transaction;
 
   @override
   Widget build(BuildContext context) {
@@ -66,9 +74,9 @@ class CustomTransactionItem extends StatelessWidget {
 					color: Colors.white.withOpacity(0.7),
 					margin: const EdgeInsets.symmetric(vertical: 10),
 					child: ListTile(
-						title: Text(transaction["name"], style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black),),
-						subtitle: Text(" Pagado por: ${transaction["paidBy"]}", style: const TextStyle(fontSize: 16, fontWeight: FontWeight.normal, color: Colors.black),),
-						trailing: Text("${transaction["amount"]} €", style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black)),
+						title: Text(transaction.name, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black),),
+						subtitle: Text(" Pagado por: ${transaction.payer}", style: const TextStyle(fontSize: 16, fontWeight: FontWeight.normal, color: Colors.black),),
+						trailing: Text("${transaction.amount} €", style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black)),
 					),
 				),
 		);
