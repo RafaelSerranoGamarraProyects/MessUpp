@@ -2,10 +2,12 @@ import 'models.dart';
 
 class DebtCalculator {
   List<String> friends;
+  List<MonetaryTransaction> transactions;
   late List<List<double>> debtMatrix;
 
-  DebtCalculator(this.friends) {
+  DebtCalculator(this.friends, this.transactions) {
     debtMatrix = List.generate(friends.length, (i) => List<double>.filled(friends.length, 0));
+    recordTransactions(transactions);
   }
 
 	void recordTransactions(List<MonetaryTransaction> transactions){
@@ -22,7 +24,8 @@ class DebtCalculator {
     final payerIndex = friends.indexOf(payer);
     final amountPerPerson = amount / beneficiaries.length;
 
-    for (final beneficiary in beneficiaries) {
+    for (final beneficiary in beneficiaries) { 
+      //Crashes because if beneficiary does not exist, the index is not valid
       final beneficiaryIndex = friends.indexOf(beneficiary);
       debtMatrix[payerIndex][beneficiaryIndex] += amountPerPerson;
       debtMatrix[beneficiaryIndex][payerIndex] -= amountPerPerson;

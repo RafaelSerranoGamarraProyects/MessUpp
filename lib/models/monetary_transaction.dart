@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import '../utils/utils.dart';
+
 MonetaryTransaction transactionFromJson(String str) => MonetaryTransaction.fromJson(json.decode(str));
 String transactionToJson(MonetaryTransaction data) => json.encode(data.toJson());
 
@@ -20,7 +22,7 @@ class MonetaryTransaction {
   factory MonetaryTransaction.fromJson(Map<String, dynamic> json) => MonetaryTransaction(
     name: json["name"],
     payer: json["payer"],
-    beneficiaries: json["beneficiaries"],
+    beneficiaries: Parser.parseFromListDynamicToListString(json["beneficiaries"]) ,
     amount:  double.parse('${json["amount"]}'),
   );
 

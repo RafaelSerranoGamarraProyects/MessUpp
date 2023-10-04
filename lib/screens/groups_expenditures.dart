@@ -46,10 +46,10 @@ class ExpendituresList extends StatelessWidget {
 									child: ListView.builder(
 										itemCount: group.transactions.length,
 										itemBuilder: (_, index) {
-                      final monetaryTransaction = MonetaryTransaction(name: group.transactions[index]["name"],
-                        payer: group.transactions[index]["payer"],
-                        beneficiaries: Parser.parseFromListDynamicToListString(group.transactions[index]["beneficiaries"]),
-                        amount: group.transactions[index]["amount"]
+                      final monetaryTransaction = MonetaryTransaction(name: group.transactions[index].name,
+                        payer: group.transactions[index].payer,
+                        beneficiaries: Parser.parseFromListDynamicToListString(group.transactions[index].beneficiaries),
+                        amount: group.transactions[index].amount
                       );
                       return CustomTransactionItem(transaction: monetaryTransaction);
                     }
