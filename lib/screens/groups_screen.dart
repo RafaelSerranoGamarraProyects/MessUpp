@@ -13,7 +13,7 @@ class GroupScreen extends StatelessWidget {
 		final groupProvider = Provider.of<GroupsProvider>(context);
 		final size = MediaQuery.of(context).size;
 		return Scaffold(
-			appBar: AppBar(title: const Text('Tricount App', style: TextStyle(color: Colors.white))),
+			appBar: AppBar(title: const Text('Grupos', style: TextStyle(color: Colors.white))),
 			drawer: const Drawer(child: MyDrawer()),
 			body: Stack(
 			children: [
