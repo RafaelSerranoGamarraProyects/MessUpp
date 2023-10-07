@@ -16,7 +16,7 @@ class _SpendObjetivesScreenState extends State<SpendObjetivesScreen> {
 					length: 2,
 					child: Scaffold(
 						appBar: AppBar(
-							title: const Text('Tricount App', style: TextStyle(color: Colors.white),),
+							title: const Text('Gastos y Objetivos', style: TextStyle(color: Colors.white),),
 							bottom: 
 								const TabBar(
 									labelColor: Colors.white,

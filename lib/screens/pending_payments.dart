@@ -52,7 +52,7 @@ class DebtsScreen extends StatelessWidget {
 	Widget build(BuildContext context) {
 		final debtsprovider = Provider.of<DebtsProvider>(context);
 		return  Scaffold(
-			appBar: AppBar(title: const Text("Tricount App", style: TextStyle(color: Colors.white)),),
+			appBar: AppBar(title: const Text("Pagos Pendientes", style: TextStyle(color: Colors.white)),),
 			drawer: const Drawer(child: MyDrawer()),
 			body: Center(
 				 child: Stack(
