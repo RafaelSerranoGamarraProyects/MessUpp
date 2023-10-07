@@ -1,3 +1,4 @@
+export 'package:tfg_app/widgets/popup_add_pending_payment.dart';
 export 'package:tfg_app/widgets/calculated_debt_card.dart';
 export	'package:tfg_app/widgets/background.dart';
 export	'package:tfg_app/widgets/login_widgets.dart';

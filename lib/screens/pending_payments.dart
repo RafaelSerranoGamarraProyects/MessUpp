@@ -51,6 +51,7 @@ class DebtsScreen extends StatelessWidget {
 	@override
 	Widget build(BuildContext context) {
 		final debtsprovider = Provider.of<DebtsProvider>(context);
+		final size = MediaQuery.of(context).size;
 		return  Scaffold(
 			appBar: AppBar(title: const Text("Pagos Pendientes", style: TextStyle(color: Colors.white)),),
 			drawer: const Drawer(child: MyDrawer()),
@@ -62,12 +63,19 @@ class DebtsScreen extends StatelessWidget {
 							 children: [
 							 	Expanded(child:	
 							 		SizedBox(
-										height: 600,
+										height: size.height * 0.9,
       							child: ListView.builder(
 											itemCount: debtsprovider.userDebts.length,
 											itemBuilder: (context, index) =>  CustomCardDebt(debt: debtsprovider.userDebts[index],))
       						),
 								),
+								Container(
+									padding: const EdgeInsets.only(right: 15),
+									alignment: Alignment.bottomCenter,
+									height: size.height - 230,
+									width: size.width,
+									child: const PopUpFormAddPendingPayment()
+								),	
 						 	]
 					 	),			
 					],	
@@ -110,17 +118,14 @@ class CustomCardDebt extends StatelessWidget {
 							alignment: Alignment.center,
 							height: 135,
 							width: double.infinity,
-							child: GestureDetector(	
-								onTap: () => Navigator.pushReplacementNamed(context, 'debtDetail', arguments: debt),			
-								child: Column(
-									crossAxisAlignment: CrossAxisAlignment.start,
-									children: [
-										DebtInfoRow(typeOfPayment: typeOfPayment, otherUser: otherUser, debt: debt),
-										const Divider(color: AppTheme.primaryColor,thickness: 1,),
-									 	MarkAsPaidRow(debt: debt, typeOfPayment: typeOfPayment)
+							child: Column(
+								crossAxisAlignment: CrossAxisAlignment.start,
+								children: [
+									DebtInfoRow(typeOfPayment: typeOfPayment, otherUser: otherUser, debt: debt),
+									const Divider(color: AppTheme.primaryColor,thickness: 1,),
+								 	MarkAsPaidRow(debt: debt, typeOfPayment: typeOfPayment)
 	
-									]
-								),
+								]
 							),
 					),
 				),
@@ -143,7 +148,7 @@ class MarkAsPaidRow extends StatelessWidget {
 		final debtsprovider = Provider.of<DebtsProvider>(context);
     return Row(
       children: [
-        Text(typeOfPayment.checkBoxMessage(), style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: AppTheme.primaryColor),),
+        Text(typeOfPayment.checkBoxMessage(), style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: AppTheme.primaryColor),),
       	const Spacer(),
     		Checkbox(
 					value: debt.isPaid,

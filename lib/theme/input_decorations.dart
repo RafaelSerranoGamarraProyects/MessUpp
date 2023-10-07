@@ -56,6 +56,7 @@ class InputDecorations {
 
   static InputDecoration dropDownMenuInputDecoration({
     required String labelText,
+    required IconData? icon
     }) {
     return InputDecoration(
         enabledBorder: const UnderlineInputBorder(
@@ -73,7 +74,7 @@ class InputDecorations {
         labelStyle: const TextStyle(
           color: Colors.grey
         ),
-        icon: const Icon(Icons.menu_book_rounded, color: AppTheme.primaryColor)
+        icon: Icon(icon, color: AppTheme.primaryColor)
       );
   }
 

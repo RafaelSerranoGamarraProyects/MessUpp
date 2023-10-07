@@ -89,7 +89,7 @@ class _PopUpFormAddExpenditureState extends State<PopUpFormAddExpenditure> {
 
                             ),
                             DropdownButtonFormField(
-                              decoration: InputDecorations.dropDownMenuInputDecoration(labelText: "Elija la Categoria"),
+                              decoration: InputDecorations.dropDownMenuInputDecoration(labelText: "Elija la Categoria", icon: Icons.menu_book_rounded),
                               items: const [
 		                                  DropdownMenuItem(
                                         value: "Alimentacion",
