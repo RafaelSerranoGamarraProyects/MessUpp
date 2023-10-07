@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tfg_app/theme/app_theme.dart';
 
 import '../models/models.dart';
 import '../utils/utils.dart';
@@ -71,12 +72,12 @@ class CustomTransactionItem extends StatelessWidget {
     return Padding(
 			padding: const EdgeInsets.symmetric(horizontal: 10.0),
 			child: Card(
-					color: Colors.white.withOpacity(0.7),
+					color: Colors.white,
 					margin: const EdgeInsets.symmetric(vertical: 10),
 					child: ListTile(
 						title: Text(transaction.name, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black),),
-						subtitle: Text(" Pagado por: ${transaction.payer}", style: const TextStyle(fontSize: 16, fontWeight: FontWeight.normal, color: Colors.black),),
-						trailing: Text("${transaction.amount} €", style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black)),
+						subtitle: Text(" Pagado por: ${transaction.payer}", style: const TextStyle(fontSize: 16, fontWeight: FontWeight.normal, color: AppTheme.secondaryBlue),),
+						trailing: Text("${transaction.amount} €", style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black,)),
 					),
 				),
 		);

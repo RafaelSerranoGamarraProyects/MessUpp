@@ -28,8 +28,6 @@ class MyDrawerHeader extends StatelessWidget {
 	@override
 	Widget build(BuildContext context) {
 		final usersProvider = Provider.of<UsersProvider>(context);
-		
-		final userName = usersProvider.userLogged!.userName != null ? usersProvider.userLogged!.userName! : usersProvider.userLogged!.email;
 		return Container(
 			color: AppTheme.primaryColor,
 			width: double.infinity,
@@ -38,7 +36,7 @@ class MyDrawerHeader extends StatelessWidget {
 				mainAxisAlignment: MainAxisAlignment.center,
 				children: [
 					usersProvider.userLogged!.image != null ? const CacheImage() : const DrawerUserImagePlaceholder(),
-					Text(userName, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),),
+					Text(usersProvider.userLogged!.getUserName, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),),
 					//Text(usersProvider.user.email,style: const TextStyle(color: Colors.white, fontSize: 16),)
 				],
 

@@ -1,6 +1,5 @@
 
 import 'package:flutter/material.dart';
-
 import '../models/models.dart';
 import '../widgets/widgets.dart';
 
@@ -21,7 +20,7 @@ class SalaryScreen extends StatelessWidget {
 						Expanded(
 							child: ListView.builder(
 								itemCount: debtsList.length,
-								itemBuilder: (context, index) => Text(debtsList[index].toString(), style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+								itemBuilder: (context, index) => CalculatedDebtCard(calculatedDebt: debtsList[index]),
 							),
 						),
 					],),
@@ -29,3 +28,4 @@ class SalaryScreen extends StatelessWidget {
 		 ]);
   }
 }
+

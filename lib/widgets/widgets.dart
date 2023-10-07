@@ -1,3 +1,4 @@
+export 'package:tfg_app/widgets/calculated_debt_card.dart';
 export	'package:tfg_app/widgets/background.dart';
 export	'package:tfg_app/widgets/login_widgets.dart';
 export	'package:tfg_app/widgets/my_drawer.dart';
