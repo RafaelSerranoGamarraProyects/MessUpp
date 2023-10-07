@@ -30,6 +30,7 @@ class _SpendObjetivesScreenState extends State<SpendObjetivesScreen> {
 									]),
 						),
 						drawer:  const Drawer(child: MyDrawer()),
+						resizeToAvoidBottomInset: false,
 						body:  const TabBarView(
 								children: [
 									ExpensesList(),
