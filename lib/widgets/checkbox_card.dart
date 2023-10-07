@@ -15,7 +15,7 @@ class _DebtorItemState extends State<DebtorItem> {
   Widget build(BuildContext context) {
 		bool isChecked = false;
     return Card(
-			color: Colors.white.withOpacity(0.8),
+			color: Colors.white,
 			shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
 			child: Row( 
 				children: [

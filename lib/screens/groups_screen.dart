@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfg_app/providers/providers.dart';
+import 'package:tfg_app/widgets/popup_add_group_payment.dart';
 import '../models/models.dart';
 import '../widgets/widgets.dart';
 
@@ -15,6 +16,7 @@ class GroupScreen extends StatelessWidget {
 		return Scaffold(
 			appBar: AppBar(title: const Text('Grupos', style: TextStyle(color: Colors.white))),
 			drawer: const Drawer(child: MyDrawer()),
+			resizeToAvoidBottomInset: false,
 			body: Stack(
 			children: [
 				const Background(),
@@ -23,12 +25,19 @@ class GroupScreen extends StatelessWidget {
 							 Container(
 								padding: const EdgeInsets.only(top: 5),
 								alignment: Alignment.center,
-								height: size.height - 110,
+								height: size.height - 170,
       					child: ListView.builder(
 									itemCount: groupProvider.userGroups.length,
 									itemBuilder: (_, index) =>  GroupItem(userGroup: groupProvider.userGroups[index])
       					),
-							 )	
+							 ),
+							 	Container(
+									padding: const EdgeInsets.only(bottom: 20),
+									alignment: Alignment.bottomCenter,
+									height: 90,
+									width: size.width,
+									child: const PopUpFormAddGroupPayment()
+								),		
 						],
 					 ),			
 				],)
@@ -52,10 +61,10 @@ class _GroupItemState extends State<GroupItem> {
     return  Column(
       children: [
 				Card(
-					color: Colors.white.withOpacity(0.4),
+					color: Colors.white,
 					child: ListTile(
-						trailing: const Icon(Icons.keyboard_arrow_right_outlined,color: Colors.white, size: 30,),
-						title: Text(widget.userGroup.name,style: const TextStyle(color: Colors.white, fontSize: 20),),
+						trailing: const Icon(Icons.keyboard_arrow_right_outlined,color: Colors.black, size: 30),
+						title: Text(widget.userGroup.name,style: const TextStyle(color: Colors.black, fontSize: 20),),
 						onTap: () => Navigator.pushReplacementNamed(context, 'group_details', arguments: widget.userGroup),
 						//leading: Container(height: 50,width: 50,decoration: const BoxDecoration(color: Colors.amber,shape: BoxShape.circle),child: Container(),)
 					),
