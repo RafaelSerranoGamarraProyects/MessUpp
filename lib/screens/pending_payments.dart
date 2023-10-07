@@ -63,16 +63,15 @@ class DebtsScreen extends StatelessWidget {
 							 children: [
 							 	Expanded(child:	
 							 		SizedBox(
-										height: size.height * 0.9,
       							child: ListView.builder(
 											itemCount: debtsprovider.userDebts.length,
 											itemBuilder: (context, index) =>  CustomCardDebt(debt: debtsprovider.userDebts[index],))
       						),
 								),
 								Container(
-									padding: const EdgeInsets.only(right: 15),
+									padding: const EdgeInsets.only(right: 15, bottom: 20),
 									alignment: Alignment.bottomCenter,
-									height: size.height - 230,
+									height: 90,
 									width: size.width,
 									child: const PopUpFormAddPendingPayment()
 								),	
@@ -108,15 +107,14 @@ class CustomCardDebt extends StatelessWidget {
 			typeOfPayment = TypeOfPayment(type: "earn");
 			otherUser = debt.originUser;
 		}
-
     return Container(
 			padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 8),
 			child: Card(
-					color: Colors.white.withOpacity(0.9),
+					color: Colors.white,
 					child: Container(
 							padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 8),
 							alignment: Alignment.center,
-							height: 135,
+							height: 130,
 							width: double.infinity,
 							child: Column(
 								crossAxisAlignment: CrossAxisAlignment.start,
@@ -124,7 +122,6 @@ class CustomCardDebt extends StatelessWidget {
 									DebtInfoRow(typeOfPayment: typeOfPayment, otherUser: otherUser, debt: debt),
 									const Divider(color: AppTheme.primaryColor,thickness: 1,),
 								 	MarkAsPaidRow(debt: debt, typeOfPayment: typeOfPayment)
-	
 								]
 							),
 					),

@@ -8,8 +8,7 @@ import '../providers/providers.dart';
 import 'widgets.dart';
 
 class ExpensesList extends StatefulWidget {
-	//final List<Expenditure> expenses;
-	const ExpensesList({super.key, /* required this.expenses */});
+	const ExpensesList({super.key});
 
   @override
   State<ExpensesList> createState() => _ExpensesListState();
