@@ -19,7 +19,7 @@ class TypeOfPayment {
 			else if(type == "pay"){
 				return Colors.red;
 			}
-			else { return Colors.white.withOpacity(0);}
+			else { return Colors.white;}
 		}
 
 		String message() {

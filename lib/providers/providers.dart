@@ -1,3 +1,4 @@
+export 'package:tfg_app/providers/add_group_payment_form.dart';
 export 'package:tfg_app/providers/add_pending_payment_form.dart';
 export 'package:tfg_app/providers/add_expenditure_form.dart';
 export 'package:tfg_app/providers/add_objetive_form.dart';
