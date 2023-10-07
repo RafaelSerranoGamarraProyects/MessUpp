@@ -1,4 +1,4 @@
-# tfg_app
+# MessUpp
 
 This is my first project in mobile development, specifically in Flutter. I chose Flutter because it's a quite easy-to-learn declarative programming framework. I believe Flutter is a great choice for a first experience in mobile development and it opens the doors to understanding native programming languages like Swift or Kotlin.
 
