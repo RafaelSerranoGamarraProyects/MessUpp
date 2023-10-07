@@ -55,6 +55,7 @@ class DebtsScreen extends StatelessWidget {
 		return  Scaffold(
 			appBar: AppBar(title: const Text("Pagos Pendientes", style: TextStyle(color: Colors.white)),),
 			drawer: const Drawer(child: MyDrawer()),
+			resizeToAvoidBottomInset: false,
 			body: Center(
 				 child: Stack(
 						children: [

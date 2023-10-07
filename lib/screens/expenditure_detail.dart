@@ -16,7 +16,7 @@ class ExpenditureScreen extends StatelessWidget {
 	Widget build(BuildContext context) {
 		final Expenditure expenditure = ModalRoute.of(context)!.settings.arguments as Expenditure;
 		return Scaffold(
-
+      resizeToAvoidBottomInset: false,
 			body: Stack(
 			  children:[
 			    const Background(),
