@@ -13,8 +13,7 @@ class PushNotifications{
 
 
 	static Future initialize()async{
-		token = await messaging.getToken(); // TODO: ALMACENAR EL TOKEN EN EL USUARIO, ATRIBUTO DEVICES
-		print(token);
+		token = await messaging.getToken();
 		FirebaseMessaging.onMessage.listen(_onUseHandler);
 		FirebaseMessaging.onBackgroundMessage(_backgroundHandler);
 		FirebaseMessaging.onMessageOpenedApp.listen(_openedAppHandler);
@@ -29,7 +28,6 @@ class PushNotifications{
 	}
 
 	static Future _openedAppHandler(RemoteMessage message) async {
-		print("_openedAppHandler ${message.messageId}");
 		_messageStream.add(message.data);
 	}
 
