@@ -21,12 +21,34 @@ class GroupExpenditures extends StatelessWidget {
 					SafeArea(
 						child: Column(
 							children:  [
-								 ExpendituresList(group: group)	
+								ExpendituresList(group: group),
+                PopUpFormAddGroupDebtContainer(group: group)
 							],
 						 ),
 					),
 				],
     );
+  }
+}
+
+class PopUpFormAddGroupDebtContainer extends StatelessWidget {
+  const PopUpFormAddGroupDebtContainer({
+    super.key, required this.group,
+  });
+
+  final Group group;
+
+  @override
+  Widget build(BuildContext context) {
+    
+    final size = MediaQuery.of(context).size;
+    return Container(
+    	            padding: const EdgeInsets.only(right: 15, bottom: 20),
+    	            alignment: Alignment.bottomCenter,
+    	            height: 90,
+    	            width: size.width,
+    	            child: const PopUpFormAddGroupDebt()
+                );
   }
 }
 
@@ -40,21 +62,22 @@ class ExpendituresList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Container(
-									padding: const EdgeInsets.only(top: 5),
-									alignment: Alignment.center,
-									height: 300,
-									child: ListView.builder(
-										itemCount: group.transactions.length,
-										itemBuilder: (_, index) {
-                      final monetaryTransaction = MonetaryTransaction(name: group.transactions[index].name,
-                        payer: group.transactions[index].payer,
-                        beneficiaries: Parser.parseFromListDynamicToListString(group.transactions[index].beneficiaries),
-                        amount: group.transactions[index].amount
-                      );
-                      return CustomTransactionItem(transaction: monetaryTransaction);
-                    }
-									),
+			padding: const EdgeInsets.only(top: 5),
+			alignment: Alignment.center,
+			height: size.height * 0.72,
+			child: ListView.builder(
+				itemCount: group.transactions.length,
+				itemBuilder: (_, index) {
+          final monetaryTransaction = MonetaryTransaction(name: group.transactions[index].name,
+            payer: group.transactions[index].payer,
+            beneficiaries: Parser.parseFromListDynamicToListString(group.transactions[index].beneficiaries),
+            amount: group.transactions[index].amount
+          );
+          return CustomTransactionItem(transaction: monetaryTransaction);
+        }
+			),
     );
   }
 }

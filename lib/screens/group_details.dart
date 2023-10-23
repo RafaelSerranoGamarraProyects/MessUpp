@@ -13,6 +13,7 @@ class GroupDetailsScreen extends StatelessWidget {
 		return  DefaultTabController(
 				length: 2,
 					child: Scaffold(
+						resizeToAvoidBottomInset: false,
 						appBar: AppBar(
 							bottom: const TabBar(
 							unselectedLabelColor: Colors.white,
