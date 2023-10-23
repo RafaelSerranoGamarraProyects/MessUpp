@@ -57,9 +57,23 @@ class GroupsProvider extends ChangeNotifier {
     
     final Map<String,dynamic> body = group.toJson();
     body["amount"] =  '${body["amount"]}';
-
     await groupsCollection.doc(group.id).set(body);   
 
+  }
+
+  void addDebt() {
+    //TODO: implement add debt in group, the algorithm must work properly
+
+  }
+
+  List usersNamesInGroup(Group group) {
+    var list = [user];
+    for (var userName in group.participants) {
+      if( userName != user) {
+        list.add(userName);
+      }
+    }
+    return list;
   }
 
 

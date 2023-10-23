@@ -50,39 +50,59 @@ class DebtsScreen extends StatelessWidget {
 	
 	@override
 	Widget build(BuildContext context) {
-		final debtsprovider = Provider.of<DebtsProvider>(context);
-		final size = MediaQuery.of(context).size;
 		return  Scaffold(
 			appBar: AppBar(title: const Text("Pagos Pendientes", style: TextStyle(color: Colors.white)),),
 			drawer: const Drawer(child: MyDrawer()),
 			resizeToAvoidBottomInset: false,
-			body: Center(
+			body: const Center(
 				 child: Stack(
-						children: [
-							const Background(),
+					children: [
+							Background(),
 					 		Column(
-							 children: [
-							 	Expanded(child:	
-							 		SizedBox(
-      							child: ListView.builder(
-											itemCount: debtsprovider.userDebts.length,
-											itemBuilder: (context, index) =>  CustomCardDebt(debt: debtsprovider.userDebts[index],))
-      						),
-								),
-								Container(
-									padding: const EdgeInsets.only(right: 15, bottom: 20),
-									alignment: Alignment.bottomCenter,
-									height: 90,
-									width: size.width,
-									child: const PopUpFormAddPendingPayment()
-								),	
-						 	]
-					 	),			
+							 children: [ CustomCardDebtList(),PopUpFormAddPendingPaymentContainer()]
+							)	
 					],	
 				),
 			)
 		);
 	}
+}
+
+class CustomCardDebtList extends StatelessWidget {
+  const CustomCardDebtList({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+		final debtsprovider = Provider.of<DebtsProvider>(context);
+    return Expanded(child:	
+    	SizedBox(
+      	child: ListView.builder(
+											itemCount: debtsprovider.userDebts.length,
+											itemBuilder: (context, index) =>  CustomCardDebt(debt: debtsprovider.userDebts[index],))
+      						),
+								);
+  }
+}
+
+class PopUpFormAddPendingPaymentContainer extends StatelessWidget {
+  const PopUpFormAddPendingPaymentContainer({
+    super.key,
+
+  });
+
+  @override
+  Widget build(BuildContext context) {
+		final size = MediaQuery.of(context).size;
+    return Container(
+    	padding: const EdgeInsets.only(right: 15, bottom: 20),
+    	alignment: Alignment.bottomCenter,
+    	height: 90,
+    	width: size.width,
+    	child: const PopUpFormAddPendingPayment()
+    );
+  }
 }
 
 class CustomCardDebt extends StatelessWidget {

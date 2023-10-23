@@ -9,10 +9,10 @@ class PopUpFormAddGroupPayment extends StatefulWidget {
 	const PopUpFormAddGroupPayment({super.key});
 
   @override
-  State<PopUpFormAddGroupPayment> createState() => _PopUpFormAddExpenditureState();
+  State<PopUpFormAddGroupPayment> createState() => _PopUpFormAddGroupPaymentState();
 }
 
-class _PopUpFormAddExpenditureState extends State<PopUpFormAddGroupPayment> {
+class _PopUpFormAddGroupPaymentState extends State<PopUpFormAddGroupPayment> {
 	TextEditingController dateinput = TextEditingController(); 
 
 	@override
