@@ -83,12 +83,12 @@ class _PopUpFormAddExpenditureState extends State<PopUpFormAddPendingPayment> {
                                         value: "Pago Pendiente",
                                         child: Row(
                                           children: <Widget>[
-                                            Icon(Icons.money_off,color: AppTheme.primaryColor),Text("Alimentacion"),],
+                                            Icon(Icons.money_off,color: AppTheme.primaryColor),Text("Pago"),],
                                          )),
 		                                  	DropdownMenuItem(
                                         value: "Cobro Pendiente",
                                         child: Row(
-                                          children: <Widget>[Icon(Icons.wallet_outlined,color: AppTheme.primaryColor),Text("Ocio"),],
+                                          children: <Widget>[Icon(Icons.wallet_outlined,color: AppTheme.primaryColor),Text("Cobro"),],
 		                                  	)),
 	                            ],
                               onChanged: (value) {

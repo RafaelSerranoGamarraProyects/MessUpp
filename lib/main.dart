@@ -23,17 +23,7 @@ class AppState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => UsersProvider(), lazy: false),
-        ChangeNotifierProvider(create: (_) => AddExpenditureFormProvider(), lazy: false),
-        ChangeNotifierProvider(create: (_) => AddPendingPaymentProvider(), lazy: false),
-        ChangeNotifierProvider(create: (_) => AddObjetiveFormProvider(), lazy: false),
-        ChangeNotifierProvider(create: (_) => AddGroupPaymentProvider(), lazy: false),
-        ChangeNotifierProvider(create: (_) => ModifyExpenditureFormProvider(), lazy: false),
-      ],
-      child: const MyApp(),
-    );
+    return  ChangeNotifierProvider(create: (_) => UsersProvider(), lazy: false, child: const MyApp(),);
   }
 }
 
@@ -79,6 +69,11 @@ class Providers extends StatelessWidget {
 				ChangeNotifierProvider(create: (_) => ExpensesProvider(userProvider.user)),
 				ChangeNotifierProvider(create: (_) => GroupsProvider(userProvider.user)),
         ChangeNotifierProvider(create: (_) => DebtsProvider(userProvider.user)),
+        ChangeNotifierProvider(create: (_) => AddExpenditureFormProvider(), lazy: false),
+        ChangeNotifierProvider(create: (_) => AddPendingPaymentProvider(), lazy: false),
+        ChangeNotifierProvider(create: (_) => AddObjetiveFormProvider(), lazy: false),
+        ChangeNotifierProvider(create: (_) => AddGroupPaymentProvider(), lazy: false),
+        ChangeNotifierProvider(create: (_) => ModifyExpenditureFormProvider(), lazy: false),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
