@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:tfg_app/providers/providers.dart';
-import 'package:tfg_app/theme/app_theme.dart';
+import 'package:Messup/providers/providers.dart';
+import 'package:Messup/theme/app_theme.dart';
 import '../utils/utils.dart';
 import 'widgets.dart';
 

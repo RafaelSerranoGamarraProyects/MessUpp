@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tfg_app/providers/providers.dart';
-import 'package:tfg_app/widgets/popup_add_group_payment.dart';
+import 'package:Messup/providers/providers.dart';
+import 'package:Messup/widgets/popup_add_group_payment.dart';
 import '../models/models.dart';
 import '../widgets/widgets.dart';
 

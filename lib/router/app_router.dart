@@ -1,5 +1,6 @@
+import 'package:Messup/screens/group_creation.dart';
 import 'package:flutter/material.dart';
-import 'package:tfg_app/screens/screens.dart';
+import 'package:Messup/screens/screens.dart';
 import 'routers_export.dart';
 
 
@@ -21,6 +22,9 @@ class AppRoutes {
     RouteOption(
         route: 'group_details',
         screen: const GroupDetailsScreen()),
+            RouteOption(
+        route: 'create_group',
+        screen: const GroupCreation()),
 	RouteOption(
         route: 'expenditureDetail',
         screen: const ExpenditureScreen()),

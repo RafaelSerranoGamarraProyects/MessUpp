@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tfg_app/models/user.dart';
+import 'package:Messup/models/user.dart';
 
 import '../providers/providers.dart';
 import '../theme/custom_styles.dart';

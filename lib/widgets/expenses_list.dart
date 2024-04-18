@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tfg_app/models/expenditure.dart';
-import 'package:tfg_app/theme/app_theme.dart';
-import 'package:tfg_app/utils/categories_options.dart';
+import 'package:Messup/models/expenditure.dart';
+import 'package:Messup/theme/app_theme.dart';
+import 'package:Messup/utils/categories_options.dart';
 
 import '../providers/providers.dart';
 import 'widgets.dart';

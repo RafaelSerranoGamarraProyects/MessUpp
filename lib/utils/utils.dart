@@ -1,6 +1,6 @@
 
-export 'package:tfg_app/utils/parser.dart';
-export 'package:tfg_app/utils/date_utils.dart';
-export 'package:tfg_app/utils/categories_options.dart';
-export 'package:tfg_app/utils/category_data.dart';
+export 'package:Messup/utils/parser.dart';
+export 'package:Messup/utils/date_utils.dart';
+export 'package:Messup/utils/categories_options.dart';
+export 'package:Messup/utils/category_data.dart';
 

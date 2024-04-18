@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tfg_app/models/models.dart';
-import 'package:tfg_app/theme/app_theme.dart';
+import 'package:Messup/models/models.dart';
+import 'package:Messup/theme/app_theme.dart';
 
 import '../providers/providers.dart';
 

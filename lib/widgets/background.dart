@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tfg_app/theme/custom_styles.dart';
+import 'package:Messup/theme/custom_styles.dart';
 
 class Background extends StatelessWidget {
   const Background({
