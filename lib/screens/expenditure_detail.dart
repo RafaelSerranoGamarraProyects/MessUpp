@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:tfg_app/models/expenditure.dart';
+import 'package:Messup/models/expenditure.dart';
 
 import '../providers/providers.dart';
 import '../theme/custom_styles.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tfg_app/models/expenditure.dart';
+import '../models/models.dart';
 
 
 class ModifyExpenditureFormProvider extends ChangeNotifier {

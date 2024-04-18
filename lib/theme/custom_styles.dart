@@ -1,3 +1,3 @@
-export 'package:tfg_app/theme/custom_validators.dart';
-export 'package:tfg_app/theme/app_theme.dart';
-export 'package:tfg_app/theme/input_decorations.dart';
+export 'package:Messup/theme/custom_validators.dart';
+export 'package:Messup/theme/app_theme.dart';
+export 'package:Messup/theme/input_decorations.dart';

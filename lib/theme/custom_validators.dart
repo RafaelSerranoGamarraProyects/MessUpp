@@ -1,4 +1,6 @@
 
+import 'dart:ffi';
+
 class CustomValidators{
 	static String? emailValidator({
 			required dynamic value
@@ -23,6 +25,12 @@ class CustomValidators{
 		? null 
 		: 'Error. La contraseña debe tener al menos 8 caracteres y contener un Digito, Caracter Especial, Mayuscula.';
 
+	}
+
+	static String? groupNameNotEmpty({
+		required dynamic value,
+	}) {
+		return (value != "" || value != null) ? null : 'Debe introducir un nombre de grupo';
 	}
 }  
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tfg_app/utils/categories_options.dart';
+import 'package:Messup/utils/categories_options.dart';
 
 
 import '../providers/providers.dart';

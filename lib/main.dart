@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
-import 'package:tfg_app/providers/providers.dart';
-import 'package:tfg_app/router/app_router.dart';
+import 'package:Messup/providers/providers.dart';
+import 'package:Messup/router/app_router.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:tfg_app/theme/custom_styles.dart';
+import 'package:Messup/theme/custom_styles.dart';
 import 'firebase_options.dart';
 
 
@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
       future: userProvider.readToken().then((value) => userProvider.user = value),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if(!snapshot.hasData) return const CircularProgressIndicator.adaptive();
-        if(snapshot.data ==""){
+        if(snapshot.data == ""){
           return const Providers(initialRoute: "login");
         }
         else{

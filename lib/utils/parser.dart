@@ -1,4 +1,4 @@
-import 'package:tfg_app/models/models.dart';
+import 'package:Messup/models/models.dart';
 
 class Parser {
   static List<String> parseFromListDynamicToListString(List<dynamic> list ){

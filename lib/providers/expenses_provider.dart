@@ -3,14 +3,12 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/widgets.dart';
-import 'package:tfg_app/utils/utils.dart';
+import 'package:Messup/utils/utils.dart';
 import '../models/models.dart';
 import 'package:http/http.dart' as http;
 
 class ExpensesProvider extends ChangeNotifier {
-
   String _user = "";
-
   final String _baseCloudinaryUrl = "https://api.cloudinary.com/v1_1/dtdvvx265/image/upload";
   final CollectionReference expensesCollection = FirebaseFirestore.instance.collection('expenditures');
 
@@ -77,7 +75,6 @@ class ExpensesProvider extends ChangeNotifier {
     return total;
   }
 
-
   // CRUD Methods
   
   void addExpenditure(Expenditure expenditure) async {
@@ -109,7 +106,6 @@ class ExpensesProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-
   //AUXILIARY METHODS
 
   double getTotalSpend(){
@@ -125,9 +121,6 @@ class ExpensesProvider extends ChangeNotifier {
     newPictureFile = File.fromUri( Uri(path: path));
     notifyListeners();
   }
-
-
-
 
    Future<String?> uploadImage() async {
     
