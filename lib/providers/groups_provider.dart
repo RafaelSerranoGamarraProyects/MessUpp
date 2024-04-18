@@ -20,20 +20,23 @@ class GroupsProvider extends ChangeNotifier {
     notifyListeners();
   }
   
-  GroupsProvider(String userEmail) {
-    user = userEmail;
-    getGroups(userEmail);
+  GroupsProvider(User user) {
+    this.user = user.email;
+    getGroups(user);
   }
   
-  void getGroups(String userEmail) async{
+  void getGroups(User user) async{
     final ref = groupsCollection.withConverter(
       fromFirestore: Group.fromFirestore,
       toFirestore: (Group group, _) => group.toFirestore(),
     );
 
-    var snapshot = await ref.where('participants', arrayContains: userEmail).get();  
+    var snapshot = await ref.where('participants', arrayContains: user.email).get();  
+    var snapShot2 = await ref.where('participants', arrayContains: user.userName).get();
     userGroups =[...userGroups, ...snapshot.docs.map((doc) => doc.data())];
+    userGroups =[...userGroups, ...snapShot2.docs.map((doc) => doc.data())];
    
+    userGroups.toSet();
     notifyListeners();
   }
 

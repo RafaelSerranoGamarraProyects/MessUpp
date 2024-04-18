@@ -15,7 +15,6 @@ Future<void> main() async {
   await Firebase.initializeApp(options:  DefaultFirebaseOptions.currentPlatform);
   PushNotifications.initialize();
   runApp(const AppState());
-
 }
 
 class AppState extends StatelessWidget {
@@ -67,7 +66,7 @@ class Providers extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => ObjetivesProvider(userProvider.user)),
 				ChangeNotifierProvider(create: (_) => ExpensesProvider(userProvider.user)),
-				ChangeNotifierProvider(create: (_) => GroupsProvider(userProvider.user)),
+				ChangeNotifierProvider(create: (_) => GroupsProvider(userProvider.userLogged!)),
         ChangeNotifierProvider(create: (_) => DebtsProvider(userProvider.user)),
         ChangeNotifierProvider(create: (_) => AddExpenditureFormProvider(), lazy: false),
         ChangeNotifierProvider(create: (_) => AddPendingPaymentProvider(), lazy: false),
