@@ -39,10 +39,9 @@ class Group {
         "name" : name,
         "creationDate": creationDate.toIso8601String(),
         "participants": participants,
-        "transactions": transactions,
+        "transactions": transactions.map((transaction) => transaction.toJson()).toList(),
         "image": image,
     };
-
 
     factory Group.fromFirestore(
     DocumentSnapshot<Map<String, dynamic>> snapshot,

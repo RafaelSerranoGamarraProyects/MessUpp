@@ -12,6 +12,7 @@ class GroupsProvider extends ChangeNotifier {
   List<Group> userGroups  = [];
 
   String _user = "";
+  late User _fullUserInfo;
 
   String get user => _user;
 
@@ -19,8 +20,11 @@ class GroupsProvider extends ChangeNotifier {
     _user = value;
     notifyListeners();
   }
+
+  User get userInfo => _fullUserInfo;
   
   GroupsProvider(User user) {
+    _fullUserInfo = user;
     this.user = user.email;
     getGroups(user);
   }
@@ -54,7 +58,7 @@ class GroupsProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void leaveGroup(Group group)async {
+  void leaveGroup(Group group) async {
     userGroups.remove(group);
     group.participants.remove(user);
     
@@ -62,8 +66,23 @@ class GroupsProvider extends ChangeNotifier {
     body["amount"] =  '${body["amount"]}';
 
     await groupsCollection.doc(group.id).set(body);   
-
   }
 
+  void updateParticipants(Group group) async {
+    for (Group currentGroup in userGroups) {
+      if (currentGroup.id == group.id) {
+        currentGroup.participants = group.participants;
+        final Map<String,dynamic> body = currentGroup.toJson();
+        await groupsCollection.doc(group.id).set(body);   
+        notifyListeners();
+        break;
+      }
+    }
+  }
+
+  void deleteGroup(Group group) async {
+    await groupsCollection.doc(group.id).delete();
+    notifyListeners();
+  }
 
 }
