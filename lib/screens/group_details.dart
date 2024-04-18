@@ -14,6 +14,7 @@ class GroupDetailsScreen extends StatelessWidget {
 		return  DefaultTabController(
 				length: 2,
 					child: Scaffold(
+						resizeToAvoidBottomInset: false,
 						appBar: AppBar(
 							bottom: const TabBar(
 							unselectedLabelColor: Colors.white,
@@ -52,11 +53,13 @@ class GroupsScreenHeader extends StatelessWidget {
     		const ReturnToButton(route: "groups"),
     		Expanded(
     			child: TextButton(
-    				onPressed: () {  },
+    				onPressed: () {},
     				child: Text(group.name, style: const TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)),
     			),
     		),
-    		IconButton(onPressed: (){}, icon: const Icon(Icons.people_alt))
+    		IconButton(onPressed: () {
+					 Navigator.pushReplacementNamed(context, 'group_participants', arguments: group);
+				}, icon: const Icon(Icons.people_alt))
     	],
     );
   }

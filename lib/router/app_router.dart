@@ -31,6 +31,9 @@ class AppRoutes {
     RouteOption(
         route: 'debtDetail',
         screen: const DebtDetailScreen()),
+            RouteOption(
+        route: 'group_participants',
+        screen: const ParticipantsScreen()),
     RouteOption(
         route: 'login',
         screen: const LoginScreen()),
