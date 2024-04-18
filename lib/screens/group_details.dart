@@ -1,3 +1,4 @@
+import 'package:Messup/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:Messup/theme/app_theme.dart';
 import '../models/models.dart';
@@ -48,37 +49,17 @@ class GroupsScreenHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
     	children: [
-    		const ReturnToGroups(),
+    		const ReturnToButton(route: "groups"),
     		Expanded(
     			child: TextButton(
     				onPressed: () {  },
-    				child: Column(
-    				  children: [
-    				    Text(group.name, style: const TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)),
-    						const Text("Toca para mas informacion", style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.normal, fontStyle: FontStyle.italic)),
-    				  ],
-    				),
+    				child: Text(group.name, style: const TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)),
     			),
     		),
-    		IconButton(onPressed: (){}, icon: const Icon(Icons.more_vert_rounded))
+    		IconButton(onPressed: (){}, icon: const Icon(Icons.people_alt))
     	],
     );
   }
 }
 
-class ReturnToGroups extends StatelessWidget {
-  const ReturnToGroups({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: () {
-        Navigator.popAndPushNamed(context, 'groups');
-      }, 
-      icon: const Icon( Icons.arrow_back, size: 26, color: Colors.white ),
-    );
-  }
-}
 
