@@ -1,3 +1,7 @@
+export 'package:Messup/widgets/group_name_form.dart';
+export 'package:Messup/widgets/participants_form_component.dart';
+export 'package:Messup/widgets/participant_item.dart';
+export'package:Messup/widgets/group_item.dart';
 export 'package:Messup/widgets/popup_add_pending_payment.dart';
 export 'package:Messup/widgets/calculated_debt_card.dart';
 export	'package:Messup/widgets/background.dart';
