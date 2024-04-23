@@ -1,3 +1,6 @@
+export 'package:Messup/widgets/payer_selection.dart';
+export 'package:Messup/widgets/beneficiary_row.dart';
+export 'package:Messup/widgets/add_grout_debt.dart';
 export 'package:Messup/widgets/participant_card.dart';
 export 'package:Messup/widgets/return_to_button.dart';
 export 'package:Messup/widgets/group_name_form.dart';
@@ -16,3 +19,4 @@ export 'package:Messup/widgets/list_category_cards.dart';
 export 'package:Messup/widgets/objetive_view.dart';
 export 'package:Messup/widgets/popup_form_add_objetive.dart';
 export 'package:Messup/widgets/popup_form_add.dart';
+export 'package:Messup/widgets/custom_transaction_item.dart';

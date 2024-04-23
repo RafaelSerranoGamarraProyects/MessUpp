@@ -1,3 +1,4 @@
+export 'package:Messup/providers/add_group_expense.dart';
 export 'package:Messup/providers/create_group.dart';
 export 'package:Messup/providers/add_group_payment_form.dart';
 export 'package:Messup/providers/add_pending_payment_form.dart';

@@ -1,3 +1,4 @@
+export 'package:Messup/models/transaction_beneficiary.dart';
 export 'package:Messup/models/calculated_debt.dart';
 export 'package:Messup/models/salary_algorithm.dart';
 export 'package:Messup/models/monetary_transaction.dart';

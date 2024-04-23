@@ -80,9 +80,20 @@ class GroupsProvider extends ChangeNotifier {
     }
   }
 
+  void updateTransactions(Group group) async {
+    for (Group currentGroup in userGroups) {
+      if (currentGroup.id == group.id) {
+        currentGroup.transactions = group.transactions;
+        final Map<String,dynamic> body = currentGroup.toJson();
+        await groupsCollection.doc(group.id).set(body);   
+        notifyListeners();
+        break;
+      }
+    }
+  }
+
   void deleteGroup(Group group) async {
     await groupsCollection.doc(group.id).delete();
     notifyListeners();
   }
-
 }

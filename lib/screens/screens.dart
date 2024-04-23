@@ -1,3 +1,4 @@
+export 'package:Messup/screens/create_group_expense.dart';
 export 'package:Messup/screens/group_participants_screen.dart';
 export 'package:Messup/screens/groups_expenditures.dart';
 export 'package:Messup/screens/salary_screen.dart';

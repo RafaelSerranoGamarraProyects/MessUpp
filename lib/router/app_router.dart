@@ -22,9 +22,12 @@ class AppRoutes {
     RouteOption(
         route: 'group_details',
         screen: const GroupDetailsScreen()),
-            RouteOption(
+    RouteOption(
         route: 'create_group',
         screen: const GroupCreation()),
+    RouteOption(
+        route: 'add_group_expense',
+        screen: const AddGroupExpense()),
 	RouteOption(
         route: 'expenditureDetail',
         screen: const ExpenditureScreen()),
