@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:Messup/providers/providers.dart';
-
 import '../models/models.dart';
 import '../theme/custom_styles.dart';
 
@@ -22,11 +20,6 @@ class _PopUpFormAddExpenditureState extends State<PopUpFormAddGroupPayment> {
 
 	@override
 	Widget build(BuildContext context) {
-		final size = MediaQuery.of(context).size;
-    final groupsProvider = Provider.of<GroupsProvider>(context);
-    final usersProvider = Provider.of<UsersProvider>(context);
-    final addGroupPaymentForm = Provider.of<AddGroupPaymentProvider>(context);
-
 		return ElevatedButton(
 					style: ElevatedButton.styleFrom(shape: const CircleBorder(), backgroundColor: Colors.white, minimumSize: const Size(50,50)),
 					child: const Icon(Icons.add, size: 25,color: Colors.black),
