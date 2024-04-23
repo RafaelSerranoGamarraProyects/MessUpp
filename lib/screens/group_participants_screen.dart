@@ -16,7 +16,6 @@ class ParticipantsScreen extends StatelessWidget {
 	Widget build(BuildContext context) {
 		final Group group = ModalRoute.of(context)!.settings.arguments as Group;
 		final groupProvider = Provider.of<GroupsProvider>(context);
-		final size = MediaQuery.of(context).size;
 		return  Scaffold(
 			appBar: AppBar(title: Row(
 			  children: [

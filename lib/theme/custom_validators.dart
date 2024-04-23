@@ -23,10 +23,10 @@ class CustomValidators{
 		: 'Error. La contraseña debe tener al menos 8 caracteres y contener un Digito, Caracter Especial, Mayuscula.';
 	}
 
-	static String? groupNameNotEmpty({
+	static String? notEmptyField({
 		required dynamic value,
 	}) {
-		return (value != "" || value != null) ? null : 'Debe introducir un nombre de grupo';
+		return (value != "" || value != null) ? null : 'Debe introducir un valor';
 	}
 }  
 

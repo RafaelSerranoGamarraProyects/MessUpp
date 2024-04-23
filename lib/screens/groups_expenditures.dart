@@ -1,85 +1,84 @@
+import 'package:Messup/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:Messup/theme/app_theme.dart';
-
 import '../models/models.dart';
+import '../theme/custom_styles.dart';
 import '../utils/utils.dart';
-import '../widgets/widgets.dart';
 
 class GroupExpenditures extends StatelessWidget {
   const GroupExpenditures({
-    super.key,
+    Key? key,
     required this.group,
-  });
+  }) : super(key: key);
 
   final Group group;
 
   @override
   Widget build(BuildContext context) {
     return Stack(
-				children:  [
-					const Background(),
-					SafeArea(
-						child: Column(
-							children:  [
-								 ExpendituresList(group: group)	
-							],
-						 ),
-					),
-				],
+      children: [
+        const Background(),
+        SafeArea(
+          child: Column(
+            children: [
+              Expanded(
+                child: ExpendituresList(group: group),
+              ),
+              Container(
+                padding: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushReplacementNamed(context, "add_group_expense", arguments: group);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppTheme.primaryColor,
+                  ),
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 16.0),
+                    child: Text(
+                      "Añadir gasto grupal",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
 
 class ExpendituresList extends StatelessWidget {
   const ExpendituresList({
-    super.key,
+    Key? key,
     required this.group,
-  });
+  }) : super(key: key);
 
   final Group group;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-									padding: const EdgeInsets.only(top: 5),
-									alignment: Alignment.center,
-									height: 300,
-									child: ListView.builder(
-										itemCount: group.transactions.length,
-										itemBuilder: (_, index) {
-                      final monetaryTransaction = MonetaryTransaction(name: group.transactions[index].name,
-                        payer: group.transactions[index].payer,
-                        beneficiaries: Parser.parseFromListDynamicToListString(group.transactions[index].beneficiaries),
-                        amount: group.transactions[index].amount
-                      );
-                      return CustomTransactionItem(transaction: monetaryTransaction);
-                    }
-									),
+      padding: const EdgeInsets.only(top: 5),
+      alignment: Alignment.center,
+      child: ListView.builder(
+        itemCount: group.transactions.length,
+        itemBuilder: (_, index) {
+          final monetaryTransaction = MonetaryTransaction(
+            name: group.transactions[index].name,
+            payer: group.transactions[index].payer,
+            beneficiaries: Parser.parseFromListDynamicToListString(group.transactions[index].beneficiaries),
+            amount: group.transactions[index].amount,
+          );
+          return CustomTransactionItem(transaction: monetaryTransaction);
+        },
+      ),
     );
-  }
-}
-
-class CustomTransactionItem extends StatelessWidget {
-  const CustomTransactionItem({
-    super.key,
-    required this.transaction,
-  });
-
-  final MonetaryTransaction transaction;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-			padding: const EdgeInsets.symmetric(horizontal: 10.0),
-			child: Card(
-					color: Colors.white,
-					margin: const EdgeInsets.symmetric(vertical: 10),
-					child: ListTile(
-						title: Text(transaction.name, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black),),
-						subtitle: Text(" Pagado por: ${transaction.payer}", style: const TextStyle(fontSize: 16, fontWeight: FontWeight.normal, color: AppTheme.secondaryBlue),),
-						trailing: Text("${transaction.amount} €", style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black,)),
-					),
-				),
-		);
   }
 }
