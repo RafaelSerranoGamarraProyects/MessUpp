@@ -1,6 +1,5 @@
 import 'package:Messup/models/monetary_transaction.dart';
 import 'package:Messup/models/transaction_beneficiary.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 
