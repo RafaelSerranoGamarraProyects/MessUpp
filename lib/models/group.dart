@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:Messup/models/monetary_transaction.dart';
+import 'package:messup/models/monetary_transaction.dart';
 
 import '../utils/utils.dart';
 

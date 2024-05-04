@@ -1,5 +1,4 @@
-import 'package:Messup/models/monetary_transaction.dart';
-import 'package:Messup/models/transaction_beneficiary.dart';
+import 'package:messup/models/models.dart';
 import 'package:flutter/material.dart';
 
 

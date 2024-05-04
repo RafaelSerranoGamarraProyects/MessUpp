@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:Messup/providers/providers.dart';
-
+import 'package:messup/providers/providers.dart';
 import '../models/models.dart';
 import '../theme/custom_styles.dart';
 

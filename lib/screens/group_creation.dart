@@ -1,9 +1,8 @@
-import 'package:Messup/models/group.dart';
+import 'package:messup/models/models.dart';
 import 'package:flutter/material.dart';
+import 'package:messup/theme/custom_styles.dart';
 import 'package:provider/provider.dart';
-
 import '../providers/providers.dart';
-import '../theme/custom_styles.dart';
 import '../widgets/widgets.dart';
 
 class GroupCreation extends StatelessWidget {

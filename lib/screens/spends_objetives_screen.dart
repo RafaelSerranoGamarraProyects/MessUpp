@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:Messup/theme/app_theme.dart';
+import 'package:messup/theme/custom_styles.dart';
 import '../widgets/widgets.dart';
 
 class SpendObjetivesScreen extends StatefulWidget {

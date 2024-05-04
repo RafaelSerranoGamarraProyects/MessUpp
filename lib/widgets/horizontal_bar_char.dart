@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:Messup/utils/categories_options.dart';
 
 
 import '../providers/providers.dart';
+import '../utils/utils.dart';
 
 class HorizontalBarChart extends StatefulWidget {
   

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
-import 'package:Messup/providers/providers.dart';
-import 'package:Messup/router/app_router.dart';
+import 'package:messup/router/app_router.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:Messup/theme/custom_styles.dart';
 import 'firebase_options.dart';
+import 'providers/providers.dart';
+import 'theme/custom_styles.dart';
 
 
 Future<void> main() async {

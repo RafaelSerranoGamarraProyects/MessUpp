@@ -1,4 +1,4 @@
-import 'package:Messup/widgets/widgets.dart';
+import 'package:messup/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import '../models/models.dart';
 import '../theme/custom_styles.dart';

@@ -1,8 +1,7 @@
-import 'package:Messup/screens/group_creation.dart';
+import 'package:messup/router/routers_export.dart';
+import 'package:messup/screens/group_creation.dart';
 import 'package:flutter/material.dart';
-import 'package:Messup/screens/screens.dart';
-import 'routers_export.dart';
-
+import 'package:messup/screens/screens.dart';
 
 class AppRoutes {
   static String initialRoute = 'login';
