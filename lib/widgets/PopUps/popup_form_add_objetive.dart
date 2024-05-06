@@ -2,9 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../models/models.dart';
-import '../providers/providers.dart';
-import '../theme/custom_styles.dart';
+import '../../models/models.dart';
+import '../../providers/providers.dart';
+import '../../theme/custom_styles.dart';
 
 class PopUpFormAddObjetive extends StatefulWidget {
 	const PopUpFormAddObjetive({super.key});

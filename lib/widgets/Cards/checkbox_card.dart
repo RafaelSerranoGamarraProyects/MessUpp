@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../theme/custom_styles.dart';
+import '../../theme/custom_styles.dart';
 
 class DebtorItem extends StatefulWidget {
   const DebtorItem({

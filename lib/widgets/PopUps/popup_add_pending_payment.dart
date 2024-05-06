@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:messup/providers/providers.dart';
 
-import '../models/models.dart';
-import '../theme/custom_styles.dart';
+import '../../models/models.dart';
+import '../../theme/custom_styles.dart';
 
 class PopUpFormAddPendingPayment extends StatefulWidget {
 	const PopUpFormAddPendingPayment({super.key});

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../providers/providers.dart';
-import '../theme/custom_styles.dart';
+import '../../providers/providers.dart';
+import '../../theme/custom_styles.dart';
 
 class ParticipantItem extends StatelessWidget {
   const ParticipantItem({

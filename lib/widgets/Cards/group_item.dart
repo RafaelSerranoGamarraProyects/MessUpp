@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../models/models.dart';
-import '../theme/custom_styles.dart';
+import '../../models/models.dart';
+import '../../theme/custom_styles.dart';
 
 
 class GroupItem extends StatefulWidget {
