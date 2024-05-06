@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
-import 'package:Messup/models/models.dart';
+import 'package:messup/models/models.dart';
 
 class UsersProvider extends ChangeNotifier {
 

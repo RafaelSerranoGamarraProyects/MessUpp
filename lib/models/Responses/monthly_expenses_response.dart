@@ -3,7 +3,7 @@
 //     final expenditure = expenditureFromJson(jsonString);
 
 import 'dart:convert';
-import 'models.dart';
+import '../models.dart';
 
 class MonthlyExpensesResponse{
 	MonthlyExpensesResponse();

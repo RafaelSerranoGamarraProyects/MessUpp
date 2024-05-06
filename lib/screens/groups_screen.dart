@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:Messup/providers/providers.dart';
-import 'package:Messup/widgets/popup_add_group_payment.dart';
+import 'package:messup/providers/providers.dart';
 import '../widgets/widgets.dart';
 
 class GroupScreen extends StatelessWidget {

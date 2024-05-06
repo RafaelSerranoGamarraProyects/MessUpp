@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:Messup/models/monetary_transaction.dart';
+import 'package:messup/models/Auxiliary/monetary_transaction.dart';
 
-import '../utils/utils.dart';
+import '../../utils/utils.dart';
 
 Group groupFromJson(String str) => Group.fromJson(json.decode(str));
 

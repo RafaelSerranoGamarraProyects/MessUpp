@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:Messup/models/expenditure.dart';
-import 'package:Messup/theme/app_theme.dart';
-import 'package:Messup/utils/categories_options.dart';
+import 'package:messup/models/models.dart';
+import 'package:messup/theme/custom_styles.dart';
 
 import '../providers/providers.dart';
+import '../utils/utils.dart';
 import 'widgets.dart';
 
 class ExpensesList extends StatefulWidget {

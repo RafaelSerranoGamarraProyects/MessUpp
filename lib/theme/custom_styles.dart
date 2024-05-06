@@ -1,3 +1,3 @@
-export 'package:Messup/theme/custom_validators.dart';
-export 'package:Messup/theme/app_theme.dart';
-export 'package:Messup/theme/input_decorations.dart';
+export 'package:messup/theme/custom_validators.dart';
+export 'package:messup/theme/app_theme.dart';
+export 'package:messup/theme/input_decorations.dart';

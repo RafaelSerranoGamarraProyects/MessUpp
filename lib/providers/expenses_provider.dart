@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/widgets.dart';
-import 'package:Messup/utils/utils.dart';
+import 'package:messup/utils/utils.dart';
 import '../models/models.dart';
 import 'package:http/http.dart' as http;
 

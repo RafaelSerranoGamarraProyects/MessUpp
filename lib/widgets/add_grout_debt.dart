@@ -1,9 +1,9 @@
 // ignore_for_file: library_private_types_in_public_api
 
-import 'package:Messup/theme/custom_validators.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/providers.dart';
+import '../theme/custom_styles.dart';
 
 class AddGroupDebtName extends StatefulWidget {
   const AddGroupDebtName({super.key});

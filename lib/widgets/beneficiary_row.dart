@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/models.dart';
-import 'package:Messup/theme/app_theme.dart';
 import '../providers/providers.dart';
+import '../theme/custom_styles.dart';
 
 class ParticipantRow extends StatefulWidget {
   final TransactionBeneficiary participant;
@@ -27,7 +27,7 @@ class _ParticipantRowState extends State<ParticipantRow> {
         ),
         trailing: Checkbox(
           checkColor: AppTheme.primaryColor,
-          fillColor: MaterialStateProperty.all(Colors.white),
+          fillColor: WidgetStateProperty.all(Colors.white),
           value: widget.participant.isBeneficiary,
           onChanged: (newValue) {
             setState(() {

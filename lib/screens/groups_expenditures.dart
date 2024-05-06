@@ -1,4 +1,4 @@
-import 'package:Messup/widgets/widgets.dart';
+import 'package:messup/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import '../models/models.dart';
 import '../theme/custom_styles.dart';
@@ -6,9 +6,9 @@ import '../utils/utils.dart';
 
 class GroupExpenditures extends StatelessWidget {
   const GroupExpenditures({
-    Key? key,
+    super.key,
     required this.group,
-  }) : super(key: key);
+  });
 
   final Group group;
 
@@ -56,9 +56,9 @@ class GroupExpenditures extends StatelessWidget {
 
 class ExpendituresList extends StatelessWidget {
   const ExpendituresList({
-    Key? key,
+    super.key,
     required this.group,
-  }) : super(key: key);
+  });
 
   final Group group;
 

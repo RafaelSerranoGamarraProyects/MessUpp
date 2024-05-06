@@ -1,4 +1,4 @@
-import 'package:Messup/theme/custom_styles.dart';
+import 'package:messup/theme/custom_styles.dart';
 import 'package:flutter/material.dart';
 
 class PayerDropdown extends StatefulWidget {

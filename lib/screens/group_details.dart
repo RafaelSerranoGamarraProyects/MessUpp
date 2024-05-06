@@ -1,12 +1,12 @@
-import 'package:Messup/widgets/widgets.dart';
+import 'package:messup/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:Messup/theme/app_theme.dart';
+import 'package:messup/theme/app_theme.dart';
 import '../models/models.dart';
 import 'screens.dart';
 
 
 class GroupDetailsScreen extends StatelessWidget {
-	const GroupDetailsScreen({Key? key}) : super(key: key);
+	const GroupDetailsScreen({super.key});
 	
 	@override
 	Widget build(BuildContext context) {

@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import '../utils/utils.dart';
+import '../../utils/utils.dart';
 
 MonetaryTransaction transactionFromJson(String str) => MonetaryTransaction.fromJson(json.decode(str));
 String transactionToJson(MonetaryTransaction data) => json.encode(data.toJson());

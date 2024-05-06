@@ -1,5 +1,6 @@
-import 'package:Messup/models/models.dart';
 import 'package:flutter/material.dart';
+import 'package:messup/models/models.dart';
+
 import 'widgets.dart';
 
 class BeneficiariesList extends StatefulWidget {

@@ -1,4 +1,4 @@
-import 'package:Messup/providers/providers.dart';
+import 'package:messup/providers/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/models.dart';
@@ -10,7 +10,7 @@ class ParticipantsScreen extends StatelessWidget {
 		return group.participants.contains(user.email) || group.participants.contains(user.userName);
 	}
 	 
-	const ParticipantsScreen({Key? key}) : super(key: key);
+	const ParticipantsScreen({super.key});
 	
 	@override
 	Widget build(BuildContext context) {

@@ -1,14 +1,13 @@
-import 'package:Messup/models/group.dart';
-import 'package:Messup/widgets/group_beneficiaries_section.dart';
+import 'package:messup/models/models.dart';
 import 'package:flutter/material.dart';
+import 'package:messup/theme/custom_styles.dart';
+import 'package:messup/widgets/widgets.dart';
 import 'package:provider/provider.dart';
-
 import '../providers/providers.dart';
-import '../theme/custom_styles.dart';
-import '../widgets/widgets.dart';
+
 
 class AddGroupExpense extends StatelessWidget {
-  const AddGroupExpense({Key? key}) : super(key: key);
+  const AddGroupExpense({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +31,7 @@ class AddGroupExpense extends StatelessWidget {
 }
 
 class _AddGroupExpenseForm extends StatelessWidget {
-  const _AddGroupExpenseForm({Key? key}) : super(key: key);
+  const _AddGroupExpenseForm();
 
   @override
   Widget build(BuildContext context) {
