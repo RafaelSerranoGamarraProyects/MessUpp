@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:messup/models/expenditure.dart';
+import 'package:messup/models/Entity/expenditure.dart';
 import '../providers/providers.dart';
 import '../theme/custom_styles.dart';
 import '../widgets/widgets.dart';
@@ -157,7 +157,7 @@ class _ModifyBody extends StatelessWidget {
 }
 class _ExpenditureForm extends StatefulWidget {
   
-  const _ExpenditureForm({Key? key, required this.date}) : super(key: key);
+  const _ExpenditureForm({required this.date});
   final String date;
   
   @override

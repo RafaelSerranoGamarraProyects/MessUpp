@@ -27,7 +27,7 @@ class _ParticipantRowState extends State<ParticipantRow> {
         ),
         trailing: Checkbox(
           checkColor: AppTheme.primaryColor,
-          fillColor: MaterialStateProperty.all(Colors.white),
+          fillColor: WidgetStateProperty.all(Colors.white),
           value: widget.participant.isBeneficiary,
           onChanged: (newValue) {
             setState(() {

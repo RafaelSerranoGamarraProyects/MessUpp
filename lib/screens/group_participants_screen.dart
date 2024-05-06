@@ -10,7 +10,7 @@ class ParticipantsScreen extends StatelessWidget {
 		return group.participants.contains(user.email) || group.participants.contains(user.userName);
 	}
 	 
-	const ParticipantsScreen({Key? key}) : super(key: key);
+	const ParticipantsScreen({super.key});
 	
 	@override
 	Widget build(BuildContext context) {

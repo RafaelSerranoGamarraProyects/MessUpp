@@ -9,7 +9,7 @@ import '../widgets/widgets.dart';
 
 class DebtDetailScreen extends StatelessWidget {
 	 
-	const DebtDetailScreen({Key? key}) : super(key: key);
+	const DebtDetailScreen({super.key});
 	
 	@override
 	Widget build(BuildContext context) {
@@ -58,7 +58,7 @@ class _ScreenBody extends StatelessWidget {
 							child:  IconButton(
 							icon:  const Image(image: AssetImage('assets/images/paypalIcon.png'), fit: BoxFit.fill),
 							style: ButtonStyle(
-								shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+								shape: WidgetStateProperty.all<RoundedRectangleBorder>(
 									const RoundedRectangleBorder(
 										borderRadius: BorderRadius.all(Radius.circular(10)),
 								))
@@ -92,7 +92,7 @@ class MarkAsPaidButton extends StatelessWidget {
     	height: 75,
     	width: 300,
     	child: FilledButton(
-    			style: const ButtonStyle(backgroundColor: MaterialStatePropertyAll(AppTheme.primaryColor)),
+    			style: const ButtonStyle(backgroundColor: WidgetStatePropertyAll(AppTheme.primaryColor)),
     			onPressed: () {
     				debtProvider.updateDebt(debt);
     				Navigator.popAndPushNamed(context, "debts");

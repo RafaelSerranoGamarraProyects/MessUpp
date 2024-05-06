@@ -6,7 +6,7 @@ import '../providers/providers.dart';
 import '../widgets/widgets.dart';
 
 class GroupCreation extends StatelessWidget {
-  const GroupCreation({Key? key}) : super(key: key);
+  const GroupCreation({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class GroupCreation extends StatelessWidget {
 }
 
 class CreateGroupBox extends StatelessWidget {
-  const CreateGroupBox({Key? key}) : super(key: key);
+  const CreateGroupBox({super.key});
 
   @override
   Widget build(BuildContext context) {

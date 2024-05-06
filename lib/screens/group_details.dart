@@ -6,7 +6,7 @@ import 'screens.dart';
 
 
 class GroupDetailsScreen extends StatelessWidget {
-	const GroupDetailsScreen({Key? key}) : super(key: key);
+	const GroupDetailsScreen({super.key});
 	
 	@override
 	Widget build(BuildContext context) {

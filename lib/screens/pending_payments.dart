@@ -150,7 +150,7 @@ class MarkAsPaidRow extends StatelessWidget {
     		Checkbox(
 					value: debt.isPaid,
 				 	checkColor: AppTheme.primaryColor,
-					fillColor: MaterialStateColor.resolveWith((states){
+					fillColor: WidgetStateColor.resolveWith((states){
 						if(debt.isPaid == true){
 							return AppTheme.secondaryBlue.withOpacity(0.7);
 						}

@@ -5,10 +5,10 @@ class ParticipantCard extends StatelessWidget {
   final VoidCallback onDeletePressed;
 
   const ParticipantCard({
-    Key? key,
+    super.key,
     required this.username,
     required this.onDeletePressed,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class ParticipantCard extends StatelessWidget {
             const SizedBox(width: 16.0),
             // Botón de eliminar
             IconButton(
-              onPressed: onDeletePressed,
+              onPressed: onDeletePressed, 
               icon: const Icon(Icons.delete),
               color: Colors.red,
             ),
