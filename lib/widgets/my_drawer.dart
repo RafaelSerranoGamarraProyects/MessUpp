@@ -35,8 +35,7 @@ class MyDrawerHeader extends StatelessWidget {
 				mainAxisAlignment: MainAxisAlignment.center,
 				children: [
 					usersProvider.userLogged!.image != null ? const CacheImage() : const DrawerUserImagePlaceholder(),
-					Text(usersProvider.userLogged!.getUserName, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),),
-					//Text(usersProvider.user.email,style: const TextStyle(color: Colors.white, fontSize: 16),)
+					Text(usersProvider.userLogged!.getUserName, style: const TextStyle(color: AppTheme.textColorPrimary, fontWeight: FontWeight.bold, fontSize: 20),),
 				],
 
 			),
@@ -157,7 +156,7 @@ class _CustomMenuItem extends StatelessWidget {
 				child: ListTile(
 					onTap: () => Navigator.pushReplacementNamed(context, option.route),
     			trailing: Icon(option.icon,color: Colors.black,),
-    			title: Text(option.name,style: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20),),
+    			title: Text(option.name,style: const TextStyle(color: AppTheme.textColorSecundary, fontWeight: FontWeight.bold, fontSize: 20),),
     		),
 			),
 		);

@@ -31,8 +31,8 @@ class AddParticipantFormState extends State<AddParticipantForm> {
                     labelText: 'Nombre del participante',
 										fillColor: Colors.white, // Fondo blanco
     								filled: true,
-    								labelStyle: TextStyle(color: Colors.black), // Color del texto de la etiqueta
-    								hintStyle: TextStyle(color: Colors.black),
+    								labelStyle: TextStyle(color: AppTheme.textColorSecundary), // Color del texto de la etiqueta
+    								hintStyle: TextStyle(color: AppTheme.textColorSecundary),
                   ),
                 ),
               ),

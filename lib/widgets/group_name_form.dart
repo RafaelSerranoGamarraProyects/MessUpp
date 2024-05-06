@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/providers.dart';
+import '../theme/custom_styles.dart';
 class AddGroupName extends StatefulWidget {
   const AddGroupName({super.key});
 
@@ -25,8 +26,8 @@ class AddGroupNameState extends State<AddGroupName> {
             labelText: 'Nombre del Grupo',
 										fillColor: Colors.white, // Fondo blanco
     								filled: true,
-    								labelStyle: TextStyle(color: Colors.black), // Color del texto de la etiqueta
-    								hintStyle: TextStyle(color: Colors.black),
+    								labelStyle: TextStyle(color:AppTheme.textColorSecundary), // Color del texto de la etiqueta
+    								hintStyle: TextStyle(color: AppTheme.textColorSecundary),
           ),
 					onChanged: (value) {
 						createGroupProvider.name = value;

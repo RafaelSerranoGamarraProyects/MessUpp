@@ -54,7 +54,7 @@ class GroupsScreenHeader extends StatelessWidget {
     		Expanded(
     			child: TextButton(
     				onPressed: () {},
-    				child: Text(group.name, style: const TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)),
+    				child: Text(group.name, style: const TextStyle(color: AppTheme.textColorPrimary, fontSize: 20, fontWeight: FontWeight.bold)),
     			),
     		),
     		IconButton(onPressed: () {

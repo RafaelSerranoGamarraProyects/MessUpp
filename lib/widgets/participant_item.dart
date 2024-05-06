@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/providers.dart';
+import '../theme/custom_styles.dart';
 
 class ParticipantItem extends StatelessWidget {
   const ParticipantItem({
@@ -21,7 +22,7 @@ class ParticipantItem extends StatelessWidget {
 			children: [
 				Expanded(flex: 7,child: Container(
 					alignment: Alignment.center ,height: 50,
-				 	child: Text(participants[index], style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 17),)),),
+				 	child: Text(participants[index], style: const TextStyle(color: AppTheme.textColorPrimary, fontWeight: FontWeight.bold, fontSize: 17),)),),
 				Expanded(
 					flex: 3,
 					child: ElevatedButton(

@@ -48,7 +48,7 @@ class RegisterBoxSV extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 20),
               child: TextButton(
                 onPressed: () => Navigator.pushReplacementNamed(context, 'login'),
-                child: const Text('¿Usted Ya tiene Cuenta? Inicie Sesion', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20) )
+                child: const Text('¿Usted Ya tiene Cuenta? Inicie Sesion', style: TextStyle(color: AppTheme.textColorPrimary, fontWeight: FontWeight.bold, fontSize: 20) )
               ),
             ),
           ],
@@ -135,7 +135,7 @@ class _RegisterForm extends StatelessWidget {
                 loginForm.isLoading 
                   ? 'Espere'
                   : 'Ingresar',
-                style: const TextStyle( color: Colors.white ),
+                style: const TextStyle( color: AppTheme.textColorPrimary),
               )
             )
           )

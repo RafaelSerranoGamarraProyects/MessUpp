@@ -125,7 +125,7 @@ class _PopUpFormAddExpenditureState extends State<PopUpFormAddPendingPayment> {
                             debtsProvider.createDebt(newDebt);
                             Navigator.pushReplacementNamed(context, 'debts');
                           },
-                          child: const Text("Añadir", style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold),)
+                          child: const Text("Añadir", style: TextStyle(color: AppTheme.textColorPrimary, fontSize: 20,fontWeight: FontWeight.bold),)
                       )
                     ],
                   );

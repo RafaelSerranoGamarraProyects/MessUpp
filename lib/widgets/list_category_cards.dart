@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/providers.dart';
+import '../theme/custom_styles.dart';
 import '../utils/utils.dart';
 
 class ListCategoryCards extends StatelessWidget {
@@ -33,9 +34,9 @@ class CategoryCard extends StatelessWidget {
 			child: Card(
 				color: CategoriesOptions.categoryColorMap[category],
 					child: ListTile(
-						leading: Icon(CategoriesOptions.categoryIconMap[category], color: Colors.black),
+						leading: Icon(CategoriesOptions.categoryIconMap[category], color: AppTheme.textColorSecundary),
 						title: Text(category, style: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20),),
-						trailing: Text("${expensesProvider.getTotalByCategoryAmount(category)}€",style: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20),),
+						trailing: Text("${expensesProvider.getTotalByCategoryAmount(category)}€",style: const TextStyle(color: AppTheme.textColorSecundary, fontWeight: FontWeight.bold, fontSize: 20),),
 					),
 			),
 		);

@@ -16,7 +16,7 @@ class _SpendObjetivesScreenState extends State<SpendObjetivesScreen> {
 					length: 2,
 					child: Scaffold(
 						appBar: AppBar(
-							title: const Text('Gastos y Objetivos', style: TextStyle(color: Colors.white),),
+							title: const Text('Gastos y Objetivos', style: TextStyle(color: AppTheme.textColorPrimary),),
 							bottom: 
 								const TabBar(
 									labelColor: Colors.white,

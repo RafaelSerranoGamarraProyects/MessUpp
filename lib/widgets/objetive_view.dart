@@ -77,7 +77,7 @@ class NoObjetiveCard extends StatelessWidget {
         Icon(Icons.track_changes_rounded, color: Colors.white, size: 120, weight: 20,),
         Padding(
           padding: EdgeInsets.symmetric(vertical: 10),
-          child: Text("¿No ha establecido aún su objetivo?", style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),),
+          child: Text("¿No ha establecido aún su objetivo?", style: TextStyle(color: AppTheme.textColorPrimary, fontSize: 20, fontWeight: FontWeight.bold),),
         ),
         PopUpFormAddObjetive()
       ],
@@ -93,7 +93,7 @@ class _ObjetiveDescription extends StatelessWidget {
       height: 100,
       padding: const EdgeInsets.only(top: 15, bottom: 10, right: 15, left: 15),
       child: Text(objetivesProvider.monthlyObjetive.description,
-       style: const TextStyle(color: Colors.white, fontSize: 18, overflow: TextOverflow.clip),),
+       style: const TextStyle(color: AppTheme.textColorPrimary, fontSize: 18, overflow: TextOverflow.clip),),
     );
   }
 }
@@ -109,7 +109,7 @@ class _ObjetiveTitle extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.only(top : 20, bottom: 10, left: 8, right: 8),
       child: Text('Objetivo del Mes de $formatedMonth',
-       style: const TextStyle(color: Colors.white, fontSize: 25,fontWeight: FontWeight.bold),),
+       style: const TextStyle(color: AppTheme.textColorPrimary, fontSize: 25,fontWeight: FontWeight.bold),),
     );
   }
 }
@@ -130,7 +130,7 @@ class Details extends StatelessWidget {
 					Container(
 						alignment: Alignment.topLeft,
 						padding: const EdgeInsets.all(8),
-						child: const Text("Detalles", style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold))
+						child: const Text("Detalles", style: TextStyle(color: AppTheme.textColorPrimary, fontSize: 20, fontWeight: FontWeight.bold))
             ),
 					const ListCategoryCards(),
 				],
@@ -175,7 +175,7 @@ class _ActualProgress extends StatelessWidget {
       padding: const EdgeInsets.only(top: 10, bottom: 20),
       child: Column(
         children: [
-          Text("${expensesProvider.getTotalSpend().toStringAsFixed(2)} € / ${objetivesProvider.monthlyObjetive.amount.toStringAsFixed(2)} €", style: const TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold),),
+          Text("${expensesProvider.getTotalSpend().toStringAsFixed(2)} € / ${objetivesProvider.monthlyObjetive.amount.toStringAsFixed(2)} €", style: const TextStyle(color: AppTheme.textColorPrimary, fontSize: 30, fontWeight: FontWeight.bold),),
           percentage > 100
           ? Row(
               mainAxisAlignment: MainAxisAlignment.center,

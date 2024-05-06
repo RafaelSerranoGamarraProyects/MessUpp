@@ -91,7 +91,7 @@ class AlertDialogAddGroup extends StatelessWidget {
             },
             child: const Padding(
 														padding: EdgeInsets.symmetric(vertical: 15, horizontal: 40),
-														child: Text("Crear Grupo", style: TextStyle(color: Colors.white,fontSize: 22,fontWeight: FontWeight.bold,),),
+														child: Text("Crear Grupo", style: TextStyle(color: AppTheme.textColorPrimary, fontSize: 22,fontWeight: FontWeight.bold,),),
 													)
         )
       ],

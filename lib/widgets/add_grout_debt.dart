@@ -30,8 +30,8 @@ class AddGroupDebtState extends State<AddGroupDebtName> {
             labelText: 'Entrada del Cine',
 										fillColor: Colors.white, // Fondo blanco
     								filled: true,
-    								labelStyle: TextStyle(color: Colors.black), // Color del texto de la etiqueta
-    								hintStyle: TextStyle(color: Colors.black),
+    								labelStyle: TextStyle(color: AppTheme.textColorSecundary), // Color del texto de la etiqueta
+    								hintStyle: TextStyle(color: AppTheme.textColorSecundary),
           ),
 					onChanged: (value) {
 						createGroupExpense.name = value;
@@ -71,8 +71,8 @@ class _AddGroupDebtAmountState extends State<AddGroupDebtAmount> {
           labelText: 'Monto',
           fillColor: Colors.white,
           filled: true,
-          labelStyle: TextStyle(color: Colors.black),
-          hintStyle: TextStyle(color: Colors.black),
+          labelStyle: TextStyle(color: AppTheme.textColorSecundary),
+          hintStyle: TextStyle(color: AppTheme.textColorSecundary),
         ),
         onChanged: (value) {
           createGroupExpense.amount = double.tryParse(value) ?? 0.0;

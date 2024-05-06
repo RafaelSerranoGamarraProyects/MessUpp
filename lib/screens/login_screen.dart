@@ -143,7 +143,7 @@ class _LoginForm extends StatelessWidget {
                 loginForm.isLoading 
                   ? 'Espere'
                   : 'Ingresar',
-                style: const TextStyle( color: Colors.white ),
+                style: const TextStyle( color: AppTheme.textColorPrimary),
               )
             )
           )

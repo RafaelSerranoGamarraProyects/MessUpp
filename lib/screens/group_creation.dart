@@ -14,7 +14,7 @@ class GroupCreation extends StatelessWidget {
 			appBar: AppBar(title: const Row(
 			  children: [
 					ReturnToButton(route: "groups"),
-			    Text('Crear Grupo', style: TextStyle(color: Colors.white)),
+			    Text('Crear Grupo', style: TextStyle(color: AppTheme.textColorPrimary)),
 			  ],
 			)),
 			resizeToAvoidBottomInset: false,
@@ -84,7 +84,7 @@ class GroupNameSection extends StatelessWidget {
     	padding: EdgeInsets.only(top: 20, bottom: 0,left: 5, right: 5),
     	child: Column(
     	children: [
-    	Text('Nombre del Grupo', style: TextStyle(color: Colors.white, fontWeight: FontWeight.normal, fontSize: 20)),
+    	Text('Nombre del Grupo', style: TextStyle(color: AppTheme.textColorPrimary, fontWeight: FontWeight.normal, fontSize: 20)),
     	AddGroupName(),
     	],),
     );
@@ -102,7 +102,7 @@ class ParticipantsSection extends StatelessWidget {
     	padding: EdgeInsets.only(top: 20, bottom: 0,left: 5, right: 5),
     	child: Column(
     	children: [
-    	Text('Participantes', style: TextStyle(color: Colors.white, fontWeight: FontWeight.normal, fontSize: 20)),
+    	Text('Participantes', style: TextStyle(color: AppTheme.textColorPrimary, fontWeight: FontWeight.normal, fontSize: 20)),
     	AddParticipantForm(),
     	],
     	),

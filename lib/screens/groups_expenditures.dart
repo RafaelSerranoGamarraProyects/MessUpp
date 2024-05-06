@@ -38,7 +38,7 @@ class GroupExpenditures extends StatelessWidget {
                     child: Text(
                       "Añadir gasto grupal",
                       style: TextStyle(
-                        color: Colors.white,
+                        color: AppTheme.textColorPrimary,
                         fontWeight: FontWeight.bold,
                         fontSize: 18
                       ),

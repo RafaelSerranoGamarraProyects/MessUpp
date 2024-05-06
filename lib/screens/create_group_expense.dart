@@ -16,7 +16,7 @@ class AddGroupExpense extends StatelessWidget {
 			appBar: AppBar(title: Row(
 			  children: [
 					ReturnToButton(route: "group_details", arguments: group),
-			    const Text("Añadir gasto", style: TextStyle(color: Colors.white), overflow: TextOverflow.ellipsis,),
+			    const Text("Añadir gasto", style: TextStyle(color: AppTheme.textColorPrimary), overflow: TextOverflow.ellipsis,),
 			  ],
 			)),
 			resizeToAvoidBottomInset: false,
@@ -87,7 +87,7 @@ class _PayerSection extends StatelessWidget {
       children: [
         const Padding(
           padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-          child: Text('Pagador', style: TextStyle(color: Colors.white, fontWeight: FontWeight.normal, fontSize: 20)),
+          child: Text('Pagador', style: TextStyle(color: AppTheme.textColorPrimary, fontWeight: FontWeight.normal, fontSize: 20)),
         ),
         PayerDropdown(participants: group.participants, onPayerSelected: (p0) => createGroupExpenseProvider.payer = p0),
       ],
@@ -128,7 +128,7 @@ class _ExpenseTitleSection extends StatelessWidget {
     children: [
     Padding(
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-        child: Text('Titulo', style: TextStyle(color: Colors.white, fontWeight: FontWeight.normal, fontSize: 20)),
+        child: Text('Titulo', style: TextStyle(color: AppTheme.textColorPrimary, fontWeight: FontWeight.normal, fontSize: 20)),
       ),
     AddGroupDebtName(),
     ],);
@@ -145,7 +145,7 @@ class _ExpenseAmountSection extends StatelessWidget {
     children: [
       Padding(
           padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-          child: Text('Cantidad a pagar', style: TextStyle(color: Colors.white, fontWeight: FontWeight.normal, fontSize: 20)),
+          child: Text('Cantidad a pagar', style: TextStyle(color: AppTheme.textColorPrimary, fontWeight: FontWeight.normal, fontSize: 20)),
         ),  
       AddGroupDebtAmount(),
     ],);
@@ -163,7 +163,7 @@ class _BeneficiariesSection extends StatelessWidget {
       children: [
     	  const Padding(
           padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-          child: Text('Participantes', style: TextStyle(color: Colors.white, fontWeight: FontWeight.normal, fontSize: 20)),
+          child: Text('Participantes', style: TextStyle(color: AppTheme.textColorPrimary, fontWeight: FontWeight.normal, fontSize: 20)),
         ),
         BeneficiariesList(group: group),
     ],

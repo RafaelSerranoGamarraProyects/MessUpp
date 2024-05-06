@@ -112,6 +112,6 @@ class _CustomText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(text,style:  TextStyle(color: Colors.white, fontSize: size ?? 20, fontWeight: FontWeight.bold));
+    return Text(text,style:  TextStyle(color: AppTheme.textColorPrimary, fontSize: size ?? 20, fontWeight: FontWeight.bold));
   }
 }

@@ -61,7 +61,7 @@ class SubmitModifyButton extends StatelessWidget {
           Navigator.popAndPushNamed(context, 'home');
 
       },
-      child: const Text("Modificar", style: TextStyle(fontSize: 20,color: Colors.white),),)
+      child: const Text("Modificar", style: TextStyle(fontSize: 20,color: AppTheme.textColorPrimary),),)
     );
   }
 }

@@ -21,7 +21,7 @@ class _DebtorItemState extends State<DebtorItem> {
 				children: [
 					const Padding(
 							padding:  EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-							child: Text("UserName", style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold)),
+							child: Text("UserName", style: TextStyle(color: AppTheme.textColorSecundary, fontSize: 20, fontWeight: FontWeight.bold)),
 					),
 					const Spacer(),
     			Checkbox(

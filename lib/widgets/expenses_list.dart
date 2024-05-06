@@ -65,10 +65,10 @@ class _TotalSpentBarState extends State<TotalSpentBar> {
 					  child: Row(
 					    children: [
 					      const Text("Total gastado este mes: ",
-									style: TextStyle(color:Colors.white, fontSize: 20,fontWeight: FontWeight.normal),
+									style: TextStyle(color: AppTheme.textColorPrimary, fontSize: 20,fontWeight: FontWeight.normal),
 									),
 								Text("${expensesProvider.getTotalSpend().toStringAsFixed(2)}€",
-									style: const TextStyle(color:Colors.white, fontSize: 25,fontWeight: FontWeight.bold)
+									style: const TextStyle(color:AppTheme.textColorPrimary, fontSize: 25,fontWeight: FontWeight.bold)
 								,)
 					    ],
 					  ),
@@ -125,9 +125,9 @@ class _CustomItemState extends State<_CustomItem> {
       child: ListTile(
 				onTap: () => Navigator.pushReplacementNamed(context, 'expenditureDetail', arguments: widget.expenditure),
         leading: Icon(categoryMap[widget.expenditure.category],color: Colors.black,),
-        title: Text(widget.expenditure.description,style: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20),),
+        title: Text(widget.expenditure.description,style: const TextStyle(color: AppTheme.textColorSecundary, fontWeight: FontWeight.bold, fontSize: 20),),
         subtitle: Text('${widget.expenditure.date.day}-${widget.expenditure.date.month}-${widget.expenditure.date.year}'),
-				trailing: Text("${widget.expenditure.amount.toStringAsFixed(2)} €", style: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20),),
+				trailing: Text("${widget.expenditure.amount.toStringAsFixed(2)} €", style: const TextStyle(color: AppTheme.textColorSecundary, fontWeight: FontWeight.bold, fontSize: 20),),
       ),);
   }
 }

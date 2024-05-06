@@ -52,7 +52,7 @@ class DebtsScreen extends StatelessWidget {
 		final debtsprovider = Provider.of<DebtsProvider>(context);
 		final size = MediaQuery.of(context).size;
 		return  Scaffold(
-			appBar: AppBar(title: const Text("Pagos Pendientes", style: TextStyle(color: Colors.white)),),
+			appBar: AppBar(title: const Text("Pagos Pendientes", style: TextStyle(color: AppTheme.textColorPrimary)),),
 			drawer: const Drawer(child: MyDrawer()),
 			resizeToAvoidBottomInset: false,
 			body: Center(
@@ -192,13 +192,13 @@ class DebtInfoRow extends StatelessWidget {
 									padding: EdgeInsets.symmetric(horizontal: 5.0),
 									child: Icon(Icons.person, color: AppTheme.secondaryBlue,),
 								),
-								Text(otherUser,style: const TextStyle(color: Colors.black, fontSize: 18),),
+								Text(otherUser,style: const TextStyle(color: AppTheme.textColorSecundary, fontSize: 18),),
     		      ],
     		    ),
     		  ],
     		),
     		const Spacer(),
-    		Text("${debt.amount} €", style: const TextStyle(color: Colors.black, fontSize: 24, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),)
+    		Text("${debt.amount} €", style: const TextStyle(color: AppTheme.textColorSecundary, fontSize: 24, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),)
       ],
     );
   }

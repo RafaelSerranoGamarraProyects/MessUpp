@@ -143,7 +143,7 @@ class _PopUpFormAddExpenditureState extends State<PopUpFormAddExpenditure> {
 
                             Navigator.pushReplacementNamed(context, 'home');
                           },
-                          child: const Text("Añadir", style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold),)
+                          child: const Text("Añadir", style: TextStyle(color: AppTheme.textColorPrimary, fontSize: 20,fontWeight: FontWeight.bold),)
                       )
                     ],
                   );
