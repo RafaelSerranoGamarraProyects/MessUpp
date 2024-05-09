@@ -9,7 +9,7 @@ import '../theme/custom_styles.dart';
 class ParticipantRow extends StatefulWidget {
   final TransactionBeneficiary participant;
 
-  const ParticipantRow({Key? key, required this.participant}) : super(key: key);
+  const ParticipantRow({super.key, required this.participant});
 
   @override
   _ParticipantRowState createState() => _ParticipantRowState();

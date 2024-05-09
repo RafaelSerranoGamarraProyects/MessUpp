@@ -6,7 +6,7 @@ import 'widgets.dart';
 class BeneficiariesList extends StatefulWidget {
   final Group group;
 
-  const BeneficiariesList({Key? key, required this.group}) : super(key: key);
+  const BeneficiariesList({super.key, required this.group});
 
   @override
   BeneficiariesListState createState() => BeneficiariesListState();

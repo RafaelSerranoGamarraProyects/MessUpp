@@ -22,8 +22,8 @@ class ObjetiveView extends StatelessWidget {
 
 class ObjetiveScreenBody extends StatelessWidget {
 	const ObjetiveScreenBody({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

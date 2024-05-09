@@ -7,7 +7,7 @@ import '../utils/utils.dart';
 
 class HorizontalBarChart extends StatefulWidget {
   
-  const HorizontalBarChart({Key? key}) : super(key: key);
+  const HorizontalBarChart({super.key});
 
   @override
   State<HorizontalBarChart> createState() => _HorizontalBarChartState();

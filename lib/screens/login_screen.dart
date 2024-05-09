@@ -29,8 +29,8 @@ class LoginScreen extends StatelessWidget {
 
 class LoginBoxSV extends StatelessWidget {
   const LoginBoxSV({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

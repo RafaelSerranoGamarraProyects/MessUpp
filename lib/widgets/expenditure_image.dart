@@ -7,9 +7,9 @@ class ExpenditureImage extends StatelessWidget {
   final String url;
 
   const ExpenditureImage({
-    Key? key, 
+    super.key, 
     required this.url
-  }) : super(key: key);
+  });
 
 
   @override

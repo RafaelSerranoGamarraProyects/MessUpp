@@ -29,10 +29,14 @@ class CalculatedDebtCard extends StatelessWidget {
 					),
 					const Spacer(),
 					Padding(
-							padding: const EdgeInsets.only(right: 25.0),
-							child: Text("${calculatedDebt.amount} €", style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 28, fontStyle: FontStyle.italic),),
-						)
-				],),),
+  					padding: const EdgeInsets.only(right: 25.0),
+  					child: Text(
+    			    calculatedDebt.amount % 1 == 0 ? "${calculatedDebt.amount.toStringAsFixed(0)}.00 €" : "${calculatedDebt.amount.toStringAsFixed(2)} €",
+    					style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 28, fontStyle: FontStyle.italic),
+ 						 ),
+					)
+				],),
+			),
 		);
   }
 }

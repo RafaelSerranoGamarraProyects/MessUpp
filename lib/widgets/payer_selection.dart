@@ -5,7 +5,7 @@ class PayerDropdown extends StatefulWidget {
   final List<String> participants;
   final Function(String) onPayerSelected;
 
-  const PayerDropdown({Key? key, required this.participants, required this.onPayerSelected}) : super(key: key);
+  const PayerDropdown({super.key, required this.participants, required this.onPayerSelected});
 
   @override
   // ignore: library_private_types_in_public_api

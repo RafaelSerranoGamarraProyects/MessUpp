@@ -49,7 +49,7 @@ class AddGroupDebtState extends State<AddGroupDebtName> {
 }
 
 class AddGroupDebtAmount extends StatefulWidget {
-  const AddGroupDebtAmount({Key? key}) : super(key: key);
+  const AddGroupDebtAmount({super.key});
 
   @override
   _AddGroupDebtAmountState createState() => _AddGroupDebtAmountState();

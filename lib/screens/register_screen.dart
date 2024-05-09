@@ -25,8 +25,8 @@ class RegisterScreen extends StatelessWidget {
 
 class RegisterBoxSV extends StatelessWidget {
   const RegisterBoxSV({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -3,8 +3,8 @@ import 'package:messup/theme/custom_styles.dart';
 
 class Background extends StatelessWidget {
   const Background({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
 
   @override

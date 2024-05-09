@@ -45,7 +45,7 @@ class TypeOfPayment {
 
 class DebtsScreen extends StatelessWidget {
 	 
-	const DebtsScreen({Key? key}) : super(key: key);
+	const DebtsScreen({super.key});
 	
 	@override
 	Widget build(BuildContext context) {

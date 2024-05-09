@@ -4,7 +4,7 @@ import '../widgets/widgets.dart';
 
 class SpendObjetivesScreen extends StatefulWidget {
 	 
-	const SpendObjetivesScreen({Key? key}) : super(key: key);
+	const SpendObjetivesScreen({super.key});
   @override
   State<SpendObjetivesScreen> createState() => _SpendObjetivesScreenState();
 }
