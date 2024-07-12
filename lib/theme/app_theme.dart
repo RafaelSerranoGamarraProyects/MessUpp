@@ -11,6 +11,7 @@ class AppTheme {
 		primaryColor: primaryColor,
 		appBarTheme: const AppBarTheme(
       color: primaryColor,
+			actionsIconTheme: IconThemeData(color: textColorPrimary),
       elevation: 0,
     ),
 	);

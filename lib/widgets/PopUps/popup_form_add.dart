@@ -131,9 +131,7 @@ class _PopUpFormAddExpenditureState extends State<PopUpFormAddExpenditure> {
                           onPressed: addExpenditureForm.isLoading ? null : () async {
                             FocusScope.of(context).unfocus();
                             if( !addExpenditureForm.isValidForm() ) return;
-
                     
-                            addExpenditureForm.isLoading = true;
                             var finalDate = DateTime.parse(addExpenditureForm.date).add(const Duration(days: 1));
 
                             final newExpenditure = Expenditure(date: finalDate, amount: addExpenditureForm.amount,category: addExpenditureForm.category,

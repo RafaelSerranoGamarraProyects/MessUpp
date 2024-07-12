@@ -77,6 +77,4 @@ class InputDecorations {
         icon: Icon(icon, color: AppTheme.primaryColor)
       );
   }
-
-
 }

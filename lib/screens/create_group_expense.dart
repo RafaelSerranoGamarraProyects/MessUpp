@@ -114,7 +114,7 @@ class SummnitButton extends StatelessWidget {
       }
     },
      style: ElevatedButton.styleFrom(backgroundColor: AppTheme.primaryColor, minimumSize: Size(size.width - 40, 100)),
-     child: const Text("Añadir Gasto"),);
+     child: const Text("Añadir Gasto", style: TextStyle(color: AppTheme.textColorPrimary),),);
   }
 }
 

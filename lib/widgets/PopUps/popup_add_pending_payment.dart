@@ -62,7 +62,11 @@ class _PopUpFormAddExpenditureState extends State<PopUpFormAddPendingPayment> {
               									  labelText: 'Cuantía',
               									  prefixIcon: Icons.monetization_on_outlined
               								),
-                              onChanged: ( value ) => addPendingPaymentForm.amount = double.parse(value),
+                              onChanged: ( value ) {
+                                if(value != "") {
+                                  addPendingPaymentForm.amount = double.parse(value);
+                                }
+                              },
                             ),
                             DropdownButtonFormField(
                               decoration: const InputDecoration( 
