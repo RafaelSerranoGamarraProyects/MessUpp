@@ -81,9 +81,7 @@ class _TotalSpentBarState extends State<TotalSpentBar> {
 
 class _ListOfItems extends StatefulWidget {
 	//final List<Expenditure> expenses;
-  const _ListOfItems({
-    super.key,
-  });
+  const _ListOfItems();
 
   @override
   State<_ListOfItems> createState() => _ListOfItemsState();
@@ -107,7 +105,7 @@ class _CustomItem extends StatefulWidget {
 	final Expenditure expenditure;
 	
    const _CustomItem({
-    super.key, required this.expenditure,
+    required this.expenditure,
   });
 
   @override

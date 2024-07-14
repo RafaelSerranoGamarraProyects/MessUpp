@@ -11,8 +11,9 @@ class AddGroupExpense extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Group group = ModalRoute.of(context)!.settings.arguments as Group;
-		return Scaffold(
+		return GestureDetector(
+      onTap: () =>  FocusScope.of(context).requestFocus(FocusNode()),
+      child: Scaffold(
 			appBar: AppBar(title: const Text("Añadir gasto", style: TextStyle(color: AppTheme.textColorPrimary), overflow: TextOverflow.ellipsis,),
       iconTheme: const IconThemeData(color: AppTheme.textColorPrimary),),
 			resizeToAvoidBottomInset: false,
@@ -22,7 +23,7 @@ class AddGroupExpense extends StatelessWidget {
 					_AddGroupExpenseForm(),
         ],
       ),
-    );
+    ));
   }
 }
 

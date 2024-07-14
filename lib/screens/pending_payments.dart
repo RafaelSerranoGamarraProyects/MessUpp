@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:messup/theme/custom_styles.dart';
-import '../models/Entity/debt.dart';
 import '../models/models.dart';
 import '../providers/providers.dart';
 import '../widgets/widgets.dart';
@@ -165,7 +164,7 @@ class MarkAsPaidRow extends StatelessWidget {
 						debtsprovider.updateDebt(debt);
 						if(debt.isPaid == true && debt.destinationUser != usersProvider.userLogged?.email) {
 						var destiny = debt.destinationUser == usersProvider.userLogged?.email ? debt.originUser : debt.destinationUser; 
-						var expense = Expenditure(date: DateTime.now(), amount: debt.amount, category: "Deudas", description: "Deuda con " + destiny, image: "", user: usersProvider.user);
+						var expense = Expenditure(date: DateTime.now(), amount: debt.amount, category: "Deudas", description: "Deuda con $destiny", image: "", user: usersProvider.user);
 						expensesProvider.addExpenditure(expense);
 						}
 					}

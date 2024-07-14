@@ -10,7 +10,9 @@ class GroupCreation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-		return Scaffold(
+		return GestureDetector(
+      onTap: () =>  FocusScope.of(context).requestFocus(FocusNode()),
+      child: Scaffold(
 			appBar: AppBar(title: const Text('Crear Grupo', style: TextStyle(color: AppTheme.textColorPrimary)),
       iconTheme: const IconThemeData(color: AppTheme.textColorPrimary),),
 			resizeToAvoidBottomInset: false,
@@ -20,7 +22,7 @@ class GroupCreation extends StatelessWidget {
 					CreateGroupBox(),
         ],
       ),
-    );
+    ));
   }
 }
 
