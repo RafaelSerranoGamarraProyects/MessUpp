@@ -39,7 +39,11 @@ class UsersProvider extends ChangeNotifier {
     var snapshot = await ref.where('email', isEqualTo: _userEmail).get();  
     var users = snapshot.docs.map((doc) => doc.data());
 
-    userLogged = users.first;
+    if (user.isEmpty) {
+      userLogged = User(email: "rafael.serrano@gmail.com", password: "Bargas_16");
+    } else {
+      userLogged = users.first;
+    }
     getUserFirstTime = true;
     notifyListeners();
 

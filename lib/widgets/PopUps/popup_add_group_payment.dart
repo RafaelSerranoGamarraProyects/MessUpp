@@ -24,7 +24,7 @@ class _PopUpFormAddExpenditureState extends State<PopUpFormAddGroupPayment> {
 					style: ElevatedButton.styleFrom(shape: const CircleBorder(), backgroundColor: Colors.white, minimumSize: const Size(50,50)),
 					child: const Icon(Icons.add, size: 25,color: Colors.black),
           onPressed: () {
-                Navigator.pushReplacementNamed(context, 'create_group');
+                Navigator.pushNamed(context, 'create_group');
           },
         );
 	}

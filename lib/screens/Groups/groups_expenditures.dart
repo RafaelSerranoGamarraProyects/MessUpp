@@ -1,8 +1,8 @@
 import 'package:messup/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-import '../models/models.dart';
-import '../theme/custom_styles.dart';
-import '../utils/utils.dart';
+import '../../models/models.dart';
+import '../../theme/custom_styles.dart';
+import '../../utils/utils.dart';
 
 class GroupExpenditures extends StatelessWidget {
   const GroupExpenditures({
@@ -28,7 +28,7 @@ class GroupExpenditures extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.pushReplacementNamed(context, "add_group_expense", arguments: group);
+                    Navigator.pushNamed(context, "add_group_expense", arguments: group);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppTheme.primaryColor,

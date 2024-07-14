@@ -14,7 +14,8 @@ class CategoriesOptions{
 		"Alimentacion" : const Color.fromARGB(255, 178, 243, 211),
 		"Ocio" : const Color.fromARGB(255, 248, 152, 184),
 		"Viaje" : const Color.fromARGB(255, 169, 225, 251),
-		"Compras" : const Color.fromARGB(255, 252, 233, 163)
+		"Compras" : const Color.fromARGB(255, 252, 233, 163),
+		"Deudas" : const Color.fromARGB(255, 255, 255,255)
 	};
 
 	static List<DropdownMenuItem<String>> ddMenuItemCategories = [

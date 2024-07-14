@@ -12,8 +12,12 @@ class ReturnToButton extends StatelessWidget {
     return IconButton(
       onPressed: () {
 				if (arguments != null) {
-					Navigator.popAndPushNamed(context, route, arguments: arguments);
+          //Navigator.pop(context);
+          //Navigator.pushReplacementNamed(context, route, arguments: arguments);
+				  Navigator.popAndPushNamed(context, route, arguments: arguments);
 				} else {
+          //Navigator.pop(context);
+          //Navigator.pushReplacementNamed(context, route);
 					Navigator.popAndPushNamed(context, route);
 				}
       }, 

@@ -1,8 +1,8 @@
 import 'package:messup/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:messup/theme/app_theme.dart';
-import '../models/models.dart';
-import 'screens.dart';
+import '../../models/models.dart';
+import '../screens.dart';
 
 
 class GroupDetailsScreen extends StatelessWidget {
@@ -16,6 +16,7 @@ class GroupDetailsScreen extends StatelessWidget {
 					child: Scaffold(
 						resizeToAvoidBottomInset: false,
 						appBar: AppBar(
+							iconTheme: const IconThemeData(color: AppTheme.textColorPrimary),
 							bottom: const TabBar(
 							unselectedLabelColor: Colors.white,
 							labelColor: Colors.white,
@@ -50,7 +51,6 @@ class GroupsScreenHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
     	children: [
-    		const ReturnToButton(route: "groups"),
     		Expanded(
     			child: TextButton(
     				onPressed: () {},
@@ -58,8 +58,8 @@ class GroupsScreenHeader extends StatelessWidget {
     			),
     		),
     		IconButton(onPressed: () {
-					 Navigator.pushReplacementNamed(context, 'group_participants', arguments: group);
-				}, icon: const Icon(Icons.people_alt))
+					 Navigator.pushNamed(context, 'group_participants', arguments: group);
+				}, icon: const Icon(Icons.people_alt), color: AppTheme.textColorPrimary,)
     	],
     );
   }

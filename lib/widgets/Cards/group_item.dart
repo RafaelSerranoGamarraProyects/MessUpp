@@ -23,7 +23,7 @@ class _GroupItemState extends State<GroupItem> {
 					child: ListTile(
 						trailing: const Icon(Icons.keyboard_arrow_right_outlined,color: AppTheme.textColorSecundary, size: 30),
 						title: Text(widget.userGroup.name,style: const TextStyle(color: AppTheme.textColorSecundary, fontSize: 20),),
-						onTap: () => Navigator.pushReplacementNamed(context, 'group_details', arguments: widget.userGroup),
+						onTap: () => Navigator.pushNamed(context, 'group_details', arguments: widget.userGroup),
 					),
 				)
       ],

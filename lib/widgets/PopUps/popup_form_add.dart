@@ -128,7 +128,7 @@ class _PopUpFormAddExpenditureState extends State<PopUpFormAddExpenditure> {
 														shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
 													 	backgroundColor: AppTheme.primaryColor,
 													),
-                          onPressed: addExpenditureForm.isLoading ? null : () async {
+                          onPressed: () async {
                             FocusScope.of(context).unfocus();
                             if( !addExpenditureForm.isValidForm() ) return;
                     

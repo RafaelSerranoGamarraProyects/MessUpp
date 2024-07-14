@@ -1,9 +1,9 @@
 import 'package:messup/providers/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../models/models.dart';
-import '../theme/custom_styles.dart';
-import '../widgets/widgets.dart';
+import '../../models/models.dart';
+import '../../theme/custom_styles.dart';
+import '../../widgets/widgets.dart';
 
 class ParticipantsScreen extends StatelessWidget {
 
@@ -18,12 +18,8 @@ class ParticipantsScreen extends StatelessWidget {
 		final Group group = ModalRoute.of(context)!.settings.arguments as Group;
 		final groupProvider = Provider.of<GroupsProvider>(context);
 		return  Scaffold(
-			appBar: AppBar(title: Row(
-			  children: [
-					ReturnToButton(route: "group_details", arguments: group),
-			    const Text("Participantes del grupo", style: TextStyle(color: AppTheme.textColorPrimary)),
-			  ],
-			),),
+			appBar: AppBar(title: const Text("Participantes del grupo", style: TextStyle(color: AppTheme.textColorPrimary)),
+			iconTheme: const IconThemeData(color: AppTheme.textColorPrimary),),
 			resizeToAvoidBottomInset: false,
 			body: Center(
 				 child: Stack(

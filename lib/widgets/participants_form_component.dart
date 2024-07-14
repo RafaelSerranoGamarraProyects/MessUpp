@@ -48,7 +48,7 @@ class AddParticipantFormState extends State<AddParticipantForm> {
                     });
                   }
                 },
-                child: const Text('Añadir'),
+                child: const Text('Añadir', style: TextStyle(color: AppTheme.textColorPrimary)),
               ),
             ],
           ),

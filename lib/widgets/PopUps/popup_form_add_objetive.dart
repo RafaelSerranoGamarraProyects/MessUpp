@@ -90,7 +90,7 @@ class _PopUpFormAddObjetiveState extends State<PopUpFormAddObjetive> {
 														shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
 													 	backgroundColor: AppTheme.primaryColor,
 													),
-                          onPressed: addObjetiveForm.isLoading ? null : () async {
+                          onPressed: () async {
                             FocusScope.of(context).unfocus();
                             if( !addObjetiveForm.isValidForm() ) return;
                     

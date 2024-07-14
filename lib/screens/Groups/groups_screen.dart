@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:messup/providers/providers.dart';
-import '../theme/custom_styles.dart';
-import '../widgets/widgets.dart';
+import '../../theme/custom_styles.dart';
+import '../../widgets/widgets.dart';
 
 class GroupScreen extends StatelessWidget {
 	 
@@ -13,7 +13,7 @@ class GroupScreen extends StatelessWidget {
 		final groupProvider = Provider.of<GroupsProvider>(context);
 		final size = MediaQuery.of(context).size;
 		return Scaffold(
-			appBar: AppBar(title: const Text('Grupos', style: TextStyle(color: AppTheme.textColorPrimary))),
+			appBar: AppBar(title: const Text('Grupos', style: TextStyle(color: AppTheme.textColorPrimary)), iconTheme: const IconThemeData(color: AppTheme.textColorPrimary)),
 			drawer: const Drawer(child: MyDrawer()),
 			resizeToAvoidBottomInset: false,
 			body: Stack(

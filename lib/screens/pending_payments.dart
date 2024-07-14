@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:messup/theme/custom_styles.dart';
+import '../models/Entity/debt.dart';
 import '../models/models.dart';
 import '../providers/providers.dart';
 import '../widgets/widgets.dart';
@@ -52,7 +53,8 @@ class DebtsScreen extends StatelessWidget {
 		final debtsprovider = Provider.of<DebtsProvider>(context);
 		final size = MediaQuery.of(context).size;
 		return  Scaffold(
-			appBar: AppBar(title: const Text("Pagos Pendientes", style: TextStyle(color: AppTheme.textColorPrimary)),),
+			appBar: AppBar(title: const Text("Pagos Pendientes", style: TextStyle(color: AppTheme.textColorPrimary)),
+		 								 iconTheme: const IconThemeData(color: AppTheme.textColorPrimary)),
 			drawer: const Drawer(child: MyDrawer()),
 			resizeToAvoidBottomInset: false,
 			body: Center(
@@ -143,6 +145,8 @@ class MarkAsPaidRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 		final debtsprovider = Provider.of<DebtsProvider>(context);
+		final expensesProvider = Provider.of<ExpensesProvider>(context);
+		final usersProvider = Provider.of<UsersProvider>(context);
     return Row(
       children: [
         Text(typeOfPayment.checkBoxMessage(), style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: AppTheme.primaryColor),),
@@ -159,6 +163,11 @@ class MarkAsPaidRow extends StatelessWidget {
 					onChanged: (value){
 						debt.isPaid = value!;
 						debtsprovider.updateDebt(debt);
+						if(debt.isPaid == true && debt.destinationUser != usersProvider.userLogged?.email) {
+						var destiny = debt.destinationUser == usersProvider.userLogged?.email ? debt.originUser : debt.destinationUser; 
+						var expense = Expenditure(date: DateTime.now(), amount: debt.amount, category: "Deudas", description: "Deuda con " + destiny, image: "", user: usersProvider.user);
+						expensesProvider.addExpenditure(expense);
+						}
 					}
 				)
     	],

@@ -14,7 +14,9 @@ class DebtDetailScreen extends StatelessWidget {
 	@override
 	Widget build(BuildContext context) {
 		return  Scaffold(
-			appBar: AppBar(title: const Text("Detalle de Deuda", style: TextStyle(color: Colors.white),),),
+			appBar: AppBar(title: const Text("Detalle de Deuda", style: TextStyle(color: Colors.white),),
+				iconTheme: const IconThemeData(color: AppTheme.textColorPrimary),
+			),
 			drawer: const Drawer(child: MyDrawer(),),
 			body:  const Stack(
 			  children: [

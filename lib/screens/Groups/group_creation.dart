@@ -2,8 +2,8 @@ import 'package:messup/models/models.dart';
 import 'package:flutter/material.dart';
 import 'package:messup/theme/custom_styles.dart';
 import 'package:provider/provider.dart';
-import '../providers/providers.dart';
-import '../widgets/widgets.dart';
+import '../../providers/providers.dart';
+import '../../widgets/widgets.dart';
 
 class GroupCreation extends StatelessWidget {
   const GroupCreation({super.key});
@@ -11,12 +11,8 @@ class GroupCreation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 		return Scaffold(
-			appBar: AppBar(title: const Row(
-			  children: [
-					ReturnToButton(route: "groups"),
-			    Text('Crear Grupo', style: TextStyle(color: AppTheme.textColorPrimary)),
-			  ],
-			)),
+			appBar: AppBar(title: const Text('Crear Grupo', style: TextStyle(color: AppTheme.textColorPrimary)),
+      iconTheme: const IconThemeData(color: AppTheme.textColorPrimary),),
 			resizeToAvoidBottomInset: false,
       body:  const Stack(
         children: [
@@ -64,12 +60,12 @@ class SummnitButton extends StatelessWidget {
 					createGroupProvider.participants.add(userProvider.userLogged!.getUserName);
 					final newGroup = Group(name: createGroupProvider.name, creationDate: DateTime.now(), image: "", participants: createGroupProvider.participants, transactions: []);
 					groupProvider.createGroup(newGroup);
-					Navigator.pushReplacementNamed(context, "groups");
+					Navigator.pop(context);
     	 }
     	 
     },
      style: ElevatedButton.styleFrom(backgroundColor: AppTheme.primaryColor, minimumSize: Size(size.width - 40, 100)),
-     child: const Text("Crear grupo"),);
+     child: const Text("Crear grupo", style: TextStyle(color: AppTheme.textColorPrimary)));
   }
 }
 

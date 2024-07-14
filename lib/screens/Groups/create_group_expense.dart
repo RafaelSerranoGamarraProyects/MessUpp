@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:messup/theme/custom_styles.dart';
 import 'package:messup/widgets/widgets.dart';
 import 'package:provider/provider.dart';
-import '../providers/providers.dart';
+import '../../providers/providers.dart';
 
 
 class AddGroupExpense extends StatelessWidget {
@@ -13,12 +13,8 @@ class AddGroupExpense extends StatelessWidget {
   Widget build(BuildContext context) {
     final Group group = ModalRoute.of(context)!.settings.arguments as Group;
 		return Scaffold(
-			appBar: AppBar(title: Row(
-			  children: [
-					ReturnToButton(route: "group_details", arguments: group),
-			    const Text("Añadir gasto", style: TextStyle(color: AppTheme.textColorPrimary), overflow: TextOverflow.ellipsis,),
-			  ],
-			)),
+			appBar: AppBar(title: const Text("Añadir gasto", style: TextStyle(color: AppTheme.textColorPrimary), overflow: TextOverflow.ellipsis,),
+      iconTheme: const IconThemeData(color: AppTheme.textColorPrimary),),
 			resizeToAvoidBottomInset: false,
       body:  const Stack(
         children: [
@@ -66,7 +62,7 @@ class _CreateGroupExpenseFormBody extends StatelessWidget {
               const _ExpenseAmountSection(),
               _PayerSection(group: group),
                 const _BeneficiariesSection(),
-                const SummnitButton()
+                const SubmitButton()
             ]),
     );
   }
@@ -95,8 +91,8 @@ class _PayerSection extends StatelessWidget {
   }
 }
 
-class SummnitButton extends StatelessWidget {
-  const SummnitButton({ super.key });
+class SubmitButton extends StatelessWidget {
+  const SubmitButton({ super.key });
 
   @override
   Widget build(BuildContext context) {
@@ -110,7 +106,7 @@ class SummnitButton extends StatelessWidget {
       if (createGroupExpenseProvider.isValidForm()) {
         group.transactions.add(createGroupExpenseProvider.createTransaction());
         groupsProvider.updateTransactions(group);
-        Navigator.pushReplacementNamed(context, "group_details", arguments: group);
+        Navigator.pop(context);
       }
     },
      style: ElevatedButton.styleFrom(backgroundColor: AppTheme.primaryColor, minimumSize: Size(size.width - 40, 100)),
